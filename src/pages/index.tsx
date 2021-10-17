@@ -7,10 +7,10 @@ const Home = () => {
     <div className='w-full px-10 font-n2i'>
       <Head>
         <title>MySite</title>
-        <meta property='og:title' content='Tailwind CC' />
+        <meta property='og:title' content='MySite' />
       </Head>
 
-      <div className='w-full text-gray-900 p-4'>
+      <div className='w-full text-gray-900 py-4'>
         <div>
           <div className='sticky text-lg font-bold pt-4'>Box Layout</div>
           <img src="https://pakutaso.cdn.rabify.me/shared/img/thumb/084AME0226.jpg.webp?d=1420" alt="image" />
