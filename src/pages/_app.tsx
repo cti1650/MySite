@@ -12,7 +12,7 @@ const TailwindApp = (props: AppProps) => {
   return (
     <Layout>
       <Head>
-        <title>Tailwind CC</title>
+        <title>MySite</title>
         <link rel='icon' href='/icon/tailwind_cc-128x128.ico' />
         <meta name='viewport' content='user-scalable=no' />
         <meta
@@ -24,7 +24,7 @@ const TailwindApp = (props: AppProps) => {
           content='Tailwind.cssを使ったレイアウトの方法や文字など見た目を確認しながらclassをコピペできるようにしたチートシートです！'
         />
         <meta name='keywords' content='HTML,CSS,Tailwind.css'></meta>
-        <meta property='og:title' content='Tailwind CC' />
+        <meta property='og:title' content='MySite' />
         <meta
           property='og:description'
           content='Tailwind.cssを使ったレイアウトの方法や文字など見た目を確認しながらclassをコピペできるようにしたチートシートです！'
@@ -32,7 +32,7 @@ const TailwindApp = (props: AppProps) => {
         <meta property='og:type' content='website' />
         <meta property='og:url' content='https://tailwind-cc.vercel.app/' />
         <meta property='og:image' content='/icon/tailwind_cc-128x128.ico' />
-        <meta property='og:site_name' content='Tailwind CC' />
+        <meta property='og:site_name' content='MySite' />
         <meta property='og:locale' content='ja_JP' />
       </Head>
       <Component {...pageProps} />
