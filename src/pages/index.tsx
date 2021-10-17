@@ -20,6 +20,8 @@ const Home = () => {
   );
 };
 
+// https://n2i.jp/
+
 export const getStaticProps: GetStaticProps = async context => {
   return {
     props: {},
