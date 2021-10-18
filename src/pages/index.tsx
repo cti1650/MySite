@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className='w-full px-10 font-n2i'>
       <Head>
-        <title>Yuichi Sakagami Portfolio</title>
+        <title>cti1650 Portfolio</title>
         <meta property='og:title' content='MySite' />
       </Head>
 
