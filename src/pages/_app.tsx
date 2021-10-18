@@ -12,8 +12,8 @@ const TailwindApp = (props: AppProps) => {
   return (
     <Layout>
       <Head>
-        <title>MySite</title>
-        <link rel='icon' href='/icon/tailwind_cc-128x128.ico' />
+        <title>Yuichi Sakagami Portfolio</title>
+        <link rel='icon' href='img/logo_icon_white.png' />
         <meta name='viewport' content='user-scalable=no' />
         <meta name="robots" content="noindex" />
         <meta name="robots" content="nofollow" />
@@ -23,13 +23,13 @@ const TailwindApp = (props: AppProps) => {
         ></meta>
         <meta
           name='description'
-          content='ポートフォリオサイトです。'
+          content='Yuichi Sakagamiのポートフォリオサイトです。'
         />
         <meta name='keywords' content='HTML,CSS,Tailwind.css'></meta>
         <meta property='og:title' content='MySite' />
         <meta
           property='og:description'
-          content='ポートフォリオサイトです。'
+          content='Yuichi Sakagamiのポートフォリオサイトです。'
         />
         <meta property='og:type' content='website' />
         <meta property='og:url' content='https://tailwind-cc.vercel.app/' />

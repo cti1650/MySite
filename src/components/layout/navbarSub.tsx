@@ -1,3 +1,4 @@
+import { SocialButton, NavButton } from '@comp/button/Buttons';
 import Link from 'next/link';
 import React from 'react';
 import { TailwindSearch } from '../search/tailwind';
@@ -9,22 +10,14 @@ export default function Navbar({ children }) {
         <div className="h-20 flex items-center">
           <div className="w-full h-8 flex flex-row">
             <div className='flex-none h-full py-auto flex flex-row items-center space-x-1 text-center text-2xl font-extrabold tracking-widest'>
-              <p><img src="img/logo_icon_white.png" width="24px" height="24px" alt="icon"></img></p><p>MySite</p>
+              <p><img src="img/logo_icon_white.png" width="24px" height="24px" alt="icon"></img></p><p>Y.Sakagami Portfolio</p>
             </div>
             <ol className='flex-grow w-full py-2 sm:py-4 flex justify-center items-center content-center space-x-6 text-gray-800'>
               <li>
-                <Link href='/'>
-                  <a className='px-4 py-1 bg-white hover:bg-gray-200 rounded'>
-                    Home
-                  </a>
-                </Link>
+                <NavButton href='/'>Home</NavButton>
               </li>
               <li>
-                <Link href='/site'>
-                  <a className='px-4 py-1 bg-white hover:bg-gray-200 rounded'>
-                    Links
-                  </a>
-                </Link>
+                <NavButton href='/site'>Portfolios</NavButton>
               </li>
             </ol>
           </div>
