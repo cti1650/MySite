@@ -1,7 +1,5 @@
 import { SocialButton, NavButton } from '@comp/button/Buttons';
-import Link from 'next/link';
 import React from 'react';
-import { TailwindSearch } from '../search/tailwind';
 
 export default function Navbar({ children }) {
   return (

@@ -12,12 +12,12 @@ const getAge = (birthday) => {
   //今日
   const today = new Date();
   //今年の誕生日
-  const thisYearsBirthday = new Date(today.getFullYear(), birthday.month-1, birthday.date);
+  const thisYearsBirthday = new Date(today.getFullYear(), birthday.month - 1, birthday.date);
   //年齢
   let age = today.getFullYear() - birthday.year;
-  if(today < thisYearsBirthday){
-      //今年まだ誕生日が来ていない
-      age--;
+  if (today < thisYearsBirthday) {
+    //今年まだ誕生日が来ていない
+    age--;
   }
   return age;
 };
@@ -30,20 +30,22 @@ const Home = () => {
         <meta property='og:title' content='MySite' />
       </Head>
 
-      <div className='w-full text-gray-900 mt-4 pt-2 grid grid-rows-2 sm:grid-cols-2'>
+      <div className='w-full text-gray-900 mt-4 pt-2 grid sm:grid-cols-2'>
         <div className="w-full">
           <img src="https://pakutaso.cdn.rabify.me/shared/img/thumb/084AME0226.jpg.webp?d=1420" alt="image" className="w-full" />
         </div>
-        <div className="w-full flex flex-col">
-          <div className="text-xl text-blue-700">Profile</div>
-          <div className="text-lg text-blue-500">Name</div>
-          <div className="pl-4 text-gray-600">Yuichi Sakagami</div>
-          <div className="text-lg text-blue-500">Birthday</div>
-          <div className="pl-4 text-gray-600">1992年1月25日 ( {getAge(birthday)}歳 )</div>
-          <div className="text-lg text-blue-500">Skillset</div>
-          <div className="pl-4 text-gray-600">HTML, JavaScript, CSS, React.js, Next.js, Tailwind.css</div>
-          <div className="text-lg text-blue-500">Qualification & Tools</div>
-          <div className="pl-4 text-gray-600">ITパスポート, GitHub, VSCode</div>
+        <div className="w-full flex flex-col pl-4">
+          <div className="text-xl text-blue-700 pt-4">Profile</div>
+          <div className="w-full flex flex-col pl-4">
+            <div className="text-lg text-blue-500 pt-4">Name</div>
+            <div className="pl-4 text-gray-600">Yuichi Sakagami</div>
+            <div className="text-lg text-blue-500 pt-4">Birthday</div>
+            <div className="pl-4 text-gray-600">1992年1月25日 ( {getAge(birthday)}歳 )</div>
+            <div className="text-lg text-blue-500 pt-4">Skillset</div>
+            <div className="pl-4 text-gray-600">HTML, JavaScript, CSS, React.js, Next.js, Tailwind.css</div>
+            <div className="text-lg text-blue-500 pt-4">Qualification & Tools</div>
+            <div className="pl-4 text-gray-600">ITパスポート, GitHub, VSCode</div>
+          </div>
         </div>
       </div>
     </div>

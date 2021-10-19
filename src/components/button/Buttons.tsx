@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FaGithub } from 'react-icons/fa';
 import React from 'react';
 
 export const SocialButton = ({ children, href }) => {
@@ -34,3 +35,16 @@ export const PageLinkButton = ({ children, href }) => {
     </>
   );
 }
+
+export const GithubButton = ({ href }) => {
+  return (
+    <>
+      <div className="w-full">
+        <a href={href} target="_blank" title="リポジトリを開く" >
+          <FaGithub />
+        </a>
+      </div>
+    </>
+  );
+}
+

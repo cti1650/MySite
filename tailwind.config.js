@@ -20,6 +20,7 @@ module.exports = {
   },
   variants: {
     extend: {},
+    width: ['responsive', 'hover', 'focus'],
   },
   plugins: [],
 };
