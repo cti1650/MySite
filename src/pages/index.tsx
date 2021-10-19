@@ -40,13 +40,10 @@ const Home = () => {
           <div className="text-gray-600">Yuichi Sakagami</div>
           <div className="text-lg text-blue-500">Happy Birthday</div>
           <div className="text-gray-600">1992年1月25日({getAge(birthday)})</div>
-<!--           <div className="text-lg text-blue-500">顔写真</div> -->
-<!--           <div className="text-lg text-blue-500">過去経歴</div> -->
           <div className="text-lg text-blue-500">Skillset</div>
           <div className="text-gray-600">HTML, JavaScript, CSS, React.js, Next.js, Tailwind.css</div>
           <div className="text-lg text-blue-500">Qualification & Tools</div>
           <div className="text-gray-600">ITパスポート, GitHub, VSCode</div>
-<!--           <div className="text-lg text-blue-500">自身の強みと具体的なエピソード（自己PR）</div> -->
         </div>
       </div>
     </div>
