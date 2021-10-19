@@ -38,7 +38,7 @@ const Home = () => {
           <div className="text-xl text-blue-700">Profile</div>
           <div className="text-lg text-blue-500">Name</div>
           <div className="pl-4 text-gray-600">Yuichi Sakagami</div>
-          <div className="text-lg text-blue-500">Happy Birthday</div>
+          <div className="text-lg text-blue-500">Birthday</div>
           <div className="pl-4 text-gray-600">1992年1月25日 ( {getAge(birthday)}歳 )</div>
           <div className="text-lg text-blue-500">Skillset</div>
           <div className="pl-4 text-gray-600">HTML, JavaScript, CSS, React.js, Next.js, Tailwind.css</div>
