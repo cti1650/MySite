@@ -80,12 +80,12 @@ const Home = () => {
       </Head>
 
       <div className='w-full text-gray-900 py-8'>
-        <div className="w-full grid grid-cols-1 sm:grid-cols-3 divide-y divide-light-gray-300 text-center content-center justify-center">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-3 text-center content-center justify-center">
           {Portfolios.map(item => {
             return (<>
-              <div className="p-4 w-full flex flex-col space-y-6">
-                <div className="w-full content-center "><img src={item.img} alt="image" className="mx-auto max-h-80" /></div>
+              <div className="px-4 py-8 w-full flex flex-col space-y-6">
                 <h2 className="w-full text-4xl tracking-wider text-center text-blue-500 whitespace-pre-wrap">{item.name}</h2>
+                <div className="w-full content-center "><img src={item.img} alt="image" className="mx-auto max-h-80" /></div>
                 <div className="w-full tracking-wider text-center whitespace-pre-wrap">{item.description}</div>
                 <PageLinkButton href={item.link}>サイトを開く</PageLinkButton>
               </div>
