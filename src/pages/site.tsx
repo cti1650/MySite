@@ -80,7 +80,7 @@ const Home = () => {
       </Head>
 
       <div className='w-full text-gray-900 py-8'>
-        <div className="w-full space-y-24 divide-y divide-light-gray-300 text-center content-center justify-center">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 divide-y divide-light-gray-300 text-center content-center justify-center">
           {Portfolios.map(item => {
             return (<>
               <div className="pt-4 w-full flex flex-col space-y-6">
