@@ -2,15 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import { PageLinkButton, GithubButton } from '@comp/button/Buttons';
-
-import useSWR from 'swr'
-
-const fetcher = () => fetch('/api/portfolios').then((res) => res.json())
+import { usePortfoliosData } from '@hooks/usePortfoliosData';
 
 const Home = () => {
-  const { data, error } = useSWR('/api/portfolios', fetcher)
-  if (error) return <div>failed to load</div>
-  if (!data) return <div>loading...</div>
+  const [data] = usePortfoliosData()
 
   return (
     <div className='w-full px-10 font-n2i md:max-w-5xl mx-auto'>
