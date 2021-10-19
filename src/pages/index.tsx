@@ -14,7 +14,7 @@ const getAge = (birthday) => {
   //今年の誕生日
   const thisYearsBirthday = new Date(today.getFullYear(), birthday.month-1, birthday.date);
   //年齢
-  const age = today.getFullYear() - birthday.year;
+  let age = today.getFullYear() - birthday.year;
   if(today < thisYearsBirthday){
       //今年まだ誕生日が来ていない
       age--;
