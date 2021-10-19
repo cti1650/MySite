@@ -10,9 +10,12 @@ const Home = () => {
         <meta property='og:title' content='MySite' />
       </Head>
 
-      <div className='w-full text-gray-900 pt-2'>
-        <div>
-          <img src="https://pakutaso.cdn.rabify.me/shared/img/thumb/084AME0226.jpg.webp?d=1420" alt="image" />
+      <div className='w-full text-gray-900 pt-2 grid grid-rows-2 sm:grid-cols-2'>
+        <div className="w-full">
+          <img src="https://pakutaso.cdn.rabify.me/shared/img/thumb/084AME0226.jpg.webp?d=1420" alt="image" className="w-full" />
+        </div>
+        <div className="w-full">
+
         </div>
       </div>
     </div>
