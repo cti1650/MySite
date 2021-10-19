@@ -30,20 +30,20 @@ const Home = () => {
         <meta property='og:title' content='MySite' />
       </Head>
 
-      <div className='w-full text-gray-900 pt-2 grid grid-rows-2 sm:grid-cols-2'>
+      <div className='w-full text-gray-900 mt-4 pt-2 grid grid-rows-2 sm:grid-cols-2'>
         <div className="w-full">
           <img src="https://pakutaso.cdn.rabify.me/shared/img/thumb/084AME0226.jpg.webp?d=1420" alt="image" className="w-full" />
         </div>
         <div className="w-full flex flex-col">
           <div className="text-xl text-blue-700">Profile</div>
           <div className="text-lg text-blue-500">Name</div>
-          <div className="text-gray-600">Yuichi Sakagami</div>
+          <div className="pl-4 text-gray-600">Yuichi Sakagami</div>
           <div className="text-lg text-blue-500">Happy Birthday</div>
-          <div className="text-gray-600">1992年1月25日({getAge(birthday)})</div>
+          <div className="pl-4 text-gray-600">1992年1月25日 ( {getAge(birthday)}歳 )</div>
           <div className="text-lg text-blue-500">Skillset</div>
-          <div className="text-gray-600">HTML, JavaScript, CSS, React.js, Next.js, Tailwind.css</div>
+          <div className="pl-4 text-gray-600">HTML, JavaScript, CSS, React.js, Next.js, Tailwind.css</div>
           <div className="text-lg text-blue-500">Qualification & Tools</div>
-          <div className="text-gray-600">ITパスポート, GitHub, VSCode</div>
+          <div className="pl-4 text-gray-600">ITパスポート, GitHub, VSCode</div>
         </div>
       </div>
     </div>
