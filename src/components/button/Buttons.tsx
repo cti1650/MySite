@@ -15,6 +15,21 @@ export const SocialButton = ({ children, href }) => {
 export const NavButton = ({ children, href }) => {
   return (
     <>
+      <div className="group">
+        <Link href={href}>
+          <a className='px-0 py-1 box-border text-gray-900 font-light tracking-wider' >
+            {children}
+          </a>
+        </Link>
+        <div className="w-full h-0.5 border-b border-black transition delay-100 duration-100 ease-in-out transform scale-x-0 group-hover:scale-x-100"></div>
+      </div>
+    </>
+  );
+}
+
+export const NavButton2 = ({ children, href }) => {
+  return (
+    <>
       <Link href={href}>
         <a className='px-0 py-1 box-border text-gray-900 hover:border-b hover:border-black transition delay-100 duration-100 ease-in-out font-light tracking-wider' >
           {children}
@@ -25,6 +40,21 @@ export const NavButton = ({ children, href }) => {
 }
 
 export const PageLinkButton = ({ children, href }) => {
+  return (
+    <>
+      <div className="w-full h-14 group relative">
+        <a href={href} target="_blank" >
+          <div className="absolute top-0 left-0 z-10 w-full py-4 bg-transparent text-gray-800 group-hover:text-white transition delay-100 duration-100 ease-in-out tracking-wider text-center border-t border-b border-gray-300">
+            {children}
+          </div>
+          <div className="absolute top-0 left-0 z-0 w-full h-full bg-black transition delay-100 duration-100 ease-in-out transform scale-x-0 group-hover:scale-x-100"></div>
+        </a>
+      </div>
+    </>
+  );
+}
+
+export const PageLinkButton2 = ({ children, href }) => {
   return (
     <>
       <a href={href} target="_blank" >
