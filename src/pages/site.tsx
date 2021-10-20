@@ -22,7 +22,7 @@ const Home = () => {
                 <h2 className="w-full text-2xl tracking-wider text-center text-blue-500 whitespace-pre-wrap"><div>{item.name}</div></h2>
                 {item.github && <GithubButton href={item.github} />}
                 <div className="w-full content-center "><img src={item.img} alt="image" className="mx-auto max-h-80" /></div>
-                <div className="w-full tracking-wider text-center whitespace-pre-wrap">{item.description}</div>
+                <div className="w-full tracking-wider text-left whitespace-pre-wrap">{item.description}</div>
                 <PageLinkButton href={item.link}>サイトを開く</PageLinkButton>
               </div>
             </>)

@@ -85,9 +85,11 @@ export const GithubButton = ({ href }) => {
   return (
     <>
       <div className="w-full">
-        <a href={href} target="_blank" title="リポジトリを開く" >
-          <FaGithub />
-        </a>
+        <div className="ml-auto mr-0 w-6 text-xl text-gray-400 hover:text-gray-800">
+          <a href={href} target="_blank" title="リポジトリを開く" >
+            <FaGithub />
+          </a>
+        </div>
       </div>
     </>
   );
