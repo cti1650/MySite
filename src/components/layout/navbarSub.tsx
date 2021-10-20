@@ -8,7 +8,7 @@ export default function Navbar({ children }) {
         <div className="h-20 flex items-center">
           <div className="w-full h-8 flex flex-row">
             <div className='flex-none h-full py-auto flex flex-row items-center space-x-1 text-center text-2xl font-extrabold tracking-widest'>
-              <p><img src="img/logo_icon_white.png" width="24px" height="24px" alt="icon"></img></p><p>cti1650</p>
+              <p><img src="img/logo_icon_white.png" width="24px" height="24px" alt="icon"></img></p><p>CTI1650</p>
             </div>
             <ol className='flex-grow w-full py-2 sm:py-4 flex justify-center items-center content-center space-x-6 text-gray-800'>
               <li>
