@@ -1,28 +1,10 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
-
-const birthday = {
-  year: 1992,
-  month: 1,
-  date: 25
-};
-
-const getAge = (birthday) => {
-  //今日
-  const today = new Date();
-  //今年の誕生日
-  const thisYearsBirthday = new Date(today.getFullYear(), birthday.month - 1, birthday.date);
-  //年齢
-  let age = today.getFullYear() - birthday.year;
-  if (today < thisYearsBirthday) {
-    //今年まだ誕生日が来ていない
-    age--;
-  }
-  return age;
-};
+import { useAge } from '@hooks/useAge';
 
 const Home = () => {
+  const { age } = useAge(1992, 1, 25);
   return (
     <div className='w-full px-10 font-n2i'>
       <Head>
@@ -40,7 +22,7 @@ const Home = () => {
             <div className="text-lg text-blue-500 pt-4">Name</div>
             <div className="pl-4 text-gray-600">Yuichi Sakagami</div>
             <div className="text-lg text-blue-500 pt-4">Birthday</div>
-            <div className="pl-4 text-gray-600">1992年1月25日 ( {getAge(birthday)}歳 )</div>
+            <div className="pl-4 text-gray-600">1992年1月25日 ( {age}歳 )</div>
             <div className="text-lg text-blue-500 pt-4">Skillset</div>
             <div className="pl-4 text-gray-600">HTML, JavaScript, CSS, React.js, Next.js, Tailwind.css</div>
             <div className="text-lg text-blue-500 pt-4">Qualification & Tools</div>
