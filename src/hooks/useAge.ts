@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 
-export const useAge = (year,month,date) => {
-  const age = useMemo( () => {
+export const useAge = (year:number,month:number,date:number) => {
+  const age : number = useMemo( () => {
       const birthday = {
         year: year,
         month: month,
@@ -15,5 +15,5 @@ export const useAge = (year,month,date) => {
       }
       return userAge;
   },[year, month, date]);
-  return {year, month, date, age};
+  return [age];
 };
