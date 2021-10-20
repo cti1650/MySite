@@ -4,7 +4,7 @@ import { GetStaticProps } from 'next';
 import { useAge } from '@hooks/useAge';
 
 const Home = () => {
-  const { age } = useAge(1992, 1, 25);
+  const [age] = useAge(1992, 1, 25);
   return (
     <div className='w-full px-10 font-n2i'>
       <Head>
