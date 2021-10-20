@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo } from "react";
 
 export const useAge = (year,month,date) => {
   const age = useMemo( () => {
@@ -9,11 +9,11 @@ export const useAge = (year,month,date) => {
       };
       const today = new Date();
       const thisYearsBirthday = new Date(today.getFullYear(), birthday.month-1, birthday.date);
-      const _age = today.getFullYear() - birthday.year;
+      const userAge = today.getFullYear() - birthday.year;
       if(today < thisYearsBirthday){
-          _age--;
+          userAge--;
       }
-      return _age;
+      return userAge;
   },[year, month, date]);
   return {year, month, date, age};
 };
