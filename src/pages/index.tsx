@@ -16,17 +16,17 @@ const Home = () => {
         <div className="w-full">
           <img src="https://pakutaso.cdn.rabify.me/shared/img/thumb/084AME0226.jpg.webp?d=1420" alt="image" className="w-full" />
         </div>
-        <div className="w-full flex flex-col pl-4">
+        <div className="w-full flex flex-col pl-8">
           <div className="text-xl text-blue-700 pt-4">Profile</div>
-          <div className="w-full flex flex-col pl-4">
+          <div className="w-full flex flex-col pl-8">
             <div className="text-lg text-blue-500 pt-4">Name</div>
-            <div className="pl-4 text-gray-600">Yuichi Sakagami</div>
+            <div className="pl-8 py-2 text-gray-600">Yuichi Sakagami</div>
             <div className="text-lg text-blue-500 pt-4">Birthday</div>
-            <div className="pl-4 text-gray-600">1992年1月25日 ( {age}歳 )</div>
+            <div className="pl-8 py-2 text-gray-600">1992年1月25日 ( {age}歳 )</div>
             <div className="text-lg text-blue-500 pt-4">Skillset</div>
-            <div className="pl-4 text-gray-600">HTML, JavaScript, CSS, React.js, Next.js, Tailwind.css</div>
+            <div className="pl-8 py-2 text-gray-600">HTML, JavaScript, CSS, React.js, Next.js, Tailwind.css, Python, PHP, VBA, GAS</div>
             <div className="text-lg text-blue-500 pt-4">Qualification & Tools</div>
-            <div className="pl-4 text-gray-600">ITパスポート, GitHub, VSCode</div>
+            <div className="pl-8 py-2 text-gray-600">ITパスポート, VBA Expert Standard(Excel), GitHub, VSCode</div>
           </div>
         </div>
       </div>
