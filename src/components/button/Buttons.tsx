@@ -5,7 +5,7 @@ import React from 'react';
 export const SocialButton = ({ children, href }) => {
   return (
     <>
-      <a href={href} target="_blank" className="text-gray-900 hover:text-opacity-50 transition delay-300 duration-300 ease-in-out rounded text-xs font-thin tracking-wider">
+      <a href={href} target="_blank" className="text-gray-900 hover:text-opacity-50 transition delay-300 duration-300 ease-in-out rounded text-xs font-thin tracking-wider" rel="noreferrer">
         {children}
       </a>
     </>
@@ -43,7 +43,7 @@ export const PageLinkButton = ({ children, href }) => {
   return (
     <>
       <div className="w-full h-14 group relative overflow-hidden border-t border-b border-gray-300">
-        <a href={href} target="_blank" >
+        <a href={href} target="_blank" rel="noreferrer">
           <div className="absolute top-0 left-0 z-10 w-full py-4 bg-transparent text-gray-800 group-hover:text-white transition delay-100 duration-100 ease-in-out tracking-wider text-center border-l border-r border-white">
             {children}
           </div>
