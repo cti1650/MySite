@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import Image from 'next/image';
 import { useAge } from '@hooks/useAge';
+import { ProfListBox } from '@comp/box/profListBox';
 
 const Home = () => {
   const [age] = useAge(1992, 1, 25);
@@ -21,16 +22,12 @@ const Home = () => {
           <div className="w-2/3 h-16 bg-gray-100 px-1">
             <div className="flex flex-row text-xl text-gray-800 pt-4 tracking-wider"><p className="my-auto mr-3 w-4 h-0.5 bg-blue-700"></p>Profile</div>
           </div>
-          <div className="w-full flex flex-col pl-12">
-            <div className="text-lg text-gray-800 pt-4">Name</div>
-            <div className="pl-12 py-2 text-gray-600">Yuichi Sakagami</div>
-            <div className="text-lg text-gray-800 pt-4">Birthday</div>
-            <div className="pl-12 py-2 text-gray-600">1992年1月25日 ( {age}歳 )</div>
-            <div className="text-lg text-gray-800 pt-4">Skillset</div>
-            <div className="pl-12 py-2 text-gray-600">HTML, JavaScript, CSS, React.js, Next.js, Tailwind.css, Python, PHP, VBA, GAS</div>
-            <div className="text-lg text-gray-800 pt-4">Qualification & Tools</div>
-            <div className="pl-12 py-2 text-gray-600">ITパスポート, VBA Expert Standard(Excel), GitHub, VSCode</div>
-          </div>
+          <ProfListBox profList={[
+            { title: "Name", description: "Yuichi Sakagami" },
+            { title: "Birthday", description: `1992年1月25日 ( ${age}歳 )` },
+            { title: "Skillset", description: "HTML, JavaScript, CSS, React.js, Next.js, Tailwind.css, Python, PHP, VBA, GAS" },
+            { title: "Qualification & Tools", description: "ITパスポート, VBA Expert Standard(Excel), GitHub, VSCode" },
+          ]} className="pl-12" />
         </div>
       </div>
     </div>

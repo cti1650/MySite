@@ -6,7 +6,6 @@ import { usePortfoliosData } from '@hooks/usePortfoliosData';
 
 const Home = () => {
   const [data] = usePortfoliosData()
-
   return (
     <div className='w-full px-10 font-n2i md:max-w-5xl mx-auto'>
       <Head>
