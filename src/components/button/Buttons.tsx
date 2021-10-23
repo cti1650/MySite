@@ -58,7 +58,7 @@ export const PageLinkButton3 = ({ children, href }) => {
   return (
     <>
       <div className="w-full h-14 group relative">
-        <a href={href} target="_blank" >
+        <a href={href} target="_blank" rel="noreferrer">
           <div className="absolute top-0 left-0 z-10 w-full py-4 bg-transparent text-gray-800 group-hover:text-white transition delay-100 duration-100 ease-in-out tracking-wider text-center border-t border-b border-gray-300">
             {children}
           </div>
@@ -72,7 +72,7 @@ export const PageLinkButton3 = ({ children, href }) => {
 export const PageLinkButton2 = ({ children, href }) => {
   return (
     <>
-      <a href={href} target="_blank" >
+      <a href={href} target="_blank" rel="noreferrer">
         <div className="w-full py-4 bg-white text-gray-800 hover:bg-black hover:text-white transition delay-300 duration-300 ease-in-out tracking-wider text-center border-t border-b border-gray-300">
           {children}
         </div>
@@ -86,7 +86,7 @@ export const GithubButton = ({ href }) => {
     <>
       <div className="w-full">
         <div className="ml-auto mr-0 w-6 text-xl text-gray-400 hover:text-gray-800">
-          <a href={href} target="_blank" title="リポジトリを開く" >
+          <a href={href} target="_blank" title="リポジトリを開く" rel="noreferrer">
             <FaGithub />
           </a>
         </div>

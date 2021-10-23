@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
+import Image from 'next/image';
 import { useAge } from '@hooks/useAge';
 
 const Home = () => {
@@ -14,19 +15,21 @@ const Home = () => {
 
       <div className='w-full text-gray-900 mt-4 pt-2 grid sm:grid-cols-2'>
         <div className="w-full">
-          <img src="https://pakutaso.cdn.rabify.me/shared/img/thumb/084AME0226.jpg.webp?d=1420" alt="image" className="w-full" />
+          <Image src="/img/084AME0226.jpg.webp" alt="image" width={941} height={627} className="w-full" />
         </div>
-        <div className="w-full flex flex-col pl-8">
-          <div className="text-xl text-blue-700 pt-4">Profile</div>
-          <div className="w-full flex flex-col pl-8">
-            <div className="text-lg text-blue-500 pt-4">Name</div>
-            <div className="pl-8 py-2 text-gray-600">Yuichi Sakagami</div>
-            <div className="text-lg text-blue-500 pt-4">Birthday</div>
-            <div className="pl-8 py-2 text-gray-600">1992年1月25日 ( {age}歳 )</div>
-            <div className="text-lg text-blue-500 pt-4">Skillset</div>
-            <div className="pl-8 py-2 text-gray-600">HTML, JavaScript, CSS, React.js, Next.js, Tailwind.css, Python, PHP, VBA, GAS</div>
-            <div className="text-lg text-blue-500 pt-4">Qualification & Tools</div>
-            <div className="pl-8 py-2 text-gray-600">ITパスポート, VBA Expert Standard(Excel), GitHub, VSCode</div>
+        <div className="w-full flex flex-col pl-0 pt-2 pb-8 sm:pl-8 sm:pt-0 tracking-wider">
+          <div className="w-2/3 h-16 bg-gray-100 px-1">
+            <div className="flex flex-row text-xl text-gray-800 pt-4 tracking-wider"><p className="my-auto mr-3 w-4 h-0.5 bg-blue-700"></p>Profile</div>
+          </div>
+          <div className="w-full flex flex-col pl-12">
+            <div className="text-lg text-gray-800 pt-4">Name</div>
+            <div className="pl-12 py-2 text-gray-600">Yuichi Sakagami</div>
+            <div className="text-lg text-gray-800 pt-4">Birthday</div>
+            <div className="pl-12 py-2 text-gray-600">1992年1月25日 ( {age}歳 )</div>
+            <div className="text-lg text-gray-800 pt-4">Skillset</div>
+            <div className="pl-12 py-2 text-gray-600">HTML, JavaScript, CSS, React.js, Next.js, Tailwind.css, Python, PHP, VBA, GAS</div>
+            <div className="text-lg text-gray-800 pt-4">Qualification & Tools</div>
+            <div className="pl-12 py-2 text-gray-600">ITパスポート, VBA Expert Standard(Excel), GitHub, VSCode</div>
           </div>
         </div>
       </div>
