@@ -11,7 +11,7 @@ const Home = () => {
     <div className='w-full px-10 font-n2i'>
       <Head>
         <title>cti1650 Portfolio</title>
-        <meta property='og:title' content='MySite' />
+        <meta property='og:title' content='cti1650 Portfolio' />
       </Head>
 
       <div className='w-full text-gray-900 mt-4 pt-2 grid sm:grid-cols-2'>

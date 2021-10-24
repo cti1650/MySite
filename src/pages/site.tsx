@@ -10,7 +10,7 @@ const Home = () => {
     <div className='w-full px-10 font-n2i md:max-w-5xl mx-auto'>
       <Head>
         <title>cti1650 Portfolio</title>
-        <meta property='og:title' content='MySite' />
+        <meta property='og:title' content='cti1650 Portfolio' />
       </Head>
 
       <div className='w-full text-gray-900 py-8'>
