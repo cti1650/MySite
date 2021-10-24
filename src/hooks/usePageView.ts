@@ -5,7 +5,6 @@ import * as gtag from '@lib/gtag';
 
 export const usePageView = () => {
   const router = useRouter();
-  console.log(gtag.GA_ID);
   useEffect(() => {
     if (!gtag.existsGaId) {
       return;
