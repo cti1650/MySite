@@ -4,6 +4,7 @@ import { GetStaticProps } from 'next';
 import Image from 'next/image';
 import { useAge } from '@hooks/useAge';
 import { ProfListBox } from '@comp/box/profListBox';
+import { TitleBox } from '@comp/title/TitleBox';
 
 const Home = () => {
   const [age] = useAge(1992, 1, 25);
@@ -19,9 +20,7 @@ const Home = () => {
           <Image src="/img/084AME0226.jpg.webp" alt="image" width={941} height={627} className="w-full" />
         </div>
         <div className="w-full flex flex-col pl-0 pt-2 pb-8 sm:pl-8 sm:pt-0 tracking-wider">
-          <div className="w-2/3 h-16 bg-gray-100 px-1">
-            <div className="flex flex-row text-xl text-gray-800 pt-4 tracking-wider"><p className="my-auto mr-3 w-4 h-0.5 bg-blue-700"></p>Profile</div>
-          </div>
+          <TitleBox title="ABOUT" color='blue' subTitle="私について" size="big" />
           <ProfListBox profList={[
             { title: "Name", description: "Yuichi Sakagami" },
             { title: "Birthday", description: `1992年1月25日 ( ${age}歳 )` },
