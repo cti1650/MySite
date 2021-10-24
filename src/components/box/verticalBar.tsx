@@ -1,8 +1,8 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import cc from "classcat";
 
 type VerticalBarPropsType = {
-  children?: any,
+  children?: ReactElement,
   position?: "right" | "left",
   className?: string,
 }
