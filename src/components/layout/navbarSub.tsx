@@ -17,6 +17,9 @@ export default function Navbar({ children }) {
               <li>
                 <NavButton href='/site'>Portfolios</NavButton>
               </li>
+              <li>
+                <NavButton href='/contact'>Contact</NavButton>
+              </li>
             </ol>
           </div>
         </div>
