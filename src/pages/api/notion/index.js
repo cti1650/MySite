@@ -3,7 +3,7 @@ import Cors from 'cors';
 
 // Initializing the cors middleware
 const cors = Cors({
-  methods: ['GET', 'POST', 'OPTION', 'HEAD'],
+  methods: ['GET', 'POST', 'OPTIONS', 'HEAD'],
   origin: '*',
   credentials: true,
   optionsSuccessStatus: 200,
