@@ -4,6 +4,9 @@ import Cors from 'cors';
 // Initializing the cors middleware
 const cors = Cors({
   methods: ['POST', 'OPTION', 'HEAD'],
+  origin: '*',
+  credentials: true,
+  optionsSuccessStatus: 200,
 });
 
 // Helper method to wait for a middleware to execute before continuing
@@ -87,14 +90,9 @@ export default async function handler(req, res) {
     // console.log(submitData);
     if (submitData) {
       await addTableItem(submitData);
+      res.status(200).json([submitData]);
+      return;
     }
   }
-  getTable().then((db) => {
-    // console.log(db);
-    if (db) {
-      res.status(200).json(db);
-    } else {
-      res.status(400).json([]);
-    }
-  });
+  res.status(200).json([]);
 }
