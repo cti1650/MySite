@@ -119,7 +119,7 @@ const Contact: NextPage = () => {
     setLoading(true);
 
     fetch('/api/notion', {
-      method: 'post', headers: {
+      method: 'post', mode: 'cors', headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
