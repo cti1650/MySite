@@ -3,7 +3,7 @@ import Cors from 'cors';
 
 // Initializing the cors middleware
 const cors = Cors({
-  methods: ['POST', 'OPTION', 'HEAD'],
+  methods: ['GET', 'POST', 'OPTION', 'HEAD'],
   origin: '*',
   credentials: true,
   optionsSuccessStatus: 200,
@@ -37,50 +37,52 @@ export default async function handler(req, res) {
     // console.log(req.body);
     let submitData = {};
 
-    if (req.body.text) {
+    let param = req.body.params ? req.body.params : req.body;
+
+    if (param.text) {
       submitData = {
         ...submitData,
         名前: {
           title: [
             {
               text: {
-                content: req.body.text,
+                content: param.text,
               },
             },
           ],
         },
       };
     }
-    if (req.body.name) {
+    if (param.name) {
       submitData = {
         ...submitData,
         name: {
           title: [
             {
               text: {
-                content: req.body.name,
+                content: param.name,
               },
             },
           ],
         },
       };
     }
-    if (req.body.mail) {
+    if (param.mail) {
       submitData = {
         ...submitData,
         mail: {
-          email: req.body.mail,
+          email: param.mail,
         },
       };
     }
-    if (req.body.body) {
+    if (param.body) {
       submitData = {
         ...submitData,
         body: {
           rich_text: [
             {
               text: {
-                content: req.body.body,
+                content: param.body,
               },
             },
           ],

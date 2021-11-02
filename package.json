@@ -11,6 +11,7 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@notionhq/client": "^0.4.4",
     "autoprefixer": "^10.3.7",
+    "axios": "^0.24.0",
     "classcat": "5.0.3",
     "clipboard-copy": "4.0.1",
     "cors": "^2.8.5",

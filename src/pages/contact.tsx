@@ -13,6 +13,7 @@ import {
   from '@material-ui/core'
 import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
+import axios from 'axios';
 
 
 const twitterUrl = '';
@@ -118,15 +119,22 @@ const Contact: NextPage = () => {
     // }
     setLoading(true);
 
-    fetch('/api/notion', {
-      method: 'post', mode: 'cors', headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
+    // fetch('/api/notion', {
+    //   method: 'post', mode: 'cors', headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     name,
+    //     mail: email,
+    //     body,
+    //   }),
+    // })
+    axios.post('/api/notion', {
+      params: {
         name,
         mail: email,
         body,
-      }),
+      }
     })
       .then(res => {
         if (res.status === 400) {
