@@ -1,6 +1,27 @@
 import { useNotionClient } from '@hooks/useNotion';
+import Cors from 'cors';
+
+// Initializing the cors middleware
+const cors = Cors({
+  methods: ['POST', 'OPTION', 'HEAD'],
+});
+
+// Helper method to wait for a middleware to execute before continuing
+// And to throw an error when an error happens in a middleware
+function runMiddleware(req, res, fn) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+
+      return resolve(result);
+    });
+  });
+}
 
 export default async function handler(req, res) {
+  await runMiddleware(req, res, cors);
   // console.log(
   //   `key:${process.env.NEXT_PUBLIC_NOTION_KEY} id:${process.env.NEXT_PUBLIC_NOTION_DATABASE_ID}`
   // );
