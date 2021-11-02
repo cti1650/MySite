@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { NextPage } from 'next';
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import { PageLinkButton, GithubButton } from '@comp/button/Buttons';
 import { usePortfoliosData } from '@hooks/usePortfoliosData';
 
-const Home = () => {
+const Site: NextPage = () => {
   const [data] = usePortfoliosData()
   return (
     <div className='w-full px-10 font-n2i md:max-w-5xl mx-auto'>
@@ -39,4 +40,4 @@ export const getStaticProps: GetStaticProps = async context => {
   };
 }
 
-export default Home;
+export default Site;

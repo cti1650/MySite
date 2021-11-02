@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import { NextPage } from 'next'
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import Image from 'next/image';
@@ -6,7 +7,8 @@ import { useAge } from '@hooks/useAge';
 import { ProfListBox } from '@comp/box/profListBox';
 import { TitleBox } from '@comp/title/TitleBox';
 
-const Home = () => {
+
+const Home: NextPage = () => {
   const [age] = useAge(1992, 1, 25);
   return (
     <div className='w-full px-10 font-n2i'>
