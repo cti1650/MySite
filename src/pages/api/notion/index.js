@@ -1,6 +1,9 @@
 import { useNotionClient } from '@hooks/useNotion';
 import Cors from 'cors';
 
+// Notion API側がCORSを無効にしていて実行不可だったため実装中止 2021.11.2
+// https://github.com/makenotion/notion-sdk-js/issues/96
+
 // Initializing the cors middleware
 const cors = Cors({
   methods: ['GET', 'POST', 'OPTIONS', 'HEAD'],
