@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { PageLinkButton, GithubButton } from '@comp/button/Buttons';
 import { usePortfoliosData } from '@hooks/usePortfoliosData';
 import { useNotionClient } from '@hooks/useNotion';
@@ -37,7 +37,7 @@ const Site: NextPage = (props: any) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async context => {
+export const getServerSideProps: GetServerSideProps = async context => {
   const { getTable } = useNotionClient('', 'fc568e3d9abc4834b7e8934795e1dbbf')
   const data = [...await getTable()].map(item => {
     const propList: any = item['properties'];
@@ -47,7 +47,6 @@ export const getStaticProps: GetStaticProps = async context => {
       github: propList.github.url || '',
       img: propList.img.files[0]?.name || '',
       link: propList.link.url || '',
-      public: propList.public.checkbox || false,
       type: propList.type.select?.name || '',
     };
   }).filter(item => {
@@ -57,7 +56,6 @@ export const getStaticProps: GetStaticProps = async context => {
     props: {
       tabledata: data
     },
-    revalidate: 20,
   };
 }
 
