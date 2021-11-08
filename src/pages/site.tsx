@@ -75,7 +75,6 @@ const Site: NextPage = (props: any) => {
                   {item.tags && (
                     <div className='w-full flex flex-row flex-wrap'>
                       {item.tags.map((item) => {
-                        console.log(getTagColorStyle[item.color])
                         return (
                           <div
                             key={item.id}
