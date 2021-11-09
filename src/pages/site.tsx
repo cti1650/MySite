@@ -104,7 +104,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     .map((item) => {
       const propList: any = item['properties'];
       return {
-        name: propList.Name.title[0]?.text.content || '',
+        name: propList.name.title[0]?.text.content || '',
         description: propList.description.rich_text[0]?.text.content || '',
         github: propList.github.url || '',
         img: propList.img.files[0]?.name || '',
