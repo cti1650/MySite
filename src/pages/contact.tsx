@@ -1,7 +1,7 @@
-import React, { useState, useCallback, useEffect } from 'react'
-import { NextPage } from 'next'
+import React, { useState, useCallback, useEffect } from 'react';
+import { NextPage } from 'next';
 import Head from 'next/head';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import {
   Container,
   Button,
@@ -9,18 +9,16 @@ import {
   Typography,
   TextField,
   TextareaAutosize,
-}
-  from '@material-ui/core'
-import Snackbar from '@material-ui/core/Snackbar'
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
+} from '@material-ui/core';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import axios from 'axios';
-
 
 const twitterUrl = '';
 
 const Alert = (props: AlertProps) => {
-  return <MuiAlert elevation={6} variant='filled' {...props} />
-}
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+};
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -46,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
           },
           '& > .icon-text': {
             fontSize: 'inherit',
-          }
+          },
         },
       },
     },
@@ -77,88 +75,99 @@ const Contact: NextPage = () => {
 
   const [openAlert, setOpenAlert] = useState(false);
 
-  const validate = useCallback((targetName?: string) => {
-    const pattern = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/g;
-    const param: any = {
-      name: {
-        error: name === '',
-        message: '名前を入力してください',
-      },
-      email: {
-        error: email === '' || !email.match(pattern),
-        message: 'メールアドレスを入力してください',
-      },
-      body: {
-        error: body === '',
-        message: '内容を入力してください'
-      },
-    };
+  const validate = useCallback(
+    (targetName?: string) => {
+      const pattern =
+        /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/g;
+      const param: any = {
+        name: {
+          error: name === '',
+          message: '名前を入力してください',
+        },
+        email: {
+          error: email === '' || !email.match(pattern),
+          message: 'メールアドレスを入力してください',
+        },
+        body: {
+          error: body === '',
+          message: '内容を入力してください',
+        },
+      };
 
-    let overrides: any = {};
-    if (targetName) {
-      overrides[targetName] = param[targetName];
-    } else {
-      overrides = param;
-    }
-
-    setError({
-      ...error,
-      ...overrides,
-    });
-    return !(name === '' || email || !email.match(pattern) || body === '');
-  }, [name, email, body]);
-
-  const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (loading || success) return;
-
-    // if (!validate()) {
-    //   setLoading(false);
-    //   return;
-    // }
-    setLoading(true);
-
-    // fetch('/api/notion', {
-    //   method: 'post', mode: 'cors', headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     name,
-    //     mail: email,
-    //     body,
-    //   }),
-    // })
-    axios.post('/api/notion', {
-      params: {
-        name,
-        mail: email,
-        body,
+      let overrides: any = {};
+      if (targetName) {
+        overrides[targetName] = param[targetName];
+      } else {
+        overrides = param;
       }
-    })
-      .then(res => {
-        if (res.status === 400) {
-          throw new Error('Bad request');
-        }
-        if (res.status === 200) {
+
+      setError({
+        ...error,
+        ...overrides,
+      });
+      return !(name === '' || email || !email.match(pattern) || body === '');
+    },
+    [name, email, body]
+  );
+
+  const handleSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+
+      if (loading || success) return;
+
+      // if (!validate()) {
+      //   setLoading(false);
+      //   return;
+      // }
+      setLoading(true);
+
+      // fetch('/api/notion', {
+      //   method: 'post', mode: 'cors', headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({
+      //     name,
+      //     mail: email,
+      //     body,
+      //   }),
+      // })
+      axios
+        .post('/api/notion', {
+          params: {
+            name,
+            mail: email,
+            body,
+          },
+        })
+        .then((res) => {
+          if (res.status === 400) {
+            throw new Error('Bad request');
+          }
+          if (res.status === 200) {
+            setLoading(false);
+            setSuccess(true);
+            setOpenAlert(true);
+          } else {
+            throw new Error('Bad response');
+          }
+        })
+        .catch(() => {
           setLoading(false);
-          setSuccess(true);
           setOpenAlert(true);
-        } else {
-          throw new Error('Bad response');
-        }
-      })
-      .catch(() => {
-        setLoading(false);
-        setOpenAlert(true);
-      })
-  }, [loading, success, name, email, body]);
-  const handleCloseAlert = useCallback((event?: React.SyntheticEvent, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpenAlert(false);
-  }, []);
+        });
+    },
+    [loading, success, name, email, body]
+  );
+  const handleCloseAlert = useCallback(
+    (event?: React.SyntheticEvent, reason?: string) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      setOpenAlert(false);
+    },
+    []
+  );
 
   // useEffect(() => {
   //   fetch('/api/notion', {
@@ -172,22 +181,37 @@ const Contact: NextPage = () => {
   // }, [])
 
   return (
-    <div className='w-full px-10 font-n2i'>
+    <div className="w-full px-10 font-n2i">
       <Head>
         <title>cti1650 Portfolio</title>
-        <meta property='og:title' content='cti1650 Portfolio' />
+        <meta property="og:title" content="cti1650 Portfolio" />
       </Head>
       <div title="Contact">お問い合わせ</div>
       <Container maxWidth="xs">
         <section className={classes.contact}>
           <Typography className="text py-4">
             お問い合わせがありましたら、
-            {twitterUrl && (<span><MuiLink href={twitterUrl} target="_blank" rel="noopener" aria-label="Twitter">
-              Twitter
-            </MuiLink>
-              からダイレクトメッセージを送っていただくか、</span>)}下のフォームからお問い合わせください。
+            {twitterUrl && (
+              <span>
+                <MuiLink
+                  href={twitterUrl}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Twitter"
+                >
+                  Twitter
+                </MuiLink>
+                からダイレクトメッセージを送っていただくか、
+              </span>
+            )}
+            下のフォームからお問い合わせください。
           </Typography>
-          <form className="contact-form flex flex-col space-y-4" noValidate autoComplete="off" onSubmit={handleSubmit}>
+          <form
+            className="contact-form flex flex-col space-y-4"
+            noValidate
+            autoComplete="off"
+            onSubmit={handleSubmit}
+          >
             <div>
               <TextField
                 error={error.name.error}
@@ -197,8 +221,8 @@ const Contact: NextPage = () => {
                 label="名前"
                 variant="outlined"
                 fullWidth
-                onChange={e => setName(e.target.value)}
-                onBlur={e => validate(e.target.name)}
+                onChange={(e) => setName(e.target.value)}
+                onBlur={(e) => validate(e.target.name)}
               />
             </div>
             <div>
@@ -210,8 +234,8 @@ const Contact: NextPage = () => {
                 label="メールアドレス"
                 variant="outlined"
                 fullWidth
-                onChange={e => setEmail(e.target.value)}
-                onBlur={e => validate(e.target.name)}
+                onChange={(e) => setEmail(e.target.value)}
+                onBlur={(e) => validate(e.target.name)}
               />
             </div>
             <div>
@@ -227,8 +251,8 @@ const Contact: NextPage = () => {
                 }}
                 variant="outlined"
                 fullWidth
-                onChange={e => setBody(e.target.value)}
-                onBlur={e => validate(e.target.name)}
+                onChange={(e) => setBody(e.target.value)}
+                onBlur={(e) => validate(e.target.name)}
               />
             </div>
             <div className="submit-btn">
@@ -256,9 +280,7 @@ const Contact: NextPage = () => {
         </section>
       </Container>
     </div>
-  )
-}
+  );
+};
 
 export default Contact;
-
-

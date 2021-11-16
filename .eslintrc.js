@@ -20,7 +20,11 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react', '@typescript-eslint'],
-  rules: {},
+  rules: {
+    semi: ['error', 'always'],
+    quotes: ['error', 'single'],
+    'react/prop-types': 'off',
+  },
   settings: {
     react: {
       version: 'detect',

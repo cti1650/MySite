@@ -5,19 +5,24 @@ import React from 'react';
 export const SocialButton = ({ children, href }) => {
   return (
     <>
-      <a href={href} target="_blank" className="text-gray-900 hover:text-opacity-50 transition delay-300 duration-300 ease-in-out rounded text-xs font-thin tracking-wider" rel="noreferrer">
+      <a
+        href={href}
+        target="_blank"
+        className="text-gray-900 hover:text-opacity-50 transition delay-300 duration-300 ease-in-out rounded text-xs font-thin tracking-wider"
+        rel="noreferrer"
+      >
         {children}
       </a>
     </>
   );
-}
+};
 
 export const NavButton = ({ children, href }) => {
   return (
     <>
       <div className="group">
         <Link href={href}>
-          <a className='px-0 py-1 box-border text-gray-900 font-light tracking-wider' >
+          <a className="px-0 py-1 box-border text-gray-900 font-light tracking-wider">
             {children}
           </a>
         </Link>
@@ -25,19 +30,19 @@ export const NavButton = ({ children, href }) => {
       </div>
     </>
   );
-}
+};
 
 export const NavButton2 = ({ children, href }) => {
   return (
     <>
       <Link href={href}>
-        <a className='px-0 py-1 box-border text-gray-900 hover:border-b hover:border-black transition delay-100 duration-100 ease-in-out font-light tracking-wider' >
+        <a className="px-0 py-1 box-border text-gray-900 hover:border-b hover:border-black transition delay-100 duration-100 ease-in-out font-light tracking-wider">
           {children}
         </a>
       </Link>
     </>
   );
-}
+};
 
 export const PageLinkButton = ({ children, href }) => {
   return (
@@ -52,7 +57,7 @@ export const PageLinkButton = ({ children, href }) => {
       </div>
     </>
   );
-}
+};
 
 export const PageLinkButton3 = ({ children, href }) => {
   return (
@@ -67,7 +72,7 @@ export const PageLinkButton3 = ({ children, href }) => {
       </div>
     </>
   );
-}
+};
 
 export const PageLinkButton2 = ({ children, href }) => {
   return (
@@ -79,19 +84,23 @@ export const PageLinkButton2 = ({ children, href }) => {
       </a>
     </>
   );
-}
+};
 
 export const GithubButton = ({ href }) => {
   return (
     <>
       <div className="w-full">
         <div className="ml-auto mr-0 w-6 text-xl text-gray-400 hover:text-gray-800">
-          <a href={href} target="_blank" title="リポジトリを開く" rel="noreferrer">
+          <a
+            href={href}
+            target="_blank"
+            title="リポジトリを開く"
+            rel="noreferrer"
+          >
             <FaGithub />
           </a>
         </div>
       </div>
     </>
   );
-}
-
+};

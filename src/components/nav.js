@@ -10,16 +10,16 @@ const links = [
 });
 
 const Nav = () => (
-  <nav className='text-center'>
-    <ul className='flex justify-between px-4 my-4 py-1'>
-      <li className='flex px-2 py-1'>
-        <Link href='/'>
-          <a className='text-blue-500	no-underline text-sm'>Home</a>
+  <nav className="text-center">
+    <ul className="flex justify-between px-4 my-4 py-1">
+      <li className="flex px-2 py-1">
+        <Link href="/">
+          <a className="text-blue-500	no-underline text-sm">Home</a>
         </Link>
       </li>
       {links.map(({ key, href, label }) => (
-        <li key={key} className='flex px-2 py-1'>
-          <a className='text-blue-500	no-underline text-sm' href={href}>
+        <li key={key} className="flex px-2 py-1">
+          <a className="text-blue-500	no-underline text-sm" href={href}>
             {label}
           </a>
         </li>
