@@ -112,6 +112,7 @@ const Contact: NextPage = () => {
 
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
+      console.log('on submit');
       e.preventDefault();
 
       if (loading || success) return;
@@ -131,16 +132,35 @@ const Contact: NextPage = () => {
       //     mail: email,
       //     body,
       //   }),
-      // })
+      // });
+      const database_id = process.env.NEXT_PUBLIC_NOTION_CONTACT_DATABASE_ID ?? '';
+      console.log('https://notion-flask-api-test.vercel.app/db/' + database_id + '/add');
+      //.post('https://notion-flask-api-test.vercel.app/db/' + database_id + '/add', {
       axios
-        .post('/api/notion', {
-          params: {
-            name,
-            mail: email,
-            body,
+        .post('https://notion-flask-api-test.vercel.app/db/' + database_id + '/add', {
+          name: {
+            title: [
+              {
+                text: {
+                  content: name,
+                },
+              },
+            ],
           },
+          mail: {
+            email: email,
+          },
+          body: [
+            {
+              text: {
+                content: body,
+              },
+            },
+          ]
+
         })
         .then((res) => {
+          console.log(res);
           if (res.status === 400) {
             throw new Error('Bad request');
           }
