@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
