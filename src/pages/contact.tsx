@@ -136,8 +136,11 @@ const Contact: NextPage = () => {
       const database_id = process.env.NEXT_PUBLIC_NOTION_CONTACT_DATABASE_ID ?? '';
       console.log('https://notion-flask-api-test.vercel.app/db/' + database_id + '/add');
       //.post('https://notion-flask-api-test.vercel.app/db/' + database_id + '/add', {
-      axios
-        .post('https://notion-flask-api-test.vercel.app/db/' + database_id + '/add', {
+      axios({
+        method: 'post',
+        url: `https://notion-flask-api-test.vercel.app/db/${database_id}/add`,
+        withCredentials: true, // True otherwise I receive another error
+        data: {
           name: {
             title: [
               {
@@ -157,8 +160,8 @@ const Contact: NextPage = () => {
               },
             },
           ]
-
-        })
+        }
+      })
         .then((res) => {
           console.log(res);
           if (res.status === 400) {
