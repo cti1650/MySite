@@ -140,6 +140,10 @@ const Contact: NextPage = () => {
         method: 'post',
         url: `https://notion-flask-api-test.vercel.app/db/${database_id}/add`,
         withCredentials: true, // True otherwise I receive another error
+        headers: {
+          'mode': 'cors',
+          'Access-Control-Allow-Origin': '*'
+        },
         data: {
           name: {
             title: [
