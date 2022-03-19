@@ -12,7 +12,7 @@ export const Layout: VFC<Props> = ({ children }) => {
     <>
       <div className="w-full mx-0 font-n2i">
         <Navbar />
-        <main className="pt-16">{children}</main>
+        <main className="mt-[90px]">{children}</main>
         <SocialNav />
         <Footer />
       </div>
