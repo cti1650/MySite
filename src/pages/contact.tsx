@@ -273,7 +273,7 @@ const Contact: NextPage = () => {
               >
                 送信
               </Button>
-              <Snackbar open={openAlert} autoHideDuration={6000}>
+              <Snackbar open={openAlert} autoHideDuration={3000}>
                 {success ? (
                   <Alert onClose={handleCloseAlert} severity="success">
                     送信が完了しました！

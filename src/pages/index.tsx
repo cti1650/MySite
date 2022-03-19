@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
@@ -56,9 +56,7 @@ const Home: NextPage = () => {
   );
 };
 
-// https://n2i.jp/
-
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {},
   };

@@ -1,11 +1,11 @@
 import { Client } from '@notionhq/client';
 
-export const useNotion = (accessKey = '') => {
+export const useNotion = (accessKey: string = '') => {
   const key = accessKey === '' ? process.env.NEXT_PUBLIC_NOTION_KEY : accessKey;
   return new Client({ auth: key });
 };
 
-export const useNotionClient = (accessKey = '', databaseId) => {
+export const NotionClient = (accessKey: string = '', databaseId: string) => {
   const notion = useNotion(accessKey);
   const getTable = async () => {
     try {

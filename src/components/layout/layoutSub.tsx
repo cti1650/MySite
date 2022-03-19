@@ -1,17 +1,21 @@
-import Navbar from './navbarSub';
-import Footer from './footerSub';
-import React from 'react';
-import SocialNav from './socialNavbarSub';
+import { Navbar } from './navbarSub';
+import { Footer } from './footerSub';
+import React, { VFC } from 'react';
+import { SocialNav } from './socialNavbarSub';
 
-export default function Layout({ children }) {
+type Props = {
+  children: React.ReactNode;
+};
+
+export const Layout: VFC<Props> = ({ children }) => {
   return (
     <>
       <div className="w-full mx-0 font-n2i">
-        <Navbar children={undefined} />
+        <Navbar />
         <main className="pt-16">{children}</main>
-        <SocialNav children={undefined} />
-        <Footer children={undefined} />
+        <SocialNav />
+        <Footer />
       </div>
     </>
   );
-}
+};

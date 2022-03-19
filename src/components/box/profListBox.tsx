@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { VFC } from 'react';
 import cc from 'classcat';
 
 type ProfListBoxPropsType = {
@@ -9,7 +9,7 @@ type ProfListBoxPropsType = {
   className?: string;
 };
 
-export const ProfListBox = ({ profList, className }: ProfListBoxPropsType) => {
+export const ProfListBox: VFC<ProfListBoxPropsType> = ({ profList, className }) => {
   return (
     <>
       <div className={cc(['w-full flex flex-col', className])}>

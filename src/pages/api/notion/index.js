@@ -1,4 +1,4 @@
-import { useNotionClient } from '@hooks/useNotion';
+import { NotionClient } from '@hooks/useNotion';
 import Cors from 'cors';
 
 // Notion API側がCORSを無効にしていて実行不可だったため実装中止 2021.11.2
@@ -31,7 +31,7 @@ export default async function handler(req, res) {
   // console.log(
   //   `key:${process.env.NEXT_PUBLIC_NOTION_KEY} id:${process.env.NEXT_PUBLIC_NOTION_DATABASE_ID}`
   // );
-  const { getTable, addTableItem } = useNotionClient(
+  const { getTable, addTableItem } = NotionClient(
     process.env.NEXT_PUBLIC_NOTION_KEY,
     process.env.NEXT_PUBLIC_NOTION_DATABASE_ID
   );

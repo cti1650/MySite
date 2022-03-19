@@ -1,8 +1,8 @@
 import { SocialButton } from '@comp/button/Buttons';
-import React from 'react';
+import React, { VFC } from 'react';
 import { VerticalBar } from '../box/verticalBar';
 
-export default function SocialNav({ children }) {
+export const SocialNav: VFC = () => {
   return (
     <>
       <VerticalBar position="right">
@@ -24,4 +24,4 @@ export default function SocialNav({ children }) {
       </VerticalBar>
     </>
   );
-}
+};

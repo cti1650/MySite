@@ -1,19 +1,19 @@
-import React, { ReactElement } from 'react';
+import React, { VFC } from 'react';
 import cc from 'classcat';
 
 type VerticalBarPropsType = {
-  children?: ReactElement;
+  children?: React.ReactNode;
   position?: 'right' | 'left';
   autoHidden?: boolean;
   className?: string;
 };
 
-export const VerticalBar = ({
+export const VerticalBar: VFC<VerticalBarPropsType> = ({
   children,
   position,
   autoHidden,
   className,
-}: VerticalBarPropsType) => {
+}) => {
   return (
     <>
       <div

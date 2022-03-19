@@ -1,7 +1,7 @@
-import { SocialButton, NavButton } from '@comp/button/Buttons';
-import React from 'react';
+import { NavButton } from '@comp/button/Buttons';
+import React, { VFC } from 'react';
 
-export default function Navbar({ children }) {
+export const Navbar: VFC = () => {
   return (
     <>
       <div className="fixed top-0 left-0 px-10 pt-2.5 w-full bg-white z-40">
@@ -35,4 +35,4 @@ export default function Navbar({ children }) {
       </div>
     </>
   );
-}
+};

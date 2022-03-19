@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { VFC } from 'react';
 import { VerticalBar } from '../box/verticalBar';
 
-export default function Footer({ children }) {
+export const Footer: VFC = () => {
   return (
     <>
       <VerticalBar position="left">
@@ -13,4 +13,4 @@ export default function Footer({ children }) {
       </VerticalBar>
     </>
   );
-}
+};

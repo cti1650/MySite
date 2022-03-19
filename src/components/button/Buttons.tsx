@@ -1,8 +1,18 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import { FaGithub } from 'react-icons/fa';
-import React from 'react';
+import React, { VFC } from 'react';
 
-export const SocialButton = ({ children, href }) => {
+type ButtonProps = {
+  children: React.ReactNode;
+  href: string;
+}
+
+type IconButtonProps = {
+  href: string;
+}
+
+export const SocialButton: VFC<ButtonProps> = ({ children, href }) => {
   return (
     <>
       <a
@@ -17,7 +27,7 @@ export const SocialButton = ({ children, href }) => {
   );
 };
 
-export const NavButton = ({ children, href }) => {
+export const NavButton: VFC<ButtonProps> = ({ children, href }) => {
   return (
     <>
       <div className="group">
@@ -32,7 +42,7 @@ export const NavButton = ({ children, href }) => {
   );
 };
 
-export const NavButton2 = ({ children, href }) => {
+export const NavButton2: VFC<ButtonProps> = ({ children, href }) => {
   return (
     <>
       <Link href={href}>
@@ -44,7 +54,7 @@ export const NavButton2 = ({ children, href }) => {
   );
 };
 
-export const PageLinkButton = ({ children, href }) => {
+export const PageLinkButton: VFC<ButtonProps> = ({ children, href }) => {
   return (
     <>
       <div className="w-full h-14 group relative overflow-hidden border-t border-b border-gray-300">
@@ -59,7 +69,7 @@ export const PageLinkButton = ({ children, href }) => {
   );
 };
 
-export const PageLinkButton3 = ({ children, href }) => {
+export const PageLinkButton3: VFC<ButtonProps> = ({ children, href }) => {
   return (
     <>
       <div className="w-full h-14 group relative">
@@ -74,7 +84,7 @@ export const PageLinkButton3 = ({ children, href }) => {
   );
 };
 
-export const PageLinkButton2 = ({ children, href }) => {
+export const PageLinkButton2: VFC<ButtonProps> = ({ children, href }) => {
   return (
     <>
       <a href={href} target="_blank" rel="noreferrer">
@@ -86,7 +96,7 @@ export const PageLinkButton2 = ({ children, href }) => {
   );
 };
 
-export const GithubButton = ({ href }) => {
+export const GithubButton: VFC<IconButtonProps> = ({ href }) => {
   return (
     <>
       <div className="w-full">
