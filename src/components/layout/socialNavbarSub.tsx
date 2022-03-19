@@ -20,6 +20,9 @@ export const SocialNav: VFC = () => {
           <li>
             <SocialButton href="https://zenn.dev/cti1650">ZENN</SocialButton>
           </li>
+          <li>
+            <SocialButton href="https://coconala.com/users/1713962">COCONALA</SocialButton>
+          </li>
         </ol>
       </VerticalBar>
     </>
