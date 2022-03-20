@@ -75,6 +75,7 @@ export const MantineForm: VFC = () => {
         />
 
         <TextInput
+          required
           label="メールアドレス"
           type="email"
           placeholder="your@email.com"
