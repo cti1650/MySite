@@ -1,5 +1,5 @@
 import React, { VFC } from 'react';
-import { TextInput, Checkbox, Button, Group, Box, Textarea } from '@mantine/core';
+import { TextInput, Checkbox, Button, Group, Box, Textarea, Text, Title, Space } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { z } from 'zod';
 import axios from 'axios';
@@ -61,6 +61,11 @@ export const MantineForm: VFC = () => {
 
   return (
     <Box sx={{ maxWidth: 400 }} mx="auto">
+      <Box sx={(t) => ({ paddingBottom: t.spacing.xl })}>
+        <Text mx="auto" align="center">
+          お問い合わせがありましたら、<Space />下のフォームからお問い合わせください。
+        </Text>
+      </Box>
       <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
         <TextInput
           required
