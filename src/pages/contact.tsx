@@ -4,7 +4,7 @@ import Head from 'next/head';
 import {
   Container
 } from '@material-ui/core';
-import { MaterialForm } from '@comp/form/materialForm';
+import { MantineForm } from '@comp/form/mantineForm';
 
 const Contact: NextPage = () => {
   return (
@@ -14,7 +14,7 @@ const Contact: NextPage = () => {
         <meta property="og:title" content="cti1650 Portfolio" />
       </Head>
       <Container maxWidth="xs" className="pt-[30px]">
-        <MaterialForm />
+        <MantineForm />
       </Container>
     </div>
   );
