@@ -10,11 +10,13 @@ type Props = {
 export const Layout: VFC<Props> = ({ children }) => {
   return (
     <>
-      <div className="w-full mx-0 font-n2i">
+      <div className="h-screen w-full mx-0 font-n2i">
         <Navbar />
-        <main className="mt-[90px]">{children}</main>
-        <SocialNav />
-        <Footer />
+        <main className="h-full pt-[90px]">
+          <Footer />
+          <div className="min-h-full h-full px-[40px]"><div className="min-h-full h-full container mx-auto">{children}</div></div>
+          <SocialNav />
+        </main>
       </div>
     </>
   );
