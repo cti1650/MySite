@@ -18,6 +18,9 @@ export const SocialNav: VFC = () => {
             </SocialButton>
           </li>
           <li>
+            <SocialButton href="https://qiita.com/cti1650">QIITA</SocialButton>
+          </li>
+          <li>
             <SocialButton href="https://zenn.dev/cti1650">ZENN</SocialButton>
           </li>
           <li>
