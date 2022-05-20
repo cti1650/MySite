@@ -47,7 +47,7 @@ const Site: NextPage = (props: any) => {
         <meta property="og:title" content="cti1650 Portfolio" />
       </Head>
 
-      <div className="w-full text-gray-900 py-8">
+      <div className="w-full text-gray-900 lg:py-8">
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 text-center content-center justify-center">
           {portfolios &&
             portfolios.map((item) => {

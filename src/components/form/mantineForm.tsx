@@ -47,7 +47,7 @@ export const MantineForm: VFC = () => {
   }
 
   return (
-    <div className="w-full max-w-[400px] mx-auto text-[16px]">
+    <div className="h-auto min-h-full w-full max-w-[400px] mx-auto flex justify-center items-center">
       <div>
         <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
           <Box sx={(t) => ({ paddingBottom: t.spacing.xl })}>

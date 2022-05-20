@@ -10,7 +10,7 @@ const Contact: NextPage = () => {
         <title>cti1650 Portfolio</title>
         <meta property="og:title" content="cti1650 Portfolio" />
       </Head>
-      <div className='h-full w-full flex justify-center items-center px-4 font-n2i'>
+      <div className='h-full w-full px-4 font-n2i'>
         <MantineForm />
       </div>
     </div>
