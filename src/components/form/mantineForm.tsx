@@ -47,7 +47,7 @@ export const MantineForm: VFC = () => {
   }
 
   return (
-    <div className="w-full max-w-[400px] mx-auto">
+    <div className="w-full max-w-[400px] mx-auto text-[16px]">
       <div>
         <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
           <Box sx={(t) => ({ paddingBottom: t.spacing.xl })}>
@@ -59,6 +59,9 @@ export const MantineForm: VFC = () => {
             required
             label="名前"
             placeholder="氏 名"
+            classNames={{
+              input: 'text-base',
+            }}
             {...form.getInputProps('name')}
           />
 
@@ -67,6 +70,9 @@ export const MantineForm: VFC = () => {
             label="メールアドレス"
             type="email"
             placeholder="your@email.com"
+            classNames={{
+              input: 'text-base',
+            }}
             {...form.getInputProps('email')}
           />
 
@@ -75,6 +81,9 @@ export const MantineForm: VFC = () => {
             label="内容"
             placeholder="お問い合わせやご要望など"
             minRows={8}
+            classNames={{
+              input: 'text-base',
+            }}
             {...form.getInputProps('body')}
           />
 
