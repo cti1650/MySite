@@ -18,7 +18,7 @@ export const ProfListBox: VFC<ProfListBoxPropsType> = ({ profList, className }) 
             return (
               <div key={item.title}>
                 <div className="text-lg text-gray-800 pt-4">{item.title}</div>
-                <div className="pl-12 py-2 text-gray-600">
+                <div className="pl-4 sm:pl-12 py-2 text-gray-600">
                   {item.description}
                 </div>
               </div>

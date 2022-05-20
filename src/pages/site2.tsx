@@ -27,14 +27,14 @@ const Site: NextPage = (props: any) => {
   const portfolios: PortfoliosType = database || data;
   console.log(database);
   return (
-    <div className="w-full px-10 font-n2i md:max-w-5xl mx-auto">
+    <div className="w-full px-1 lg:px-10 font-n2i md:max-w-5xl mx-auto">
       <Head>
         <title>cti1650 Portfolio</title>
         <meta property="og:title" content="cti1650 Portfolio" />
       </Head>
 
       <div className="w-full text-gray-900 py-8">
-        <div className="w-full grid grid-cols-1 sm:grid-cols-3 text-center content-center justify-center">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 text-center content-center justify-center">
           {portfolios &&
             portfolios.map((item) => {
               return (

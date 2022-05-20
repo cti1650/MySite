@@ -22,8 +22,8 @@ export const VerticalBar: VFC<VerticalBarPropsType> = ({
           {
             'right-0': position === 'right' && !autoHidden,
             'left-0': position === 'left' && !autoHidden,
-            '-right-10 sm:right-0': position === 'right' && autoHidden,
-            '-left-10 sm:left-0': position === 'left' && autoHidden,
+            '-right-10 lg:right-0': position === 'right' && autoHidden,
+            '-left-10 lg:left-0': position === 'left' && autoHidden,
           },
           'w-10 h-full bg-white z-20',
           className,

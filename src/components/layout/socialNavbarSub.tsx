@@ -6,7 +6,7 @@ export const SocialNav: VFC = () => {
   return (
     <>
       <VerticalBar position="right">
-        <ol className="h-full w-full py-2 sm:py-4 flex justify-center items-center content-center space-x-6 text-gray-800">
+        <ol className="h-full w-full py-2 lg:py-4 flex justify-center items-center content-center space-x-6 text-gray-800">
           <li>
             <SocialButton href="https://github.com/cti1650">
               GITHUB

@@ -10,13 +10,13 @@ import { TitleBox } from '@comp/title/TitleBox';
 const Home: NextPage = () => {
   const [age] = useAge(1992, 1, 25);
   return (
-    <div className="h-full w-full px-10 font-n2i flex justify-center items-center">
+    <div className="h-full w-full font-n2i flex justify-center items-center">
       <Head>
         <title>cti1650 Portfolio</title>
         <meta property="og:title" content="cti1650 Portfolio" />
       </Head>
 
-      <div className="w-full text-gray-900 mt-4 pt-2 grid sm:grid-cols-2">
+      <div className="w-full max-h-full text-gray-900 grid lg:grid-cols-2 justify-center items-start lg:items-start">
         <div className="w-full">
           <Image
             src="/img/084AME0226.jpg.webp"
@@ -26,7 +26,7 @@ const Home: NextPage = () => {
             className="w-full"
           />
         </div>
-        <div className="w-full flex flex-col pl-0 pt-2 pb-8 sm:pl-8 sm:pt-0 tracking-wider">
+        <div className="w-full flex flex-col pl-0 pt-2 pb-8 lg:pl-8 lg:pt-0 tracking-wider">
           <TitleBox
             title="ABOUT"
             color="blue"
@@ -48,7 +48,7 @@ const Home: NextPage = () => {
                   'ITパスポート, VBA Expert Standard(Excel), GitHub, VSCode',
               },
             ]}
-            className="pl-12"
+            className="pl-4 sm:pl-12"
           />
         </div>
       </div>
