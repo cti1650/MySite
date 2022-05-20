@@ -10,7 +10,7 @@ import { TitleBox } from '@comp/title/TitleBox';
 const Home: NextPage = () => {
   const [age] = useAge(1992, 1, 25);
   return (
-    <div className="w-full px-10 font-n2i">
+    <div className="h-full w-full px-10 font-n2i flex justify-center items-center">
       <Head>
         <title>cti1650 Portfolio</title>
         <meta property="og:title" content="cti1650 Portfolio" />
