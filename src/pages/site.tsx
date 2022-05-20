@@ -99,7 +99,11 @@ const Site: NextPage = (props: any) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+// SSRの場合
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+
+// SSGの場合
+export const getStaticProps: GetServerSideProps = async () => {
   const { getTable } = NotionClient('', 'fc568e3d9abc4834b7e8934795e1dbbf');
   const data = [...(await getTable())]
     .map((item) => {
