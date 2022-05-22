@@ -7,7 +7,7 @@ type FormSuccessProps = {
 } & NotionRequestData
 
 export const FormSuccess: VFC<FormSuccessProps> = ({ name, email, message, onReset }) => {
-  return useMemo(() => <div className="w-full max-w-[400px] mx-auto">
+  return useMemo(() => <div className="h-auto min-h-full w-full max-w-[400px] mx-auto flex justify-center items-center">
     <div className="space-y-4">
       <Box sx={(t) => ({ paddingBottom: t.spacing.xl })}>
         <Text mx="auto" align="center">
