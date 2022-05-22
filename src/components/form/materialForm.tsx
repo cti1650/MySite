@@ -104,7 +104,7 @@ export const MaterialForm: VFC = () => {
       });
       return !(name === '' || email || !email.match(pattern) || body === '');
     },
-    [name, email, body]
+    [name, email, body, error]
   );
 
   const handleSubmit = useCallback(
