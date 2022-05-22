@@ -31,7 +31,7 @@ export default async function handler(req, res) {
   // console.log(
   //   `key:${process.env.NEXT_PUBLIC_NOTION_KEY} id:${process.env.NEXT_PUBLIC_NOTION_DATABASE_ID}`
   // );
-  const { getTable, addTableItem } = NotionClient(
+  const { addTableItem } = NotionClient(
     process.env.NEXT_PUBLIC_NOTION_KEY,
     process.env.NEXT_PUBLIC_NOTION_DATABASE_ID
   );

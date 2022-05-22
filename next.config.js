@@ -3,6 +3,7 @@
  */
 const nextConfig = {
   /* config options here */
+  extends: ['plugin:@next/next/recommended', 'eslint:recommended', 'next'],
 };
 
 module.exports = nextConfig;
