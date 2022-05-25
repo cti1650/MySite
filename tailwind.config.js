@@ -22,5 +22,8 @@ module.exports = {
     extend: {},
     width: ['responsive', 'hover', 'focus'],
   },
+  corePlugins: {
+    preflight: false,
+  },
   plugins: [],
 };
