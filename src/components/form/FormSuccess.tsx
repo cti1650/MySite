@@ -17,7 +17,7 @@ export const FormSuccess: VFC<FormSuccessProps> = ({ name, email, message, onRes
       <Box>
         <Title order={4} align="justify">name</Title>
         <Text mx="auto" p={10} align="justify" className="whitespace-pre-wrap break-words">
-          {name ? name : 'sample'}tess
+          {name ? name : 'sample'}
         </Text>
       </Box>
       <Box>
