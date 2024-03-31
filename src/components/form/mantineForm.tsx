@@ -1,4 +1,4 @@
-import React, { useCallback, VFC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { TextInput, Checkbox, Button, Group, Box, Textarea, Text, Space } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { z } from 'zod';
@@ -13,7 +13,7 @@ const schema = z.object({
   termsOfService: z.boolean().default(false),
 });
 
-export const MantineForm: VFC = () => {
+export const MantineForm: FC = () => {
   const { success, loading, notionRequest, reset } = useMantineFormRequest();
   const form = useForm({
     initialValues: {

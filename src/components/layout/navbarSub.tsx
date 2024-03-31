@@ -10,7 +10,7 @@ export const Navbar: VFC = () => {
         <div className="h-20 flex items-center">
           <div className="w-full h-8 flex flex-row">
             <div className="flex-none h-full py-auto text-center text-2xl font-extrabold tracking-widest z-40">
-              <Link href="/">
+              <Link legacyBehavior href="/">
                 <a title="cti1650" className="flex flex-row items-center space-x-1">
                   <p>
                     <img

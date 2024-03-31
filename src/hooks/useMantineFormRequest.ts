@@ -30,9 +30,10 @@ export const useMantineFormRequest = () => {
       data.append('name', requestData.name);
       data.append('email', requestData.email);
       data.append('body', requestData.message);
+      console.log('host', location.origin);
       axios({
         method: 'post',
-        url: `https://notion-flask-api-test.herokuapp.com/db/${database_id}/form/add/`,
+        url: `${location.origin}/api/notion/form/`,
         headers: {
           'Content-Type': 'multipart/form-data',
         },

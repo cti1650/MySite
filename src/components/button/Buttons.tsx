@@ -31,7 +31,7 @@ export const NavButton: VFC<ButtonProps> = ({ children, href }) => {
   return (
     <>
       <div className="group">
-        <Link href={href}>
+        <Link legacyBehavior href={href}>
           <a className="px-0 py-1 box-border text-gray-900 font-light tracking-wider">
             {children}
           </a>
@@ -45,7 +45,7 @@ export const NavButton: VFC<ButtonProps> = ({ children, href }) => {
 export const NavButton2: VFC<ButtonProps> = ({ children, href }) => {
   return (
     <>
-      <Link href={href}>
+      <Link legacyBehavior href={href}>
         <a className="px-0 py-1 box-border text-gray-900 hover:border-b hover:border-black transition delay-100 duration-100 ease-in-out font-light tracking-wider">
           {children}
         </a>
