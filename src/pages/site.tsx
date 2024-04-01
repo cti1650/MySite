@@ -45,20 +45,20 @@ const Site: NextPage = (props: any) => {
       <div className="w-full text-gray-900 lg:py-8">
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 text-center content-center justify-center">
           {portfolios &&
-            portfolios.map((item) => {
+            portfolios?.map((item) => {
               return (
                 <div
-                  key={item.name}
+                  key={item?.name}
                   className="px-4 py-8 w-full flex flex-col space-y-6"
                 >
                   <h2 className="w-full text-2xl tracking-wider text-center text-blue-500 whitespace-pre-wrap">
-                    <div>{item.name}</div>
+                    <div>{item?.name}</div>
                   </h2>
-                  {item.github && <GithubButton href={item.github} />}
-                  {item.img && (
+                  {item?.github && <GithubButton href={item?.github} />}
+                  {item?.img && (
                     <div className="w-full content-center">
                       <Image
-                        src={item.img}
+                        src={item?.img}
                         alt="image"
                         className="image mx-auto max-h-80"
                         fill
@@ -66,21 +66,21 @@ const Site: NextPage = (props: any) => {
                     </div>
                   )}
                   <div className="w-full tracking-wider text-left whitespace-pre-wrap">
-                    {item.description}
+                    {item?.description}
                   </div>
-                  <PageLinkButton href={item.link}>サイトを開く</PageLinkButton>
-                  {item.rawTags && (
+                  <PageLinkButton href={item?.link}>サイトを開く</PageLinkButton>
+                  {item?.rawTags && (
                     <div className="w-full flex flex-row flex-wrap">
-                      {item.rawTags?.map((item, index) => {
+                      {item?.rawTags?.map((item, index) => {
                         return (
                           <div
                             key={index}
                             className={cc([
                               'border border-gray-300 rounded py-0.5 px-1 m-0.5 text-xs text-gray-600',
-                              getTagColorStyle[item.color],
+                              getTagColorStyle[item?.color],
                             ])}
                           >
-                            {item.name}
+                            {item?.name}
                           </div>
                         );
                       })}
