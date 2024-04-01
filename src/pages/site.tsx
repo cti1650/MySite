@@ -68,7 +68,9 @@ const Site: NextPage = (props: any) => {
                   <div className="w-full tracking-wider text-left whitespace-pre-wrap">
                     {item?.description}
                   </div>
-                  <PageLinkButton href={item?.link}>サイトを開く</PageLinkButton>
+                  <PageLinkButton href={item?.link}>
+                    サイトを開く
+                  </PageLinkButton>
                   {item?.rawTags && (
                     <div className="w-full flex flex-row flex-wrap">
                       {item?.rawTags?.map((item, index) => {
@@ -103,7 +105,7 @@ export const getStaticProps: GetStaticProps = async () => {
   let portfolios: PortfoliosType = [];
   try {
     portfolios = await fetchPortfolios();
-    console.log("portfolios", portfolios);
+    console.log('portfolios', portfolios);
   } catch (e) {
     console.log(e);
   }
