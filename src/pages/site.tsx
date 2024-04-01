@@ -103,7 +103,7 @@ export const getStaticProps: GetStaticProps = async () => {
   let portfolios: PortfoliosType = [];
   try {
     portfolios = await fetchPortfolios();
-    console.log(portfolios);
+    console.log("portfolios", portfolios);
   } catch (e) {
     console.log(e);
   }
