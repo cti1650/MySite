@@ -18,8 +18,13 @@ export default async function handler(
   res: NextApiResponse<ResponseData>
 ) {
   if (req.method === 'GET') {
-    const portfolios = await fetchPortfolios();
-    res.status(200).json(portfolios);
+    try {
+      const portfolios = await fetchPortfolios();
+      res.status(200).json(portfolios);
+    } catch (e) {
+      res.status(400).json([]);
+    }
+    return;
   }
   res.status(200).json([]);
 }
