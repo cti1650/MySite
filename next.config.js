@@ -12,6 +12,27 @@ const nextConfig = {
       'huntr-assets.s3.amazonaws.com',
     ],
   },
+  async headers() {
+    return [
+      {
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: 'https://cti1650-portfolio-site.vercel.app',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET,OPTIONS,POST',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
