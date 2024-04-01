@@ -29,6 +29,9 @@ export async function fetchPortfolios(): Promise<ResponseData> {
       }
     );
     const portfolios = await request.data;
+    if (portfolios?.status || portfolios?.message) {
+      return [];
+    }
     return portfolios;
   } catch (e) {
     console.error(e);
