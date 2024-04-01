@@ -12,9 +12,10 @@ export default async function handler(
 ) {
   const endpoint = process.env.NEXT_PUBLIC_NOTION_BACKEND_ENDPOINT;
   const apiKey = process.env.NEXT_PUBLIC_NOTION_KEY;
-  const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
+  const databaseId = process.env.NEXT_PUBLIC_NOTION_CONTACT_DATABASE_ID;
   if (req.method === 'POST') {
-    const { name, email, body } = req.query;
+    console.log('req', req);
+    const { name, email, body } = req.body;
     if (!name || !email || !body) {
       res.status(400).json({
         error: 'validate error',
@@ -27,6 +28,7 @@ export default async function handler(
         name: name ?? '',
         email: email ?? '',
         body: body ?? '',
+        tags: ['MySite'],
       },
       {
         headers: {

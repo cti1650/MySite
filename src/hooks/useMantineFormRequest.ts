@@ -29,14 +29,20 @@ export const useMantineFormRequest = () => {
       data.append('email', requestData.email);
       data.append('body', requestData.message);
       console.log('host', location.origin);
-      axios({
-        method: 'post',
-        url: `${location.origin}/api/notion/form/`,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        data: data,
-      })
+      axios
+        .post(
+          `${location.origin}/api/notion/form/`,
+          {
+            name: requestData?.name,
+            email: requestData?.email,
+            body: requestData?.message,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        )
         .then((res) => {
           if (res.status === 400) {
             setError(true);
