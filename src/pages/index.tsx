@@ -17,7 +17,7 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="w-full max-h-full text-gray-900 grid lg:grid-cols-2 justify-center items-start lg:items-start">
-        <div className="w-full h-full">
+        <div className="w-full h-auto">
           <Image
             src="/img/084AME0226.jpg.webp"
             alt="image"
