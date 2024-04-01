@@ -24,26 +24,15 @@ export const useMantineFormRequest = () => {
       setLoading(true);
       setSuccess(false);
       setError(false);
-      const data = new FormData();
-      data.append('name', requestData.name);
-      data.append('email', requestData.email);
-      data.append('body', requestData.message);
+      const data = new URLSearchParams();
+      data.append('name', requestData?.name);
+      data.append('email', requestData?.email);
+      data.append('body', requestData?.message);
       console.log('host', location.origin);
       axios
-        .post(
-          `${location.origin}/api/notion/form/`,
-          {
-            name: requestData?.name,
-            email: requestData?.email,
-            body: requestData?.message,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        )
+        .post(`${location.origin}/api/notion/form/`, data)
         .then((res) => {
+          console.log('res', res);
           if (res.status === 400) {
             setError(true);
             throw new Error('Bad request');
