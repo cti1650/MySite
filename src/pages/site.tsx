@@ -114,6 +114,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       portfolios: Array.isArray(portfolios) ? portfolios : [],
     },
+    revalidate: 60 * 5,
   };
 };
 
