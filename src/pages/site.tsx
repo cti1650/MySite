@@ -2,13 +2,10 @@
 import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import { GetServerSideProps } from 'next';
 import { PageLinkButton, GithubButton } from '@comp/button/Buttons';
-import { usePortfoliosData } from '@hooks/usePortfoliosData';
-import { NotionClient } from '@hooks/useNotion';
 import cc from 'classcat';
-import axios from 'axios';
 import Image from 'next/image';
+import { fetchPortfolios } from '@lib/portfolioApi';
 
 type PortfoliosType = {
   description: string;
@@ -88,14 +85,13 @@ const Site: NextPage = (props: any) => {
                         );
                       })}
                     </div>
-                  )
-                  }
+                  )}
                 </div>
               );
             })}
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
@@ -104,18 +100,17 @@ const Site: NextPage = (props: any) => {
 
 // SSGの場合
 export const getStaticProps: GetStaticProps = async () => {
-  let json: PortfoliosType = []
+  let portfolios: PortfoliosType = [];
   try {
-    const request = await axios.get('http://localhost:3000/api/notion/portfolios')
-    json = await request.data
-    console.log(json)
+    portfolios = await fetchPortfolios();
+    console.log(portfolios);
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 
   return {
     props: {
-      portfolios: json,
+      portfolios: portfolios,
     },
   };
 };

@@ -5,7 +5,7 @@ import {
   PageLinkButton,
   PageLinkButton3,
   PageLinkButton2,
-  GithubButton
+  GithubButton,
 } from './Buttons';
 
 export {
@@ -15,5 +15,5 @@ export {
   PageLinkButton,
   PageLinkButton3,
   PageLinkButton2,
-  GithubButton
+  GithubButton,
 };

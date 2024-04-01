@@ -24,8 +24,6 @@ export const useMantineFormRequest = () => {
       setLoading(true);
       setSuccess(false);
       setError(false);
-      const database_id =
-        process.env.NEXT_PUBLIC_NOTION_CONTACT_DATABASE_ID ?? '';
       const data = new FormData();
       data.append('name', requestData.name);
       data.append('email', requestData.email);

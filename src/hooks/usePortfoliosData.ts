@@ -61,7 +61,8 @@ export const usePortfoliosData = () => {
       },
       {
         name: 'Tailwind.css チートシート作成',
-        description: `Next.jsとTailwind.cssの学習のためにボックスをクリックするとクリップボードにコピーできるチートシートを作成しました！`,
+        description:
+          'Next.jsとTailwind.cssの学習のためにボックスをクリックするとクリップボードにコピーできるチートシートを作成しました！',
         img: 'https://d2v9k5u4v94ulw.cloudfront.net/assets/images/7427616/original/3da25485-8d89-4c3a-803a-e310816ce409?1630253280',
         github: 'https://github.com/cti1650/tailwind_cc.git',
         link: 'https://tailwind-cc.vercel.app/',

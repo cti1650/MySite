@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { NavButton } from '@comp/button/Buttons';
 import Link from 'next/link';
-import React, { VFC } from 'react';
+import React, { FC } from 'react';
 
-export const Navbar: VFC = () => {
+export const Navbar: FC = () => {
   return (
     <>
       <div className="fixed top-0 left-0 px-10 pt-2.5 w-full bg-white z-40">
@@ -11,7 +11,10 @@ export const Navbar: VFC = () => {
           <div className="w-full h-8 flex flex-row">
             <div className="flex-none h-full py-auto text-center text-2xl font-extrabold tracking-widest z-40">
               <Link legacyBehavior href="/">
-                <a title="cti1650" className="flex flex-row items-center space-x-1">
+                <a
+                  title="cti1650"
+                  className="flex flex-row items-center space-x-1"
+                >
                   <p>
                     <img
                       src="img/logo_icon_white.png"

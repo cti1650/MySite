@@ -1,7 +1,7 @@
-import React, { VFC } from 'react';
+import React, { FC } from 'react';
 import { VerticalBar } from '../box/verticalBar';
 
-export const Footer: VFC = () => {
+export const Footer: FC = () => {
   return (
     <>
       <VerticalBar position="left">

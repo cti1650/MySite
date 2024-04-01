@@ -1,4 +1,4 @@
-import React, { VFC } from 'react';
+import React, { FC } from 'react';
 import cc from 'classcat';
 
 type TitleBoxPropsType = {
@@ -60,7 +60,7 @@ const getOptionColor = (color: 'black' | 'white' | 'blue' | 'red') => {
   return ColorList[color];
 };
 
-export const TitleBox: VFC<TitleBoxPropsType> = ({
+export const TitleBox: FC<TitleBoxPropsType> = ({
   title,
   subTitle,
   size,

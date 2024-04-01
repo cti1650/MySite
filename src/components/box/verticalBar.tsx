@@ -1,4 +1,4 @@
-import React, { VFC } from 'react';
+import React, { FC } from 'react';
 import cc from 'classcat';
 
 type VerticalBarPropsType = {
@@ -8,7 +8,7 @@ type VerticalBarPropsType = {
   className?: string;
 };
 
-export const VerticalBar: VFC<VerticalBarPropsType> = ({
+export const VerticalBar: FC<VerticalBarPropsType> = ({
   children,
   position,
   autoHidden,
