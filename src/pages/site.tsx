@@ -71,7 +71,7 @@ const Site: NextPage = (props: any) => {
                   <PageLinkButton href={item.link}>サイトを開く</PageLinkButton>
                   {item.rawTags && (
                     <div className="w-full flex flex-row flex-wrap">
-                      {item.rawTags.map((item, index) => {
+                      {item.rawTags?.map((item, index) => {
                         return (
                           <div
                             key={index}
