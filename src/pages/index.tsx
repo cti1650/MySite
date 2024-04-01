@@ -17,13 +17,12 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="w-full max-h-full text-gray-900 grid lg:grid-cols-2 justify-center items-start lg:items-start">
-        <div className="w-full">
+        <div className="w-full h-full">
           <Image
             src="/img/084AME0226.jpg.webp"
             alt="image"
-            width={941}
-            height={627}
-            className="w-full"
+            className="image w-full h-full"
+            fill
           />
         </div>
         <div className="w-full flex flex-col pl-0 pt-2 pb-8 lg:pl-8 lg:pt-0 tracking-wider">

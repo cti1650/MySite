@@ -1,8 +1,8 @@
 import { SocialButton } from '@comp/button/Buttons';
-import React, { VFC } from 'react';
+import React, { FC } from 'react';
 import { VerticalBar } from '../box/verticalBar';
 
-export const SocialNav: VFC = () => {
+export const SocialNav: FC = () => {
   return (
     <>
       <VerticalBar position="right">
@@ -24,7 +24,9 @@ export const SocialNav: VFC = () => {
             <SocialButton href="https://zenn.dev/cti1650">ZENN</SocialButton>
           </li>
           <li>
-            <SocialButton href="https://coconala.com/users/1713962">COCONALA</SocialButton>
+            <SocialButton href="https://coconala.com/users/1713962">
+              COCONALA
+            </SocialButton>
           </li>
         </ol>
       </VerticalBar>

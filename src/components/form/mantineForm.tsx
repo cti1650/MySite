@@ -1,5 +1,14 @@
-import React, { useCallback, VFC } from 'react';
-import { TextInput, Checkbox, Button, Group, Box, Textarea, Text, Space } from '@mantine/core';
+import React, { FC, useCallback } from 'react';
+import {
+  TextInput,
+  Checkbox,
+  Button,
+  Group,
+  Box,
+  Textarea,
+  Text,
+  Space,
+} from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { z } from 'zod';
 import { useMantineFormRequest } from '@hooks/useMantineFormRequest';
@@ -13,7 +22,7 @@ const schema = z.object({
   termsOfService: z.boolean().default(false),
 });
 
-export const MantineForm: VFC = () => {
+export const MantineForm: FC = () => {
   const { success, loading, notionRequest, reset } = useMantineFormRequest();
   const form = useForm({
     initialValues: {
@@ -25,13 +34,16 @@ export const MantineForm: VFC = () => {
     schema: zodResolver(schema),
   });
 
-  const handleSubmit = useCallback((values) => {
-    notionRequest({
-      name: values.name,
-      email: values.email,
-      message: values.body,
-    });
-  }, [notionRequest]);
+  const handleSubmit = useCallback(
+    (values) => {
+      notionRequest({
+        name: values.name,
+        email: values.email,
+        message: values.body,
+      });
+    },
+    [notionRequest]
+  );
 
   const handleReset = useCallback(() => {
     reset();
@@ -43,7 +55,14 @@ export const MantineForm: VFC = () => {
   }
 
   if (success) {
-    return <FormSuccess name={form.values.name} email={form.values.email} message={form.values.body} onReset={handleReset} />;
+    return (
+      <FormSuccess
+        name={form.values.name}
+        email={form.values.email}
+        message={form.values.body}
+        onReset={handleReset}
+      />
+    );
   }
 
   return (
@@ -52,7 +71,9 @@ export const MantineForm: VFC = () => {
         <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
           <Box sx={(t) => ({ paddingBottom: t.spacing.xl })}>
             <Text mx="auto" align="center">
-              お問い合わせがありましたら、<Space />下のフォームからお問い合わせください。
+              お問い合わせがありましたら、
+              <Space />
+              下のフォームからお問い合わせください。
             </Text>
           </Box>
           <TextInput

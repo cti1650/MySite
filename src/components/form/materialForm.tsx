@@ -1,4 +1,4 @@
-import React, { useState, useCallback, VFC } from 'react';
+import React, { useState, useCallback, FC } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import {
   Button,
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const MaterialForm: VFC = () => {
+export const MaterialForm: FC = () => {
   const classes = useStyles();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -130,8 +130,11 @@ export const MaterialForm: VFC = () => {
       //     body,
       //   }),
       // });
-      const database_id = process.env.NEXT_PUBLIC_NOTION_CONTACT_DATABASE_ID ?? '';
-      console.log('https://notion-flask-api-test.vercel.app/db/' + database_id + '/add');
+      const database_id =
+        process.env.NEXT_PUBLIC_NOTION_CONTACT_DATABASE_ID ?? '';
+      console.log(
+        'https://notion-flask-api-test.vercel.app/db/' + database_id + '/add'
+      );
       //.post('https://notion-flask-api-test.vercel.app/db/' + database_id + '/add', {
       const data = new FormData();
       data.append('name', name);
@@ -143,7 +146,7 @@ export const MaterialForm: VFC = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-        data: data
+        data: data,
       })
         .then((res) => {
           console.log(res);
@@ -193,7 +196,8 @@ export const MaterialForm: VFC = () => {
           送信が完了しました！
         </Typography>
         <Typography className="text py-4 text-justify">
-          改めてご連絡いたしますので、<br />
+          改めてご連絡いたしますので、
+          <br />
           今しばらくお待ちください。
         </Typography>
       </div>

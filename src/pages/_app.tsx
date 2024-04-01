@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import 'styles/mantineBase.css';
 import 'tailwindcss/tailwind.css';
-
+import './nextImage.css';
 
 import React from 'react';
 import { AppProps } from 'next/app';

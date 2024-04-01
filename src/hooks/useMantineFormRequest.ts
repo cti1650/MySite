@@ -24,15 +24,14 @@ export const useMantineFormRequest = () => {
       setLoading(true);
       setSuccess(false);
       setError(false);
-      const database_id =
-        process.env.NEXT_PUBLIC_NOTION_CONTACT_DATABASE_ID ?? '';
       const data = new FormData();
       data.append('name', requestData.name);
       data.append('email', requestData.email);
       data.append('body', requestData.message);
+      console.log('host', location.origin);
       axios({
         method: 'post',
-        url: `https://notion-flask-api-test.herokuapp.com/db/${database_id}/form/add/`,
+        url: `${location.origin}/api/notion/form/`,
         headers: {
           'Content-Type': 'multipart/form-data',
         },

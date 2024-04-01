@@ -1,25 +1,22 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react';
-import { NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import { GetServerSideProps } from 'next';
 import { PageLinkButton, GithubButton } from '@comp/button/Buttons';
-import { usePortfoliosData } from '@hooks/usePortfoliosData';
-import { NotionClient } from '@hooks/useNotion';
 import cc from 'classcat';
+import Image from 'next/image';
+import { fetchPortfolios } from '@lib/portfolioApi';
 
 type PortfoliosType = {
-  name: string;
   description: string;
   github: string;
   img: string;
   link: string;
+  name: string;
+  rawTags: { color: string; colorCode: string; name: string }[];
+  rawType: { color: string; colorCode: string; name: string };
+  tags: string[];
   type: string;
-  tags?: {
-    id: string;
-    name: string;
-    color: string;
-  }[];
 }[];
 
 const getTagColorStyle = {
@@ -36,9 +33,7 @@ const getTagColorStyle = {
 };
 
 const Site: NextPage = (props: any) => {
-  const { tabledata } = props;
-  const [data] = usePortfoliosData();
-  const portfolios: PortfoliosType = tabledata || data;
+  const { portfolios } = props;
 
   return (
     <div className="w-full px-1 lg:px-10 font-n2i md:max-w-5xl mx-auto">
@@ -50,41 +45,44 @@ const Site: NextPage = (props: any) => {
       <div className="w-full text-gray-900 lg:py-8">
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 text-center content-center justify-center">
           {portfolios &&
-            portfolios.map((item) => {
+            portfolios?.map((item) => {
               return (
                 <div
-                  key={item.name}
+                  key={item?.name}
                   className="px-4 py-8 w-full flex flex-col space-y-6"
                 >
                   <h2 className="w-full text-2xl tracking-wider text-center text-blue-500 whitespace-pre-wrap">
-                    <div>{item.name}</div>
+                    <div>{item?.name}</div>
                   </h2>
-                  {item.github && <GithubButton href={item.github} />}
-                  {item.img && (
-                    <div className="w-full content-center ">
-                      <img
-                        src={item.img}
+                  {item?.github && <GithubButton href={item?.github} />}
+                  {item?.img && (
+                    <div className="w-full content-center">
+                      <Image
+                        src={item?.img}
                         alt="image"
-                        className="mx-auto max-h-80"
+                        className="image mx-auto max-h-80"
+                        fill
                       />
                     </div>
                   )}
                   <div className="w-full tracking-wider text-left whitespace-pre-wrap">
-                    {item.description}
+                    {item?.description}
                   </div>
-                  <PageLinkButton href={item.link}>サイトを開く</PageLinkButton>
-                  {item.tags && (
+                  <PageLinkButton href={item?.link}>
+                    サイトを開く
+                  </PageLinkButton>
+                  {item?.rawTags && (
                     <div className="w-full flex flex-row flex-wrap">
-                      {item.tags.map((item) => {
+                      {item?.rawTags?.map((item, index) => {
                         return (
                           <div
-                            key={item.id}
+                            key={index}
                             className={cc([
                               'border border-gray-300 rounded py-0.5 px-1 m-0.5 text-xs text-gray-600',
-                              getTagColorStyle[item.color],
+                              getTagColorStyle[item?.color],
                             ])}
                           >
-                            {item.name}
+                            {item?.name}
                           </div>
                         );
                       })}
@@ -103,28 +101,20 @@ const Site: NextPage = (props: any) => {
 // export const getServerSideProps: GetServerSideProps = async (context) => {
 
 // SSGの場合
-export const getStaticProps: GetServerSideProps = async () => {
-  const { getTable } = NotionClient('', 'fc568e3d9abc4834b7e8934795e1dbbf');
-  const data = [...(await getTable())]
-    .map((item) => {
-      const propList: any = item['properties'];
-      return {
-        name: propList.name.title[0]?.text.content || '',
-        description: propList.description.rich_text[0]?.text.content || '',
-        github: propList.github.url || '',
-        img: propList.img.files[0]?.name || '',
-        link: propList.link.url || '',
-        type: propList.type.select?.name || '',
-        tags: propList.tags.multi_select! || [],
-      };
-    })
-    .filter((item) => {
-      return item.type === '公開中';
-    });
+export const getStaticProps: GetStaticProps = async () => {
+  let portfolios: PortfoliosType = [];
+  try {
+    portfolios = await fetchPortfolios();
+    console.log('portfolios', portfolios);
+  } catch (e) {
+    console.log(e);
+  }
+
   return {
     props: {
-      tabledata: data,
+      portfolios: Array.isArray(portfolios) ? portfolios : [],
     },
+    revalidate: 60 * 5,
   };
 };
 

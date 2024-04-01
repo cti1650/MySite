@@ -1,18 +1,18 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import { FaGithub } from 'react-icons/fa';
-import React, { VFC } from 'react';
+import React, { FC } from 'react';
 
 type ButtonProps = {
   children: React.ReactNode;
   href: string;
-}
+};
 
 type IconButtonProps = {
   href: string;
-}
+};
 
-export const SocialButton: VFC<ButtonProps> = ({ children, href }) => {
+export const SocialButton: FC<ButtonProps> = ({ children, href }) => {
   return (
     <>
       <a
@@ -27,11 +27,11 @@ export const SocialButton: VFC<ButtonProps> = ({ children, href }) => {
   );
 };
 
-export const NavButton: VFC<ButtonProps> = ({ children, href }) => {
+export const NavButton: FC<ButtonProps> = ({ children, href }) => {
   return (
     <>
       <div className="group">
-        <Link href={href}>
+        <Link legacyBehavior href={href}>
           <a className="px-0 py-1 box-border text-gray-900 font-light tracking-wider">
             {children}
           </a>
@@ -42,10 +42,10 @@ export const NavButton: VFC<ButtonProps> = ({ children, href }) => {
   );
 };
 
-export const NavButton2: VFC<ButtonProps> = ({ children, href }) => {
+export const NavButton2: FC<ButtonProps> = ({ children, href }) => {
   return (
     <>
-      <Link href={href}>
+      <Link legacyBehavior href={href}>
         <a className="px-0 py-1 box-border text-gray-900 hover:border-b hover:border-black transition delay-100 duration-100 ease-in-out font-light tracking-wider">
           {children}
         </a>
@@ -54,7 +54,7 @@ export const NavButton2: VFC<ButtonProps> = ({ children, href }) => {
   );
 };
 
-export const PageLinkButton: VFC<ButtonProps> = ({ children, href }) => {
+export const PageLinkButton: FC<ButtonProps> = ({ children, href }) => {
   return (
     <>
       <div className="w-full h-14 group relative overflow-hidden border-t border-b border-gray-300">
@@ -69,7 +69,7 @@ export const PageLinkButton: VFC<ButtonProps> = ({ children, href }) => {
   );
 };
 
-export const PageLinkButton3: VFC<ButtonProps> = ({ children, href }) => {
+export const PageLinkButton3: FC<ButtonProps> = ({ children, href }) => {
   return (
     <>
       <div className="w-full h-14 group relative">
@@ -84,7 +84,7 @@ export const PageLinkButton3: VFC<ButtonProps> = ({ children, href }) => {
   );
 };
 
-export const PageLinkButton2: VFC<ButtonProps> = ({ children, href }) => {
+export const PageLinkButton2: FC<ButtonProps> = ({ children, href }) => {
   return (
     <>
       <a href={href} target="_blank" rel="noreferrer">
@@ -96,7 +96,7 @@ export const PageLinkButton2: VFC<ButtonProps> = ({ children, href }) => {
   );
 };
 
-export const GithubButton: VFC<IconButtonProps> = ({ href }) => {
+export const GithubButton: FC<IconButtonProps> = ({ href }) => {
   return (
     <>
       <div className="w-full">
