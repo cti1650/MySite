@@ -14,16 +14,24 @@ export default async function handler(
   const apiKey = process.env.NEXT_PUBLIC_NOTION_KEY;
   const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
   if (req.method === 'POST') {
+    const { name, email, body } = req.query;
+    if (!name || !email || !body) {
+      res.status(400).json({
+        error: 'validate error',
+      });
+      return;
+    }
     const request = await axios.post(
       `${endpoint}databases/${databaseId}/form`,
       {
+        name: name ?? '',
+        email: email ?? '',
+        body: body ?? '',
+      },
+      {
         headers: {
+          'Content-Type': 'application/json',
           notionApiKey: apiKey,
-        },
-        json: {
-          name: req.query.name,
-          email: req.query.email,
-          body: req.query.body,
         },
       }
     );
