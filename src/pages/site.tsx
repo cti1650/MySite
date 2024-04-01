@@ -112,7 +112,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      portfolios: portfolios,
+      portfolios: Array.isArray(portfolios) ? portfolios : [],
     },
   };
 };
