@@ -44,10 +44,9 @@ export default async function handler(
   if (req.method === 'POST') {
     console.log('req', req);
     const form = new formidable.IncomingForm();
-    form.parse(req, async function (err, fields, files) {
+    form.parse(req, async function (err, fields) {
       if (err) {
-        res.statusCode = 500;
-        res.json({
+        res.status(500).json({
           error: err,
         });
         res.end();
