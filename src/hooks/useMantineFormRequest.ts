@@ -24,7 +24,7 @@ export const useMantineFormRequest = () => {
       setLoading(true);
       setSuccess(false);
       setError(false);
-      const data = new URLSearchParams();
+      const data = new FormData();
       data.append('name', requestData?.name);
       data.append('email', requestData?.email);
       data.append('body', requestData?.message);

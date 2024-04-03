@@ -1,12 +1,18 @@
 import axios from 'axios';
+import Cors from 'cors';
 import { NextApiRequest, NextApiResponse } from 'next';
+import formidable from 'formidable';
 
 type ResponseData = {
   message: string;
   error: string;
 };
 
-import Cors from 'cors';
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 
 // CORS のミドルウェアを初期化
 const cors = Cors({
@@ -37,30 +43,41 @@ export default async function handler(
   const databaseId = process.env.NEXT_PUBLIC_NOTION_CONTACT_DATABASE_ID;
   if (req.method === 'POST') {
     console.log('req', req);
-    const { name, email, body } = req.body;
-    if (!name || !email || !body) {
-      res.status(400).json({
-        error: 'validate error',
-      });
-      return;
-    }
-    const request = await axios.post(
-      `${endpoint}databases/${databaseId}/form`,
-      {
-        name: name ?? '',
-        email: email ?? '',
-        body: body ?? '',
-        tags: ['MySite'],
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          notionApiKey: apiKey,
-        },
+    const form = new formidable.IncomingForm();
+    form.parse(req, async function (err, fields, files) {
+      if (err) {
+        res.statusCode = 500;
+        res.json({
+          error: err,
+        });
+        res.end();
+        return;
       }
-    );
-    const json = await request.data;
-    res.status(200).json(json);
+      const { name, email, body } = fields;
+      if (!name || !email || !body) {
+        res.status(400).json({
+          error: 'validate error',
+        });
+        return;
+      }
+      const request = await axios.post(
+        `${endpoint}databases/${databaseId}/form`,
+        {
+          name: name ?? '',
+          email: email ?? '',
+          body: body ?? '',
+          tags: ['MySite'],
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            notionApiKey: apiKey,
+          },
+        }
+      );
+      const json = await request.data;
+      res.status(200).json(json);
+    });
   }
   res.status(200).json({});
 }

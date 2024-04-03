@@ -28,6 +28,7 @@
     "cors": "^2.8.5",
     "cssnano": "5.1.9",
     "eslint-config-next": "^12.0.4",
+    "formidable": "^3.5.1",
     "next": "13.4.19",
     "postcss-easy-import": "4.0.0",
     "react": "^18.1.0",
