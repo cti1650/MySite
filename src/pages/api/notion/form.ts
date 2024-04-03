@@ -42,9 +42,10 @@ export default async function handler(
   const apiKey = process.env.NEXT_PUBLIC_NOTION_KEY;
   const databaseId = process.env.NEXT_PUBLIC_NOTION_CONTACT_DATABASE_ID;
   if (req.method === 'POST') {
-    console.log('req', req);
+    // console.log('req', req);
     const form = formidable({});
     form.parse(req, async function (err, fields) {
+      console.log('fields', fields);
       if (err) {
         res.status(500).json({
           error: err,
