@@ -43,7 +43,7 @@ export default async function handler(
   const databaseId = process.env.NEXT_PUBLIC_NOTION_CONTACT_DATABASE_ID;
   if (req.method === 'POST') {
     console.log('req', req);
-    const form = new formidable.IncomingForm();
+    const form = new formidable({});
     form.parse(req, async function (err, fields) {
       if (err) {
         res.status(500).json({
