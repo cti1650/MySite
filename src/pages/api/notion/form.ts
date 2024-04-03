@@ -54,7 +54,7 @@ export default async function handler(
         return;
       }
       const { name, email, body } = fields;
-      if (!name || !email || !body) {
+      if (!name[0] || !email[0] || !body[0]) {
         res.status(400).json({
           error: 'validate error',
         });
@@ -63,9 +63,9 @@ export default async function handler(
       const request = await axios.post(
         `${endpoint}databases/${databaseId}/form`,
         {
-          name: name ?? '',
-          email: email ?? '',
-          body: body ?? '',
+          name: name[0] ?? '',
+          email: email[0] ?? '',
+          body: body[0] ?? '',
           tags: ['MySite'],
         },
         {
