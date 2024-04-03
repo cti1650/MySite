@@ -30,7 +30,7 @@ export const useMantineFormRequest = () => {
       data.append('body', requestData?.message);
       console.log('host', location.origin);
       axios
-        .post(`${location.origin}/api/notion/form/`, data)
+        .post(`${location.origin}/api/notion/form`, data)
         .then((res) => {
           console.log('res', res);
           if (res.status === 400) {
