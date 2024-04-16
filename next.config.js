@@ -10,6 +10,8 @@ const nextConfig = {
       'lh3.googleusercontent.com',
       'd2v9k5u4v94ulw.cloudfront.net',
       'huntr-assets.s3.amazonaws.com',
+      'prod-files-secure.s3.us-west-2.amazonaws.com',
+      'www.notion.so',
     ],
   },
   async headers() {
