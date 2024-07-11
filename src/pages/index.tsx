@@ -39,7 +39,7 @@ const Home: NextPage = () => {
               {
                 title: 'Skillset',
                 description:
-                  'HTML, JavaScript, CSS, React.js, Next.js, Tailwind.css, Python, PHP, VBA, GAS',
+                  'HTML, JavaScript, CSS, React.js, Next.js, Tailwind.css, React Native, Expo, Python, PHP, VBA, GAS, Chrome拡張機能開発',
               },
               {
                 title: 'Qualification & Tools',
