@@ -2,6 +2,8 @@
 import { NavButton } from '@comp/button/Buttons';
 import Link from 'next/link';
 import React, { FC } from 'react';
+import LogoImageUrl from '@img/logo_icon_white.png';
+import Image from 'next/image';
 
 export const Navbar: FC = () => {
   return (
@@ -16,13 +18,13 @@ export const Navbar: FC = () => {
                   className="flex flex-row items-center space-x-1"
                 >
                   <p>
-                    <img
-                      src="img/logo_icon_white.png"
-                      width="24px"
-                      height="24px"
+                    <Image
+                      src={LogoImageUrl}
+                      width={24}
+                      height={24}
                       alt="icon"
                       title="CTI1650"
-                    ></img>
+                    ></Image>
                   </p>
                   <p className="hidden sm:inline-block">CTI1650</p>
                 </a>

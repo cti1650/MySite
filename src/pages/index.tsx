@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useAge } from '@hooks/useAge';
 import { ProfListBox } from '@comp/box/profListBox';
 import { TitleBox } from '@comp/title/TitleBox';
+import HeroImageUrl from '@img/084AME0226.jpg.webp';
 
 const Home: NextPage = () => {
   const [age] = useAge(1992, 1, 25);
@@ -18,12 +19,15 @@ const Home: NextPage = () => {
 
       <div className="w-full max-h-full text-gray-900 grid lg:grid-cols-2 justify-center items-start lg:items-start">
         <div className="w-full h-auto">
-          <Image
-            src="/img/084AME0226.jpg.webp"
-            alt="image"
-            className="image w-full h-full"
-            fill
-          />
+          <span>
+            <Image
+              // src="/img/084AME0226.jpg.webp"
+              src={HeroImageUrl}
+              alt="image"
+              className="image w-full h-full"
+              fill
+            />
+          </span>
         </div>
         <div className="w-full flex flex-col pl-0 pt-2 pb-8 lg:pl-8 lg:pt-0 tracking-wider">
           <TitleBox

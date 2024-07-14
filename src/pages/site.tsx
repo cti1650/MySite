@@ -57,12 +57,14 @@ const Site: NextPage = (props: any) => {
                   {item?.github && <GithubButton href={item?.github} />}
                   {item?.img && (
                     <div className="w-full content-center">
-                      <Image
-                        src={item?.img}
-                        alt="image"
-                        className="image mx-auto max-h-80"
-                        fill
-                      />
+                      <span>
+                        <Image
+                          src={item?.img}
+                          alt="image"
+                          className="image mx-auto max-h-80"
+                          fill
+                        />
+                      </span>
                     </div>
                   )}
                   <div className="w-full tracking-wider text-left whitespace-pre-wrap">
