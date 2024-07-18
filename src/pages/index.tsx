@@ -7,6 +7,7 @@ import { useAge } from '@hooks/useAge';
 import { ProfListBox } from '@comp/box/profListBox';
 import { TitleBox } from '@comp/title/TitleBox';
 import HeroImageUrl from '@img/084AME0226.jpg.webp';
+import DifyChatbot from '@comp/tool/DifyChatbot';
 
 const Home: NextPage = () => {
   const [age] = useAge(1992, 1, 25);
@@ -55,6 +56,7 @@ const Home: NextPage = () => {
           />
         </div>
       </div>
+      <DifyChatbot />
     </div>
   );
 };
