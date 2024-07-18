@@ -1,3 +1,4 @@
+import { OS, useOs } from '@mantine/hooks';
 import { useEffect } from 'react';
 
 type Global = (Window & typeof globalThis) & {
@@ -8,8 +9,10 @@ type Global = (Window & typeof globalThis) & {
 
 const DifyChatbot = () => {
   const token = process.env.NEXT_PUBLIC_DIFY_TOKEN;
+  const os: OS = useOs();
 
   useEffect(() => {
+    if (!os || ['ios'].includes(os)) return;
     const global: Global = window;
 
     // Create the script tag
@@ -35,7 +38,7 @@ const DifyChatbot = () => {
       document.head.removeChild(script);
       document.head.removeChild(style);
     };
-  }, [token, global]);
+  }, [os, token, global]);
 
   return null;
 };
