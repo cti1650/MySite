@@ -9,6 +9,7 @@ type FormSuccessProps = {
 export const FormSuccess: FC<FormSuccessProps> = ({
   name,
   email,
+  summary,
   message,
   onReset,
 }) => {
@@ -53,6 +54,19 @@ export const FormSuccess: FC<FormSuccessProps> = ({
           </Box>
           <Box>
             <Title order={4} align="justify">
+              summary
+            </Title>
+            <Text
+              mx="auto"
+              p={10}
+              align="justify"
+              className="whitespace-pre-wrap break-words"
+            >
+              {summary ? summary : 'sample summary'}
+            </Text>
+          </Box>
+          <Box>
+            <Title order={4} align="justify">
               message
             </Title>
             <Text
@@ -80,6 +94,6 @@ export const FormSuccess: FC<FormSuccessProps> = ({
         </div>
       </div>
     ),
-    [name, email, message, onReset]
+    [name, email, summary, message, onReset]
   );
 };

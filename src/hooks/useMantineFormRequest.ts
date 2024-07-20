@@ -5,6 +5,7 @@ import { useCallback, useMemo, useState } from 'react';
 export type NotionRequestData = {
   name: string;
   email: string;
+  summary: string;
   message: string;
 };
 
@@ -27,6 +28,7 @@ export const useMantineFormRequest = () => {
       const data = new FormData();
       data.append('name', requestData?.name);
       data.append('email', requestData?.email);
+      data.append('summary', requestData?.summary);
       data.append('body', requestData?.message);
       console.log('host', location.origin);
       axios

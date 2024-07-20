@@ -53,8 +53,8 @@ export default async function handler(
         res.end();
         return;
       }
-      const { name, email, body } = fields;
-      if (!name[0] || !email[0] || !body[0]) {
+      const { name, email, body, summary } = fields;
+      if (!name[0] || !email[0] || !body[0] || !summary[0]) {
         res.status(400).json({
           error: 'validate error',
         });
@@ -65,6 +65,7 @@ export default async function handler(
         {
           name: name[0] ?? '',
           email: email[0] ?? '',
+          summary: summary[0] ?? '',
           body: body[0] ?? '',
           tags: ['MySite'],
         },

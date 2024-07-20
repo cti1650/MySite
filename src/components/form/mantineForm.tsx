@@ -8,6 +8,7 @@ import {
   Textarea,
   Text,
   Space,
+  Select
 } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { z } from 'zod';
@@ -18,6 +19,7 @@ import { FormLoading } from './FormLoading';
 const schema = z.object({
   name: z.string().min(2, { message: '名前は2文字以上入力してください！' }),
   email: z.string().email({ message: 'メールアドレスを入力してください！' }),
+  summary: z.string().min(10, { message: '概要は必ず選択してください！' }),
   body: z.string().min(10, { message: '内容は10文字以上入力してください！' }),
   termsOfService: z.boolean().default(false),
 });
@@ -28,6 +30,7 @@ export const MantineForm: FC = () => {
     initialValues: {
       name: '',
       email: '',
+      summary: '',
       body: '',
       termsOfService: false,
     },
@@ -39,6 +42,7 @@ export const MantineForm: FC = () => {
       notionRequest({
         name: values.name,
         email: values.email,
+        summary: values.summary,
         message: values.body,
       });
     },
@@ -59,6 +63,7 @@ export const MantineForm: FC = () => {
       <FormSuccess
         name={form.values.name}
         email={form.values.email}
+        summary={form.values.summary}
         message={form.values.body}
         onReset={handleReset}
       />
@@ -95,6 +100,17 @@ export const MantineForm: FC = () => {
               input: 'text-base',
             }}
             {...form.getInputProps('email')}
+          />
+
+          <Select
+            required
+            label="概要"
+            placeholder="お問い合わせの概要について"
+            classNames={{
+              input: 'text-base',
+            }}
+            data={['ポートフォリオに関するお問い合わせ', 'ポートフォリオの機能追加のご要望', 'ポートフォリオの不具合のご報告', 'お仕事のご依頼・ご相談', 'その他']}
+            {...form.getInputProps('summary')}
           />
 
           <Textarea
