@@ -18,19 +18,19 @@ const Home: NextPage = () => {
         <meta property="og:title" content="cti1650 Portfolio" />
       </Head>
 
-      <div className="w-full max-h-full text-gray-900 grid lg:grid-cols-2 justify-center items-start lg:items-start">
-        <div className="w-full h-auto">
+      <div className="w-full max-h-full text-gray-900 grid grid-cols-1 lg:grid-cols-2 gap-8 justify-center items-start lg:items-start">
+        <div className="w-full min-w-full h-auto">
           <span>
             <Image
               // src="/img/084AME0226.jpg.webp"
               src={HeroImageUrl}
               alt="image"
-              className="image w-full h-full"
+              className="image w-full min-w-full h-full"
               fill
             />
           </span>
         </div>
-        <div className="w-full flex flex-col pl-0 pt-2 pb-8 lg:pl-8 lg:pt-0 tracking-wider">
+        <div className="w-full flex flex-col pb-8 tracking-wider">
           <TitleBox
             title="ABOUT"
             color="blue"
