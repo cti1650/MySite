@@ -15,6 +15,7 @@ import { z } from 'zod';
 import { useMantineFormRequest } from '@hooks/useMantineFormRequest';
 import { FormSuccess } from './FormSuccess';
 import { FormLoading } from './FormLoading';
+import Link from 'next/link';
 
 const schema = z.object({
   name: z.string().min(2, { message: '名前は2文字以上入力してください！' }),
@@ -71,8 +72,8 @@ export const MantineForm: FC = () => {
   }
 
   return (
-    <div className="h-auto min-h-full w-full max-w-[400px] mx-auto flex justify-center items-center">
-      <div>
+    <div className="h-auto min-h-full w-full max-w-lg mx-auto flex justify-center items-center">
+      <div className="w-full">
         <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
           <Box sx={(t) => ({ paddingBottom: t.spacing.xl })}>
             <Text mx="auto" align="center">
@@ -127,7 +128,10 @@ export const MantineForm: FC = () => {
           <Checkbox
             required
             mt="md"
-            label="プライバシーポリシーに同意"
+            label={<span>
+              <Link href='/privacy_policy' target='_blank' className="text-blue-500 hover:text-blue-400 action:text-blue-300">プライバシーポリシー</Link>
+              {"に同意"}
+            </span>}
             {...form.getInputProps('termsOfService', { type: 'checkbox' })}
           />
 
