@@ -3,9 +3,9 @@ import { useEffect } from 'react';
 
 type Global = (Window & typeof globalThis) & {
   difyChatbotConfig?: {
-    token?: string
-  }
-}
+    token?: string;
+  };
+};
 
 const DifyChatbot = () => {
   const token = process.env.NEXT_PUBLIC_DIFY_TOKEN;
@@ -23,7 +23,8 @@ const DifyChatbot = () => {
 
     // Create the style tag
     const style = document.createElement('style');
-    style.textContent = '#dify-chatbot-bubble-button { background-color: #1C64F2 !important; }';
+    style.textContent =
+      '#dify-chatbot-bubble-button { background-color: #1C64F2 !important; }';
 
     // Inject the script and style elements into the head
     document.head.appendChild(script);
@@ -31,7 +32,7 @@ const DifyChatbot = () => {
 
     // Set the global Dify chatbot configuration
     global.difyChatbotConfig = {
-      token: token
+      token: token,
     };
 
     return () => {

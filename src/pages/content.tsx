@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { GetStaticProps } from 'next';
 import axios from 'axios';
-import { Container, Title, Grid, Card, Text, Anchor, Group, Badge } from '@mantine/core';
+import {
+  Container,
+  Title,
+  Grid,
+  Card,
+  Text,
+  Anchor,
+  Group,
+  Badge,
+} from '@mantine/core';
 
 interface Post {
   id: string;
@@ -21,7 +30,11 @@ interface ContentPageProps {
   error?: string;
 }
 
-const ContentPage: React.FC<ContentPageProps> = ({ qiitaPosts, zennPosts, error }) => {
+const ContentPage: React.FC<ContentPageProps> = ({
+  qiitaPosts,
+  zennPosts,
+  error,
+}) => {
   const [formattedQiitaPosts, setFormattedQiitaPosts] = useState<Post[]>([]);
   const [formattedZennPosts, setFormattedZennPosts] = useState<Post[]>([]);
 
@@ -30,17 +43,18 @@ const ContentPage: React.FC<ContentPageProps> = ({ qiitaPosts, zennPosts, error 
       return new Date(dateString).toLocaleDateString('ja-JP', {
         year: 'numeric',
         month: 'long',
-        day: 'numeric'
+        day: 'numeric',
       });
     };
 
-    const formatAndSortPosts = (posts: Post[]) => posts
-      .map(post => ({
-        ...post,
-        created_at: formatDate(post.created_at),
-        updated_at: formatDate(post.updated_at)
-      }))
-      .sort((a, b) => b.likes_count - a.likes_count);
+    const formatAndSortPosts = (posts: Post[]) =>
+      posts
+        .map((post) => ({
+          ...post,
+          created_at: formatDate(post.created_at),
+          updated_at: formatDate(post.updated_at),
+        }))
+        .sort((a, b) => b.likes_count - a.likes_count);
 
     setFormattedQiitaPosts(formatAndSortPosts(qiitaPosts));
     setFormattedZennPosts(formatAndSortPosts(zennPosts));
@@ -49,7 +63,9 @@ const ContentPage: React.FC<ContentPageProps> = ({ qiitaPosts, zennPosts, error 
   if (error) {
     return (
       <Container>
-        <Title order={1} mb="md">My Content</Title>
+        <Title order={1} mb="md">
+          My Content
+        </Title>
         <Text color="red">{error}</Text>
       </Container>
     );
@@ -57,7 +73,11 @@ const ContentPage: React.FC<ContentPageProps> = ({ qiitaPosts, zennPosts, error 
 
   const renderDateInfo = (post: Post) => {
     if (post.created_at === post.updated_at) {
-      return <Text size="xs" color="dimmed">公開日: {post.created_at}</Text>;
+      return (
+        <Text size="xs" color="dimmed">
+          公開日: {post.created_at}
+        </Text>
+      );
     }
     return (
       <Text size="xs" color="dimmed">
@@ -68,7 +88,9 @@ const ContentPage: React.FC<ContentPageProps> = ({ qiitaPosts, zennPosts, error 
 
   const renderPostList = (posts: Post[], title: string) => (
     <Card shadow="sm" p="lg" radius="md" withBorder>
-      <Title order={2} mb="md">{title}</Title>
+      <Title order={2} mb="md">
+        {title}
+      </Title>
       {posts.length > 0 ? (
         posts.map((post) => (
           <Card key={post.id} shadow="xs" p="md" radius="md" withBorder mb="sm">
@@ -91,13 +113,15 @@ const ContentPage: React.FC<ContentPageProps> = ({ qiitaPosts, zennPosts, error 
 
   return (
     <Container size="lg" py="xl">
-      <Title order={1} mb="xl">My Content</Title>
+      <Title order={1} mb="xl">
+        My Content
+      </Title>
       <Grid>
         <Grid.Col span={12} md={6}>
-          {renderPostList(formattedQiitaPosts, "Qiita Posts")}
+          {renderPostList(formattedQiitaPosts, 'Qiita Posts')}
         </Grid.Col>
         <Grid.Col span={12} md={6}>
-          {renderPostList(formattedZennPosts, "Zenn Posts")}
+          {renderPostList(formattedZennPosts, 'Zenn Posts')}
         </Grid.Col>
       </Grid>
     </Container>
@@ -116,18 +140,20 @@ export const getStaticProps: GetStaticProps<ContentPageProps> = async () => {
           Authorization: `Bearer ${process.env.QIITA_ACCESS_TOKEN}`,
         },
       }),
-      axios.get<{ articles: Post[] }>(`https://zenn.dev/api/articles?username=${process.env.YOUR_ZENN_USERNAME}`),
+      axios.get<{ articles: Post[] }>(
+        `https://zenn.dev/api/articles?username=${process.env.YOUR_ZENN_USERNAME}`
+      ),
     ]);
 
     return {
       props: {
         qiitaPosts: qiitaResponse.data,
-        zennPosts: zennResponse.data.articles.map(item => ({
+        zennPosts: zennResponse.data.articles.map((item) => ({
           ...item,
           likes_count: item.liked_count || 0,
           created_at: item.published_at || item.created_at,
           updated_at: item.body_updated_at || item.updated_at,
-          url: `https://zenn.dev/${process.env.YOUR_ZENN_USERNAME}/articles/${item.id}`
+          url: `https://zenn.dev/${process.env.YOUR_ZENN_USERNAME}/articles/${item.id}`,
         })),
       },
       revalidate: 3600, // 1時間ごとに再生成
@@ -138,7 +164,10 @@ export const getStaticProps: GetStaticProps<ContentPageProps> = async () => {
       props: {
         qiitaPosts: [],
         zennPosts: [],
-        error: error instanceof Error ? error.message : '記事の取得中にエラーが発生しました。'
+        error:
+          error instanceof Error
+            ? error.message
+            : '記事の取得中にエラーが発生しました。',
       },
       revalidate: 3600,
     };

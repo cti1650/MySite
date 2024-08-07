@@ -8,7 +8,7 @@ import {
   Textarea,
   Text,
   Space,
-  Select
+  Select,
 } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { z } from 'zod';
@@ -19,10 +19,18 @@ import Link from 'next/link';
 
 const schema = z.object({
   name: z.string().min(2, { message: 'お名前は2文字以上入力してください。' }),
-  email: z.string().email({ message: '有効なメールアドレスを入力してください。' }),
-  summary: z.string().min(1, { message: 'お問い合わせの種類を選択してください。' }),
+  email: z
+    .string()
+    .email({ message: '有効なメールアドレスを入力してください。' }),
+  summary: z
+    .string()
+    .min(1, { message: 'お問い合わせの種類を選択してください。' }),
   body: z.string().min(10, { message: '内容は10文字以上入力してください。' }),
-  termsOfService: z.boolean().refine((val) => val === true, { message: 'プライバシーポリシーに同意する必要があります。' }),
+  termsOfService: z
+    .boolean()
+    .refine((val) => val === true, {
+      message: 'プライバシーポリシーに同意する必要があります。',
+    }),
 });
 
 export const MantineForm: FC = () => {
@@ -116,7 +124,7 @@ export const MantineForm: FC = () => {
               'お仕事のご依頼・ご相談',
               'フリーランス業務に関するお問い合わせ',
               '採用に関するお問い合わせ',
-              'その他'
+              'その他',
             ]}
             {...form.getInputProps('summary')}
           />
@@ -135,10 +143,18 @@ export const MantineForm: FC = () => {
           <Checkbox
             required
             mt="md"
-            label={<span>
-              <Link href='/privacy_policy' target='_blank' className="text-blue-500 hover:text-blue-400 action:text-blue-300">プライバシーポリシー</Link>
-              に同意します
-            </span>}
+            label={
+              <span>
+                <Link
+                  href="/privacy_policy"
+                  target="_blank"
+                  className="text-blue-500 hover:text-blue-400 action:text-blue-300"
+                >
+                  プライバシーポリシー
+                </Link>
+                に同意します
+              </span>
+            }
             {...form.getInputProps('termsOfService', { type: 'checkbox' })}
           />
 

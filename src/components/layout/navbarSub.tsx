@@ -26,10 +26,18 @@ export const Navbar: FC = () => {
           <div className="pl-2 flex-grow overflow-x-auto">
             <nav className="flex justify-start sm:justify-center">
               <ul className="flex space-x-4 sm:space-x-6 px-4 sm:px-0">
-                <li><NavButton href="/">Home</NavButton></li>
-                <li><NavButton href="/site">Portfolios</NavButton></li>
-                <li><NavButton href="/content">Contents</NavButton></li>
-                <li><NavButton href="/contact">Contact</NavButton></li>
+                <li>
+                  <NavButton href="/">Home</NavButton>
+                </li>
+                <li>
+                  <NavButton href="/site">Portfolios</NavButton>
+                </li>
+                <li>
+                  <NavButton href="/content">Contents</NavButton>
+                </li>
+                <li>
+                  <NavButton href="/contact">Contact</NavButton>
+                </li>
               </ul>
             </nav>
           </div>
