@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { GetStaticProps } from 'next';
 import axios from 'axios';
+import { Container, Title, Grid, Card, Text, Anchor, Group, Badge } from '@mantine/core';
 
 interface Post {
   id: string;
@@ -12,7 +13,6 @@ interface Post {
   updated_at: string;
   body_updated_at?: string;
   published_at?: string;
-  slug?: string;
 }
 
 interface ContentPageProps {
@@ -34,80 +34,73 @@ const ContentPage: React.FC<ContentPageProps> = ({ qiitaPosts, zennPosts, error 
       });
     };
 
-    const formatPosts = (posts: Post[]) => posts.map(post => ({
-      ...post,
-      created_at: formatDate(post.created_at),
-      updated_at: formatDate(post.updated_at)
-    }));
+    const formatAndSortPosts = (posts: Post[]) => posts
+      .map(post => ({
+        ...post,
+        created_at: formatDate(post.created_at),
+        updated_at: formatDate(post.updated_at)
+      }))
+      .sort((a, b) => b.likes_count - a.likes_count);
 
-    setFormattedQiitaPosts(formatPosts(qiitaPosts));
-    setFormattedZennPosts(formatPosts(zennPosts));
+    setFormattedQiitaPosts(formatAndSortPosts(qiitaPosts));
+    setFormattedZennPosts(formatAndSortPosts(zennPosts));
   }, [qiitaPosts, zennPosts]);
 
   if (error) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">My Content</h1>
-        <p className="text-red-500">{error}</p>
-      </div>
+      <Container>
+        <Title order={1} mb="md">My Content</Title>
+        <Text color="red">{error}</Text>
+      </Container>
     );
   }
 
   const renderDateInfo = (post: Post) => {
     if (post.created_at === post.updated_at) {
-      return <p className="text-xs text-gray-500">公開日: {post.created_at}</p>;
+      return <Text size="xs" color="dimmed">公開日: {post.created_at}</Text>;
     }
     return (
-      <p className="text-xs text-gray-500">
+      <Text size="xs" color="dimmed">
         公開日: {post.created_at} / 更新日: {post.updated_at}
-      </p>
+      </Text>
     );
   };
 
+  const renderPostList = (posts: Post[], title: string) => (
+    <Card shadow="sm" p="lg" radius="md" withBorder>
+      <Title order={2} mb="md">{title}</Title>
+      {posts.length > 0 ? (
+        posts.map((post) => (
+          <Card key={post.id} shadow="xs" p="md" radius="md" withBorder mb="sm">
+            <Anchor href={post.url} target="_blank" rel="noopener noreferrer">
+              <Text weight={500}>{post.title}</Text>
+            </Anchor>
+            <Group position="apart" mt="xs">
+              <Badge color="blue" variant="light">
+                Likes: {post.likes_count}
+              </Badge>
+              {renderDateInfo(post)}
+            </Group>
+          </Card>
+        ))
+      ) : (
+        <Text>記事を取得できませんでした。</Text>
+      )}
+    </Card>
+  );
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">My Content</h1>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Qiita Posts</h2>
-          {formattedQiitaPosts.length > 0 ? (
-            <ul className="space-y-4">
-              {formattedQiitaPosts.map((post) => (
-                <li key={post.id} className="border p-4 rounded-lg">
-                  <a href={post.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                    {post.title}
-                  </a>
-                  <p className="text-sm text-gray-600 mt-2">Likes: {post.likes_count}</p>
-                  {renderDateInfo(post)}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>Qiitaの記事を取得できませんでした。</p>
-          )}
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Zenn Posts</h2>
-          {formattedZennPosts.length > 0 ? (
-            <ul className="space-y-4">
-              {formattedZennPosts.map((post) => (
-                <li key={post.id} className="border p-4 rounded-lg">
-                  <a href={post.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                    {post.title}
-                  </a>
-                  <p className="text-sm text-gray-600 mt-2">Likes: {post.likes_count}</p>
-                  {renderDateInfo(post)}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>Zennの記事を取得できませんでした。</p>
-          )}
-        </div>
-      </div>
-    </div>
+    <Container size="lg" py="xl">
+      <Title order={1} mb="xl">My Content</Title>
+      <Grid>
+        <Grid.Col span={12} md={6}>
+          {renderPostList(formattedQiitaPosts, "Qiita Posts")}
+        </Grid.Col>
+        <Grid.Col span={12} md={6}>
+          {renderPostList(formattedZennPosts, "Zenn Posts")}
+        </Grid.Col>
+      </Grid>
+    </Container>
   );
 };
 
@@ -134,7 +127,7 @@ export const getStaticProps: GetStaticProps<ContentPageProps> = async () => {
           likes_count: item.liked_count || 0,
           created_at: item.published_at || item.created_at,
           updated_at: item.body_updated_at || item.updated_at,
-          url: `https://zenn.dev/${process.env.YOUR_ZENN_USERNAME}/articles/${item.slug}`
+          url: `https://zenn.dev/${process.env.YOUR_ZENN_USERNAME}/articles/${item.id}`
         })),
       },
       revalidate: 3600, // 1時間ごとに再生成
