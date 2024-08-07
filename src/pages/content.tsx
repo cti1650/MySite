@@ -22,6 +22,7 @@ interface Post {
   updated_at: string;
   body_updated_at?: string;
   published_at?: string;
+  slug?: string;
 }
 
 interface ContentPageProps {
@@ -153,7 +154,7 @@ export const getStaticProps: GetStaticProps<ContentPageProps> = async () => {
           likes_count: item.liked_count || 0,
           created_at: item.published_at || item.created_at,
           updated_at: item.body_updated_at || item.updated_at,
-          url: `https://zenn.dev/${process.env.YOUR_ZENN_USERNAME}/articles/${item.id}`,
+          url: `https://zenn.dev/${process.env.YOUR_ZENN_USERNAME}/articles/${item.slug}`,
         })),
       },
       revalidate: 3600, // 1時間ごとに再生成
