@@ -69,7 +69,7 @@ const Site: NextPage = (props: any) => {
                       <span>
                         <Image
                           src={item?.img}
-                          alt="image"
+                          alt={`${item?.name ?? 'Item'} Image`}
                           className="image mx-auto max-h-80"
                           fill
                         />
@@ -79,7 +79,7 @@ const Site: NextPage = (props: any) => {
                   <div className="w-full tracking-wider text-left whitespace-pre-wrap">
                     {item?.description}
                   </div>
-                  <PageLinkButton href={item?.link}>
+                  <PageLinkButton href={item?.link} ariaLabel={item?.name}>
                     サイトを開く
                   </PageLinkButton>
                   {item?.rawTags && (
