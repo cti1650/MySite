@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 import axios from 'axios';
 import {
   Container,
@@ -114,6 +115,19 @@ const ContentPage: React.FC<ContentPageProps> = ({
 
   return (
     <Container size="lg" py="xl">
+      <Head>
+        <title>cti1650 Contents</title>
+        <meta property="og:title" content="cti1650 Contents" />
+        <meta property="og:site_name" content="cti1650 Contents" />
+        <meta
+          name="description"
+          content="cti1650が執筆した記事です。"
+        />
+        <meta
+          property="og:description"
+          content="cti1650が執筆した記事です。"
+        />
+      </Head>
       <Title order={1} mb="xl">
         My Content
       </Title>

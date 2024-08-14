@@ -38,8 +38,17 @@ const Site: NextPage = (props: any) => {
   return (
     <div className="w-full px-1 lg:px-10 font-n2i md:max-w-5xl mx-auto">
       <Head>
-        <title>cti1650 Portfolio</title>
-        <meta property="og:title" content="cti1650 Portfolio" />
+        <title>cti1650 Portfolios</title>
+        <meta property="og:title" content="cti1650 Portfolios" />
+        <meta property="og:site_name" content="cti1650 Portfolios" />
+        <meta
+          name="description"
+          content="cti1650が個人開発したポートフォリオです。"
+        />
+        <meta
+          property="og:description"
+          content="cti1650が個人開発したポートフォリオです。"
+        />
       </Head>
 
       <div className="w-full text-gray-900 lg:py-8">

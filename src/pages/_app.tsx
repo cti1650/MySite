@@ -29,7 +29,7 @@ const TailwindApp = ({ Component, pageProps }: AppProps) => {
           name="description"
           content="cti1650のポートフォリオサイトです。"
         />
-        <meta name="keywords" content="HTML,CSS,Tailwind.css"></meta>
+        <meta name="keywords" content="Next.js,React,TypeScript,Tailwind,Expo,React Native,Python,GAS,VBA,Chrome Extension"></meta>
         <meta property="og:title" content="cti1650 Portfolio" />
         <meta
           property="og:description"

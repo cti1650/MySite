@@ -1,10 +1,25 @@
 import React from 'react';
 import Link from 'next/link';
 import { NextPage } from 'next';
+import Head from 'next/head';
 
 const PrivacyPolicy: NextPage = () => {
   return (
     <div className="container mx-auto max-w-2xl px-4 py-8">
+      <Head>
+        <title>cti1650 プライバシーポリシー</title>
+        <meta property="og:title" content="cti1650 プライバシーポリシー" />
+        <meta property="og:site_name" content="cti1650 プライバシーポリシー" />
+        <meta
+          name="description"
+          content="cti1650が個人開発したポートフォリオに関するプライバシーポリシーです。"
+        />
+        <meta
+          property="og:description"
+          content="cti1650が個人開発したポートフォリオに関するプライバシーポリシーです。"
+        />
+      </Head>
+
       <h1 className="text-3xl font-bold mb-6">
         プライバシーポリシーおよび免責事項
       </h1>
