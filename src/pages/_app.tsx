@@ -40,7 +40,7 @@ const TailwindApp = ({ Component, pageProps }: AppProps) => {
           property="og:url"
           content="https://cti1650-portfolio-site.vercel.app/"
         />
-        <meta property="og:image" content="img/logo_icon_white.png" />
+        <meta property="og:image" content="https://cti1650-portfolio-site.vercel.app/img/ogp.png" />
         <meta property="og:site_name" content="cti1650 Portfolio" />
         <meta property="og:locale" content="ja_JP" />
       </Head>
