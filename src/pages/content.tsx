@@ -119,14 +119,8 @@ const ContentPage: React.FC<ContentPageProps> = ({
         <title>cti1650 Contents</title>
         <meta property="og:title" content="cti1650 Contents" />
         <meta property="og:site_name" content="cti1650 Contents" />
-        <meta
-          name="description"
-          content="cti1650が執筆した記事です。"
-        />
-        <meta
-          property="og:description"
-          content="cti1650が執筆した記事です。"
-        />
+        <meta name="description" content="cti1650が執筆した記事です。" />
+        <meta property="og:description" content="cti1650が執筆した記事です。" />
       </Head>
       <Title order={1} mb="xl">
         My Content

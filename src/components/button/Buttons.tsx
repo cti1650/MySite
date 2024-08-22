@@ -14,7 +14,11 @@ type IconButtonProps = {
   ariaLabel?: string;
 };
 
-export const SocialButton: FC<ButtonProps> = ({ children, href, ariaLabel }) => {
+export const SocialButton: FC<ButtonProps> = ({
+  children,
+  href,
+  ariaLabel,
+}) => {
   return (
     <>
       <a
@@ -57,7 +61,11 @@ export const NavButton2: FC<ButtonProps> = ({ children, href }) => {
   );
 };
 
-export const PageLinkButton: FC<ButtonProps> = ({ children, href, ariaLabel }) => {
+export const PageLinkButton: FC<ButtonProps> = ({
+  children,
+  href,
+  ariaLabel,
+}) => {
   return (
     <>
       <div className="w-full h-14 group relative overflow-hidden border-t border-b border-gray-300">
@@ -101,11 +109,11 @@ export const PageLinkButton2: FC<ButtonProps> = ({ children, href }) => {
 
 export const GithubButton: FC<IconButtonProps> = ({ href, ariaLabel }) => {
   const getRepositoryName = () => {
-    if (ariaLabel) return ariaLabel
-    const reg = /github\.com\/(.+)(\.git)?/
-    const name = reg.exec(href)?.[1]
-    return name
-  }
+    if (ariaLabel) return ariaLabel;
+    const reg = /github\.com\/(.+)(\.git)?/;
+    const name = reg.exec(href)?.[1];
+    return name;
+  };
 
   return (
     <>

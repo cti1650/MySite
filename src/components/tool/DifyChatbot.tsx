@@ -39,7 +39,7 @@ const DifyChatbot = () => {
       document.head.removeChild(script);
       document.head.removeChild(style);
     };
-  }, [os, token, global]);
+  }, [os, token]);
 
   return null;
 };

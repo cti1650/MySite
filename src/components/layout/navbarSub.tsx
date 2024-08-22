@@ -10,7 +10,11 @@ export const Navbar: FC = () => {
       <div className="h-20 flex items-center px-4 sm:px-6 lg:px-8">
         <div className="w-full flex items-center justify-between">
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/" aria-label="cti1650 Portfolio" className="flex items-center space-x-1">
+            <Link
+              href="/"
+              aria-label="cti1650 Portfolio"
+              className="flex items-center space-x-1"
+            >
               <Image
                 src={LogoImageUrl}
                 width={24}
@@ -27,16 +31,24 @@ export const Navbar: FC = () => {
             <nav className="flex justify-start sm:justify-center">
               <ul className="flex space-x-4 sm:space-x-6 px-4 sm:px-0">
                 <li>
-                  <NavButton href="/" aria-label="cti1650 Portfolio">Home</NavButton>
+                  <NavButton href="/" aria-label="cti1650 Portfolio">
+                    Home
+                  </NavButton>
                 </li>
                 <li>
-                  <NavButton href="/site" aria-label="cti1650 Portfolios">Portfolios</NavButton>
+                  <NavButton href="/site" aria-label="cti1650 Portfolios">
+                    Portfolios
+                  </NavButton>
                 </li>
                 <li>
-                  <NavButton href="/content" aria-label="cti1650 Contents">Contents</NavButton>
+                  <NavButton href="/content" aria-label="cti1650 Contents">
+                    Contents
+                  </NavButton>
                 </li>
                 <li>
-                  <NavButton href="/contact" aria-label="cti1650 Contact">Contact</NavButton>
+                  <NavButton href="/contact" aria-label="cti1650 Contact">
+                    Contact
+                  </NavButton>
                 </li>
               </ul>
             </nav>

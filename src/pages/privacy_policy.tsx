@@ -34,7 +34,9 @@ const PrivacyPolicy: NextPage = () => {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl sm:text-2xl font-semibold mb-4">2. 個人情報の利用目的</h2>
+        <h2 className="text-xl sm:text-2xl font-semibold mb-4">
+          2. 個人情報の利用目的
+        </h2>
         <p>収集した個人情報は、以下の目的で利用いたします：</p>
         <ul className="list-disc list-inside ml-4">
           <li>各種お問い合わせへの対応</li>
@@ -47,14 +49,18 @@ const PrivacyPolicy: NextPage = () => {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl sm:text-2xl font-semibold mb-4">3. 個人情報の第三者提供</h2>
+        <h2 className="text-xl sm:text-2xl font-semibold mb-4">
+          3. 個人情報の第三者提供
+        </h2>
         <p>
           当サイトは、法令に基づく場合や人の生命、身体または財産の保護のために必要がある場合を除き、収集した個人情報を当該本人の同意なく第三者に提供することはありません。
         </p>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl sm:text-2xl font-semibold mb-4">4. セキュリティ対策</h2>
+        <h2 className="text-xl sm:text-2xl font-semibold mb-4">
+          4. セキュリティ対策
+        </h2>
         <p>
           当サイトでは、個人情報の漏洩、滅失、毀損の防止に努めます。適切なセキュリティ対策を実施し、個人情報の保護に万全を期しています。ただし、インターネット上での完全なセキュリティを保証するものではありません。
         </p>
@@ -97,7 +103,9 @@ const PrivacyPolicy: NextPage = () => {
       </section>
 
       <section>
-        <h2 className="text-xl sm:text-2xl font-semibold mb-4">7. お問い合わせ</h2>
+        <h2 className="text-xl sm:text-2xl font-semibold mb-4">
+          7. お問い合わせ
+        </h2>
         <p>
           当サイトの個人情報の取扱い、免責事項に関するお問い合わせ、ツールの使用に関する質問、求人応募に関するご連絡、業務依頼など、あらゆるお問い合わせについては、以下のContactページからご連絡ください。迅速かつ適切に対応させていただきます。
         </p>

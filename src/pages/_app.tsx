@@ -29,7 +29,10 @@ const TailwindApp = ({ Component, pageProps }: AppProps) => {
           name="description"
           content="cti1650のポートフォリオサイトです。"
         />
-        <meta name="keywords" content="Next.js,React,TypeScript,Tailwind,Expo,React Native,Python,GAS,VBA,Chrome Extension"></meta>
+        <meta
+          name="keywords"
+          content="Next.js,React,TypeScript,Tailwind,Expo,React Native,Python,GAS,VBA,Chrome Extension"
+        ></meta>
         <meta property="og:title" content="cti1650 Portfolio" />
         <meta
           property="og:description"
@@ -40,7 +43,10 @@ const TailwindApp = ({ Component, pageProps }: AppProps) => {
           property="og:url"
           content="https://cti1650-portfolio-site.vercel.app/"
         />
-        <meta property="og:image" content="https://cti1650-portfolio-site.vercel.app/img/ogp.png" />
+        <meta
+          property="og:image"
+          content="https://cti1650-portfolio-site.vercel.app/img/ogp.png"
+        />
         <meta property="og:site_name" content="cti1650 Portfolio" />
         <meta property="og:locale" content="ja_JP" />
       </Head>

@@ -26,11 +26,9 @@ const schema = z.object({
     .string()
     .min(1, { message: 'お問い合わせの種類を選択してください。' }),
   body: z.string().min(10, { message: '内容は10文字以上入力してください。' }),
-  termsOfService: z
-    .boolean()
-    .refine((val) => val === true, {
-      message: 'プライバシーポリシーに同意する必要があります。',
-    }),
+  termsOfService: z.boolean().refine((val) => val === true, {
+    message: 'プライバシーポリシーに同意する必要があります。',
+  }),
 });
 
 export const MantineForm: FC = () => {
