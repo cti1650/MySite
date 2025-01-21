@@ -20,6 +20,16 @@ export const SocialNav: FC = () => {
                 WANTEDLY
               </SocialButton>
             </li>
+            <li>
+              <SocialButton href="https://youtrust.jp/users/04a0cc9719d42b8e3931d2a5111f8f76">
+                YOUTRUST
+              </SocialButton>
+            </li>
+            <li>
+              <SocialButton href="https://www.linkedin.com/in/yuichi-sakagami-809062306/">
+                LINKEDIN
+              </SocialButton>
+            </li>
           </BizContent>
           <li>
             <SocialButton href="https://qiita.com/cti1650">QIITA</SocialButton>
