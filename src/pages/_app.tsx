@@ -10,6 +10,7 @@ import Head from 'next/head';
 import { usePageView } from '@hooks/usePageView';
 import { NotificationsProvider } from '@mantine/notifications';
 import { MantineProvider } from '@mantine/core';
+import { BizProvider } from '@comp/context';
 
 const TailwindApp = ({ Component, pageProps }: AppProps) => {
   usePageView();
@@ -40,10 +41,6 @@ const TailwindApp = ({ Component, pageProps }: AppProps) => {
         />
         <meta property="og:type" content="website" />
         <meta
-          property="og:url"
-          content="https://cti1650-portfolio-site.vercel.app/"
-        />
-        <meta
           property="og:image"
           content="https://cti1650-portfolio-site.vercel.app/img/ogp.png"
         />
@@ -52,9 +49,11 @@ const TailwindApp = ({ Component, pageProps }: AppProps) => {
       </Head>
       <MantineProvider>
         <NotificationsProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <BizProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </BizProvider>
         </NotificationsProvider>
       </MantineProvider>
     </>

@@ -16,6 +16,7 @@ import { useMantineFormRequest } from '@hooks/useMantineFormRequest';
 import { FormSuccess } from './FormSuccess';
 import { FormLoading } from './FormLoading';
 import Link from 'next/link';
+import { useBiz } from '@comp/context';
 
 const schema = z.object({
   name: z.string().min(2, { message: 'お名前は2文字以上入力してください。' }),
@@ -33,6 +34,8 @@ const schema = z.object({
 
 export const MantineForm: FC = () => {
   const { success, loading, notionRequest, reset } = useMantineFormRequest();
+  const [isBiz] = useBiz();
+  const pathPrefix = isBiz ? '/biz' : '';
   const form = useForm({
     initialValues: {
       name: '',
@@ -144,7 +147,7 @@ export const MantineForm: FC = () => {
             label={
               <span>
                 <Link
-                  href="/privacy_policy"
+                  href={pathPrefix + '/privacy_policy'}
                   target="_blank"
                   className="text-blue-500 hover:text-blue-400 action:text-blue-300"
                 >

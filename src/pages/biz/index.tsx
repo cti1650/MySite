@@ -1,9 +1,12 @@
 import React from 'react';
 import { NextPage } from 'next';
 import { GetStaticProps } from 'next';
+import { useBizPage } from '@comp/context';
 import { TopPage } from '@comp/page/top';
 
-const Home: NextPage = () => {
+const BizHome: NextPage = () => {
+  useBizPage();
+
   return <TopPage />;
 };
 
@@ -13,4 +16,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default Home;
+export default BizHome;

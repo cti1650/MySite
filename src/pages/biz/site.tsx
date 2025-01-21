@@ -3,9 +3,11 @@ import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
 import { fetchPortfolios, ResponseData } from '@lib/portfolioApi';
 import { SitePage } from '@comp/page/site';
+import { useBizPage } from '@comp/context';
 
-const Site: NextPage = (props: any) => {
+const BizSite: NextPage = (props: any) => {
   const { portfolios } = props;
+  useBizPage();
 
   return <SitePage portfolios={portfolios} />;
 };
@@ -31,4 +33,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default Site;
+export default BizSite;

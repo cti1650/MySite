@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-type ResponseData = {
+export type ResponseData = {
   description: string;
   github: string;
   img: string;

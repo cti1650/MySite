@@ -2,6 +2,7 @@ import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
 import axios from 'axios';
 import { ContentPage } from '@comp/page/content';
+import { useBizPage } from '@comp/context';
 
 interface Post {
   id: string;
@@ -22,7 +23,8 @@ interface ContentPageProps {
   error?: string;
 }
 
-const Content: NextPage<ContentPageProps> = (props) => {
+const BizContent: NextPage<ContentPageProps> = (props) => {
+  useBizPage();
 
   return <ContentPage {...props} />;
 };
@@ -73,4 +75,4 @@ export const getStaticProps: GetStaticProps<ContentPageProps> = async () => {
   }
 };
 
-export default Content;
+export default BizContent;
