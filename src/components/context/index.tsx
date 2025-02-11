@@ -5,7 +5,9 @@ export const BizContext = createContext(undefined);
 
 export const BizProvider = ({ children }) => {
   const [biz, setBiz] = React.useState(false);
-  return <BizContext.Provider value={[biz, setBiz]}>{children}</BizContext.Provider>;
+  return (
+    <BizContext.Provider value={[biz, setBiz]}>{children}</BizContext.Provider>
+  );
 };
 
 export const useBiz = () => {

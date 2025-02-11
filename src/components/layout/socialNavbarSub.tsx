@@ -4,7 +4,6 @@ import { VerticalBar } from '../box/verticalBar';
 import { BizContent, PrivateContent } from '@comp/context';
 
 export const SocialNav: FC = () => {
-
   return (
     <>
       <VerticalBar position="right">

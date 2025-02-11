@@ -22,7 +22,7 @@ const getTagColorStyle = {
 
 type Props = {
   portfolios: ResponseData;
-}
+};
 
 export const SitePage: FC<Props> = ({ portfolios }) => {
   const path = useBizPath();
@@ -40,10 +40,7 @@ export const SitePage: FC<Props> = ({ portfolios }) => {
           property="og:description"
           content="cti1650が個人開発したポートフォリオです。"
         />
-        <meta
-          property="og:url"
-          content={path}
-        />
+        <meta property="og:url" content={path} />
       </Head>
 
       <div className="w-full text-gray-900 lg:py-8">

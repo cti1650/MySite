@@ -17,10 +17,7 @@ export const TopPage: FC = () => {
       <Head>
         <title>cti1650 Portfolio</title>
         <meta property="og:title" content="cti1650 Portfolio" />
-        <meta
-          property="og:url"
-          content={path}
-        />
+        <meta property="og:url" content={path} />
       </Head>
 
       <div className="w-full max-h-full text-gray-900 grid grid-cols-1 lg:grid-cols-2 gap-8 justify-center items-start lg:items-start">

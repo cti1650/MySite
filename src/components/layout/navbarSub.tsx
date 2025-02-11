@@ -34,22 +34,34 @@ export const Navbar: FC = () => {
             <nav className="flex justify-start sm:justify-center">
               <ul className="flex space-x-4 sm:space-x-6 px-4 sm:px-0">
                 <li>
-                  <NavButton href={pagePrefix + '/'} aria-label="cti1650 Portfolio">
+                  <NavButton
+                    href={pagePrefix + '/'}
+                    aria-label="cti1650 Portfolio"
+                  >
                     Home
                   </NavButton>
                 </li>
                 <li>
-                  <NavButton href={pagePrefix + '/site'} aria-label="cti1650 Portfolios">
+                  <NavButton
+                    href={pagePrefix + '/site'}
+                    aria-label="cti1650 Portfolios"
+                  >
                     Portfolios
                   </NavButton>
                 </li>
                 <li>
-                  <NavButton href={pagePrefix + '/content'} aria-label="cti1650 Contents">
+                  <NavButton
+                    href={pagePrefix + '/content'}
+                    aria-label="cti1650 Contents"
+                  >
                     Contents
                   </NavButton>
                 </li>
                 <li>
-                  <NavButton href={pagePrefix + '/contact'} aria-label="cti1650 Contact">
+                  <NavButton
+                    href={pagePrefix + '/contact'}
+                    aria-label="cti1650 Contact"
+                  >
                     Contact
                   </NavButton>
                 </li>

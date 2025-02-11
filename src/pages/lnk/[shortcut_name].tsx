@@ -4,14 +4,14 @@ type Props = {};
 
 const ShortcutRedirect: NextPage<Props> = () => {
   return null;
-}
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { shortcut_name } = context.params as { shortcut_name: string };
 
   const redirectMap: Record<string, string> = {
     playground: 'https://paiza.io/ja/projects/new',
-    space: 'https://app.rc.ovice.com/ws/p4ofxd8oeo/'
+    space: 'https://app.rc.ovice.com/ws/p4ofxd8oeo/',
   };
 
   if (!redirectMap[shortcut_name]) {
@@ -26,6 +26,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       permanent: false,
     },
   };
-}
+};
 
 export default ShortcutRedirect;

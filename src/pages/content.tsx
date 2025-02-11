@@ -23,7 +23,6 @@ interface ContentPageProps {
 }
 
 const Content: NextPage<ContentPageProps> = (props) => {
-
   return <ContentPage {...props} />;
 };
 

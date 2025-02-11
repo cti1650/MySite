@@ -19,10 +19,7 @@ export const ContactPage: FC = () => {
           property="og:description"
           content="cti1650へのご質問、ご依頼、その他お問い合わせフォームです。"
         />
-        <meta
-          property="og:url"
-          content={path}
-        />
+        <meta property="og:url" content={path} />
       </Head>
       <div className="h-full w-full px-4 font-n2i">
         <MantineForm />

@@ -21,10 +21,7 @@ export const PrivacyPolicyPage: FC = () => {
           property="og:description"
           content="cti1650が個人開発したポートフォリオに関するプライバシーポリシーです。"
         />
-        <meta
-          property="og:url"
-          content={path}
-        />
+        <meta property="og:url" content={path} />
       </Head>
 
       <h1 className="text-2xl sm:text-3xl font-bold mb-6">
