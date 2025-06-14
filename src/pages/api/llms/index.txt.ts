@@ -5,12 +5,14 @@ export default async function handler(
   res: NextApiResponse
 ) {
   res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-  console.log('test', req);
+  const protocol = req.headers['x-forwarded-proto'] || 'http';
+  const host = req.headers.host;
+  const baseUrl = `${protocol}://${host}`;
   let content = `# このサイトについて
 このサイトは、私のポートフォリオを紹介するためのものです。以下に、私のスキルセットやプロジェクトについての情報を記載しています。
 
 # 参照先
-- [Portfolio](${req.headers.host}/api/llms/portfolios.txt)`;
+- [Portfolio](${baseUrl}/api/llms/portfolios.txt)`;
   res.setHeader('Content-Length', Buffer.byteLength(content, 'utf8'));
   res.setHeader('Cache-Control', 'public, max-age=3600'); // Cache for 1 hour
   res.status(200).send(content);
