@@ -70,8 +70,8 @@ const nextConfig = {
         destination: '/api/llms/index.txt',
       },
       {
-        source: '/llms/:path*',
-        destination: '/api/llms/:path*',
+        source: '/llms/(.*)',
+        destination: '/api/llms/(.*)',
       },
     ];
   },
