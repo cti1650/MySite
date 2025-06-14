@@ -22,6 +22,9 @@ export default async function handler(
   });
   content += '</PortfolioItems>';
   res.setHeader('Content-Length', Buffer.byteLength(content, 'utf8'));
-  res.setHeader('Cache-Control', 'public, max-age=3600'); // Cache for 1 hour
+  res.setHeader(
+    'Cache-Control',
+    'public, max-age=3600, stale-while-revalidate=60'
+  ); // Cache for 1 hour
   res.status(200).send(content);
 }
