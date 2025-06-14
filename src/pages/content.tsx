@@ -1,20 +1,7 @@
 import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import axios from 'axios';
 import { ContentPage } from '@comp/page/content';
-
-interface Post {
-  id: string;
-  title: string;
-  url: string;
-  likes_count: number;
-  liked_count?: number;
-  created_at: string;
-  updated_at: string;
-  body_updated_at?: string;
-  published_at?: string;
-  slug?: string;
-}
+import { Post } from 'src/types/posts';
 
 interface ContentPageProps {
   qiitaPosts: Post[];
@@ -28,44 +15,27 @@ const Content: NextPage<ContentPageProps> = (props) => {
 
 export const getStaticProps: GetStaticProps<ContentPageProps> = async () => {
   try {
-    if (!process.env.QIITA_ACCESS_TOKEN || !process.env.YOUR_ZENN_USERNAME) {
-      throw new Error('環境変数が設定されていません。');
-    }
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+      }/api/content`);
+    const data = await res.json();
 
-    const [qiitaResponse, zennResponse] = await Promise.all([
-      axios.get<Post[]>('https://qiita.com/api/v2/authenticated_user/items', {
-        headers: {
-          Authorization: `Bearer ${process.env.QIITA_ACCESS_TOKEN}`,
-        },
-      }),
-      axios.get<{ articles: Post[] }>(
-        `https://zenn.dev/api/articles?username=${process.env.YOUR_ZENN_USERNAME}`
-      ),
-    ]);
+    if ('error' in data) {
+      throw new Error(data.error);
+    }
 
     return {
       props: {
-        qiitaPosts: qiitaResponse.data,
-        zennPosts: zennResponse.data.articles.map((item) => ({
-          ...item,
-          likes_count: item.liked_count || 0,
-          created_at: item.published_at || item.created_at,
-          updated_at: item.body_updated_at || item.updated_at,
-          url: `https://zenn.dev/${process.env.YOUR_ZENN_USERNAME}/articles/${item.slug}`,
-        })),
+        qiitaPosts: data.qiitaPosts,
+        zennPosts: data.zennPosts,
       },
-      revalidate: 3600, // 1時間ごとに再生成
+      revalidate: 3600,
     };
-  } catch (error) {
-    console.error('Error fetching posts:', error);
+  } catch (error: any) {
     return {
       props: {
         qiitaPosts: [],
         zennPosts: [],
-        error:
-          error instanceof Error
-            ? error.message
-            : '記事の取得中にエラーが発生しました。',
+        error: error.message || '記事の取得中にエラーが発生しました。',
       },
       revalidate: 3600,
     };
