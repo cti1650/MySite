@@ -42,6 +42,10 @@ const nextConfig = {
         source: '/llms.txt',
         destination: '/api/llms/index.txt',
       },
+      {
+        source: '/llms/:path*',
+        destination: '/api/llms/:path*',
+      },
     ];
   },
 };
