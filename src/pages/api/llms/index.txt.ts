@@ -12,7 +12,7 @@ export default async function handler(
 このサイトは、私のポートフォリオを紹介するためのものです。以下に、私のスキルセットやプロジェクトについての情報を記載しています。
 
 # 参照先
-- [Portfolio](${baseUrl}/api/llms/portfolios.txt)`;
+- [Portfolio](${baseUrl}/llms/portfolios.txt)`;
   res.setHeader('Content-Length', Buffer.byteLength(content, 'utf8'));
   res.setHeader('Cache-Control', 'public, max-age=3600'); // Cache for 1 hour
   res.status(200).send(content);
