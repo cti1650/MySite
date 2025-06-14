@@ -36,6 +36,14 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: '/llms.txt',
+        destination: '/api/llms/index.txt',
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
