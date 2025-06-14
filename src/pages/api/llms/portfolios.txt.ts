@@ -1,11 +1,21 @@
 import { fetchPortfolios } from '@lib/portfolioApi';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+let cachedPortfolios: any[] | null = null;
+let lastFetched = 0;
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const portfolios = await fetchPortfolios();
+  const now = Date.now();
+  if (!cachedPortfolios || now - lastFetched > 3600 * 1000) {
+    cachedPortfolios = await fetchPortfolios();
+    lastFetched = now;
+  }
+
+  const portfolios = cachedPortfolios;
+
   res.setHeader('Content-Type', 'text/plain; charset=utf-8');
   let content = '<PortfolioItems>\n';
   portfolios.forEach((portfolio) => {
@@ -21,10 +31,11 @@ export default async function handler(
     content += item;
   });
   content += '</PortfolioItems>';
+
   res.setHeader('Content-Length', Buffer.byteLength(content, 'utf8'));
   res.setHeader(
     'Cache-Control',
     'public, max-age=3600, stale-while-revalidate=60'
-  ); // Cache for 1 hour
+  );
   res.status(200).send(content);
 }
