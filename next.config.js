@@ -33,19 +33,19 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/api/content/:path*',
+        source: '/api/content/(.*)',
         headers: filteredHeaders,
       },
       {
-        source: '/api/notion/:path*',
+        source: '/api/notion/(.*)',
         headers: filteredHeaders,
       },
       {
-        source: '/api/portfolios/:path*',
+        source: '/api/portfolios/(.*)',
         headers: filteredHeaders,
       },
       {
-        source: '/api/llms/:path*',
+        source: '/api/llms/(.*)',
         headers: [
           {
             key: 'Access-Control-Allow-Origin',
