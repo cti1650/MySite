@@ -1,3 +1,18 @@
+const filteredHeaders = [
+  {
+    key: 'Access-Control-Allow-Origin',
+    value: 'https://cti1650-portfolio-site.vercel.app',
+  },
+  {
+    key: 'Access-Control-Allow-Methods',
+    value: 'GET,OPTIONS,POST',
+  },
+  {
+    key: 'Access-Control-Allow-Headers',
+    value: 'Content-Type',
+  },
+];
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -18,21 +33,16 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/api/:path*',
-        headers: [
-          {
-            key: 'Access-Control-Allow-Origin',
-            value: 'https://cti1650-portfolio-site.vercel.app',
-          },
-          {
-            key: 'Access-Control-Allow-Methods',
-            value: 'GET,OPTIONS,POST',
-          },
-          {
-            key: 'Access-Control-Allow-Headers',
-            value: 'Content-Type',
-          },
-        ],
+        source: '/api/content/:path*',
+        headers: filteredHeaders,
+      },
+      {
+        source: '/api/notion/:path*',
+        headers: filteredHeaders,
+      },
+      {
+        source: '/api/portfolios/:path*',
+        headers: filteredHeaders,
       },
       {
         source: '/api/llms/:path*',
@@ -43,7 +53,7 @@ const nextConfig = {
           },
           {
             key: 'Access-Control-Allow-Methods',
-            value: 'GET,OPTIONS,POST',
+            value: 'GET',
           },
           {
             key: 'Access-Control-Allow-Headers',
