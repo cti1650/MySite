@@ -70,8 +70,8 @@ const nextConfig = {
         destination: '/api/llms/index.txt',
       },
       {
-        source: '/llms/(.*)',
-        destination: '/api/llms/(.*)',
+        source: '/llms/:path*', // :path* で任意のパスをキャプチャ
+        destination: '/api/llms/:path*', // キャプチャしたパスをdestinationで利用
       },
     ];
   },
