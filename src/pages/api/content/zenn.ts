@@ -1,5 +1,6 @@
+import { fetchZenn } from '@lib/zennApi';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { Post } from 'src/types/posts';
+import { Post, PostResponse } from 'src/types/posts';
 
 export default async function handler(
   req: NextApiRequest,
@@ -7,26 +8,15 @@ export default async function handler(
 ) {
   if (req.method !== 'GET') return res.status(405).end();
 
-  const username = process.env.YOUR_ZENN_USERNAME;
-  if (!username) {
-    return res.status(400).json({ error: 'Zennのユーザー名が未設定です' });
-  }
-
   try {
-    const response = await fetch(
-      `https://zenn.dev/api/articles?username=${username}`
-    );
-    const data = await response.json();
+    const data: PostResponse = await fetchZenn();
+    if (data && data.code && data.code !== 200) {
+      return res
+        .status(data.code || 500)
+        .json({ error: data.error || 'Zennのデータ取得に失敗しました' });
+    }
 
-    const articles: Post[] = data.articles.map((item: any) => ({
-      ...item,
-      likes_count: item.liked_count || 0,
-      created_at: item.published_at || item.created_at,
-      updated_at: item.body_updated_at || item.updated_at,
-      url: `https://zenn.dev/${username}/articles/${item.slug}`,
-    }));
-
-    res.status(200).json(articles);
+    res.status(200).json(data.items || []);
   } catch (e: any) {
     res.status(500).json({ error: e.message });
   }

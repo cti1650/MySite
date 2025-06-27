@@ -2,6 +2,7 @@ import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
 import { ContentPage } from '@comp/page/content';
 import { Post } from 'src/types/posts';
+import { fetchContent } from '@lib/contentApi';
 
 interface ContentPageProps {
   qiitaPosts: Post[];
@@ -15,18 +16,15 @@ const Content: NextPage<ContentPageProps> = (props) => {
 
 export const getStaticProps: GetStaticProps<ContentPageProps> = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-      }/api/content`);
-    const data = await res.json();
+    const result = await fetchContent();
 
-    if ('error' in data) {
-      throw new Error(data.error);
+    if ('error' in result) {
+      throw new Error(result.error);
     }
 
     return {
       props: {
-        qiitaPosts: data.qiitaPosts,
-        zennPosts: data.zennPosts,
+        ...result
       },
       revalidate: 3600,
     };

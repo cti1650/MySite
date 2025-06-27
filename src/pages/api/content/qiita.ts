@@ -1,5 +1,6 @@
+import { fetchQiita } from '@lib/qiitaApi';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { Post } from 'src/types/posts';
+import { Post, PostResponse } from 'src/types/posts';
 
 export default async function handler(
   req: NextApiRequest,
@@ -7,24 +8,14 @@ export default async function handler(
 ) {
   if (req.method !== 'GET') return res.status(405).end();
 
-  const token = process.env.QIITA_ACCESS_TOKEN;
-  if (!token) {
-    return res
-      .status(400)
-      .json({ error: 'Qiitaのアクセストークンが未設定です' });
-  }
-
   try {
-    const response = await fetch(
-      'https://qiita.com/api/v2/authenticated_user/items',
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const data = await response.json();
-    res.status(200).json(data);
+    const data: PostResponse = await fetchQiita();
+    if (data && data.code && data.code !== 200) {
+      return res
+        .status(data.code || 500)
+        .json({ error: data.error || 'Qiitaのデータ取得に失敗しました' });
+    }
+    res.status(200).json(data.items || []);
   } catch (e: any) {
     res.status(500).json({ error: e.message });
   }

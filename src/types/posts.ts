@@ -10,3 +10,15 @@ export interface Post {
   published_at?: string;
   slug?: string;
 }
+
+export interface PostResponse {
+  items: Post[];
+  code?: number;
+  error?: string;
+}
+
+export interface ContentResponse {
+  qiitaPosts: Post[];
+  zennPosts: Post[];
+  error?: string;
+}
