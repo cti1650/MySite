@@ -24,7 +24,7 @@ export const getStaticProps: GetStaticProps<ContentPageProps> = async () => {
 
     return {
       props: {
-        ...result
+        ...result,
       },
       revalidate: 3600,
     };
