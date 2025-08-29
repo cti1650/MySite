@@ -2,10 +2,12 @@ import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { createContext, useContext } from 'react';
 
+type ViewLayerContextType = [string, (layer: string) => void];
+
 export const ViewLayerContext = createContext([
   'private',
-  (layer: string) => {},
-] as [string, (layer: string) => void]);
+  () => {},
+] as ViewLayerContextType);
 
 export const ViewLayerProvider = ({ children }) => {
   const [layer, setLayer] = React.useState('private');
