@@ -2,7 +2,10 @@ import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { createContext, useContext } from 'react';
 
-type ViewLayerContextType = [string, (layer: string) => void];
+type ViewLayerContextType = [
+  string,
+  React.Dispatch<React.SetStateAction<string>>
+];
 
 export const ViewLayerContext = createContext([
   'private',
