@@ -1,12 +1,11 @@
-import { useBiz, useBizPath } from '@comp/context';
+import { useViewLayerPath, useViewLayerRootPath } from '@comp/context';
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { FC } from 'react';
 
 export const PrivacyPolicyPage: FC = () => {
-  const path = useBizPath();
-  const [isBiz] = useBiz();
-  const pathPrefix = isBiz ? '/biz' : '';
+  const path = useViewLayerPath();
+  const pathPrefix = useViewLayerRootPath();
   return (
     <div className="container mx-auto max-w-2xl px-4 py-8">
       <Head>

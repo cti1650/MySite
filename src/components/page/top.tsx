@@ -6,11 +6,11 @@ import { ProfListBox } from '@comp/box/profListBox';
 import { TitleBox } from '@comp/title/TitleBox';
 import HeroImageUrl from '@img/084AME0226.jpg.webp';
 import DifyChatbot from '@comp/tool/DifyChatbot';
-import { useBizPath } from '@comp/context';
+import { useViewLayerPath } from '@comp/context';
 
 export const TopPage: FC = () => {
   const [age] = useAge(1992, 1, 25);
-  const path = useBizPath();
+  const path = useViewLayerPath();
 
   return (
     <div className="h-full w-full font-n2i flex justify-center items-center">

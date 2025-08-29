@@ -3,11 +3,10 @@ import Link from 'next/link';
 import React, { FC } from 'react';
 import LogoImageUrl from '@img/logo_icon_white.png';
 import Image from 'next/image';
-import { useBiz } from '@comp/context';
+import { useViewLayerRootPath } from '@comp/context';
 
 export const Navbar: FC = () => {
-  const [isBiz] = useBiz();
-  const pagePrefix = isBiz ? '/biz' : '';
+  const pagePrefix = useViewLayerRootPath();
   return (
     <div className="fixed top-0 left-0 w-full bg-white z-40">
       <div className="h-20 flex items-center px-4 sm:px-6 lg:px-8">

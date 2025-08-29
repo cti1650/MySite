@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import Head from 'next/head';
-import { useBizPath } from '@comp/context';
+import { useViewLayerPath } from '@comp/context';
 
 export const TermsOfServicePage: FC = () => {
-  const path = useBizPath();
+  const path = useViewLayerPath();
   return (
     <div className="container mx-auto max-w-2xl px-4 py-8">
       <Head>

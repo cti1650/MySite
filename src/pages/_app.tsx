@@ -10,7 +10,7 @@ import Head from 'next/head';
 import { usePageView } from '@hooks/usePageView';
 import { NotificationsProvider } from '@mantine/notifications';
 import { MantineProvider } from '@mantine/core';
-import { BizProvider } from '@comp/context';
+import { ViewLayerProvider } from '@comp/context';
 
 const TailwindApp = ({ Component, pageProps }: AppProps) => {
   usePageView();
@@ -49,11 +49,11 @@ const TailwindApp = ({ Component, pageProps }: AppProps) => {
       </Head>
       <MantineProvider>
         <NotificationsProvider>
-          <BizProvider>
+          <ViewLayerProvider>
             <Layout>
               <Component {...pageProps} />
             </Layout>
-          </BizProvider>
+          </ViewLayerProvider>
         </NotificationsProvider>
       </MantineProvider>
     </>

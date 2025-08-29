@@ -10,7 +10,7 @@ import {
   Group,
   Badge,
 } from '@mantine/core';
-import { useBizPath } from '@comp/context';
+import { useViewLayerPath } from '@comp/context';
 
 interface Post {
   id: string;
@@ -38,7 +38,7 @@ export const ContentPage: React.FC<ContentPageProps> = ({
 }) => {
   const [formattedQiitaPosts, setFormattedQiitaPosts] = useState<Post[]>([]);
   const [formattedZennPosts, setFormattedZennPosts] = useState<Post[]>([]);
-  const path = useBizPath();
+  const path = useViewLayerPath();
 
   useEffect(() => {
     const formatDate = (dateString: string) => {

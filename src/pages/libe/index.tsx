@@ -1,14 +1,14 @@
 import React from 'react';
 import { NextPage } from 'next';
 import { GetStaticProps } from 'next';
-import { BizPageContainer } from '@comp/context';
+import { LibePageContainer } from '@comp/context';
 import { TopPage } from '@comp/page/top';
 
-const BizHome: NextPage = () => {
+const LibeHome: NextPage = () => {
   return (
-    <BizPageContainer>
+    <LibePageContainer>
       <TopPage />
-    </BizPageContainer>
+    </LibePageContainer>
   );
 };
 
@@ -18,4 +18,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default BizHome;
+export default LibeHome;

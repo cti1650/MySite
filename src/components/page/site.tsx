@@ -5,7 +5,7 @@ import { PageLinkButton, GithubButton } from '@comp/button/Buttons';
 import cc from 'classcat';
 import Image from 'next/image';
 import { ResponseData } from '@lib/portfolioApi';
-import { useBizPath } from '@comp/context';
+import { useViewLayerPath } from '@comp/context';
 
 const getTagColorStyle = {
   'light gray': 'bg-gray-50',
@@ -25,7 +25,7 @@ type Props = {
 };
 
 export const SitePage: FC<Props> = ({ portfolios }) => {
-  const path = useBizPath();
+  const path = useViewLayerPath();
   return (
     <div className="w-full px-1 lg:px-10 font-n2i md:max-w-5xl mx-auto">
       <Head>

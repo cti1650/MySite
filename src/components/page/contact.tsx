@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import Head from 'next/head';
 import { MantineForm } from '@comp/form/mantineForm';
-import { useBizPath } from '@comp/context';
+import { useViewLayerPath } from '@comp/context';
 
 export const ContactPage: FC = () => {
-  const path = useBizPath();
+  const path = useViewLayerPath();
   return (
     <div className="w-full h-full font-n2i">
       <Head>

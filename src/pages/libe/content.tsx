@@ -3,7 +3,7 @@ import { GetStaticProps, NextPage } from 'next';
 import { ContentPage } from '@comp/page/content';
 import { Post } from 'src/types/posts';
 import { fetchContent } from '@lib/contentApi';
-import { BizPageContainer } from '@comp/context';
+import { LibePageContainer } from '@comp/context';
 
 interface ContentPageProps {
   qiitaPosts: Post[];
@@ -11,11 +11,11 @@ interface ContentPageProps {
   error?: string;
 }
 
-const BizContent: NextPage<ContentPageProps> = (props) => {
+const LibeContent: NextPage<ContentPageProps> = (props) => {
   return (
-    <BizPageContainer>
+    <LibePageContainer>
       <ContentPage {...props} />
-    </BizPageContainer>
+    </LibePageContainer>
   );
 };
 
@@ -45,4 +45,4 @@ export const getStaticProps: GetStaticProps<ContentPageProps> = async () => {
   }
 };
 
-export default BizContent;
+export default LibeContent;

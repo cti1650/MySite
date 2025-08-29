@@ -1,7 +1,7 @@
 import { SocialButton } from '@comp/button/Buttons';
 import React, { FC } from 'react';
 import { VerticalBar } from '../box/verticalBar';
-import { BizContent, PrivateContent } from '@comp/context';
+import { BizContent, LibeContent, PrivateContent } from '@comp/context';
 
 export const SocialNav: FC = () => {
   return (
@@ -12,6 +12,9 @@ export const SocialNav: FC = () => {
             <SocialButton href="https://github.com/cti1650">
               GITHUB
             </SocialButton>
+          </li>
+          <li>
+            <SocialButton href="https://x.com/cti1650">X</SocialButton>
           </li>
           <BizContent>
             <li>
@@ -43,6 +46,18 @@ export const SocialNav: FC = () => {
               </SocialButton>
             </li>
           </PrivateContent>
+          <LibeContent>
+            <li>
+              <SocialButton href="https://libecity.com/user_profile/o22hM5ejXIPQcm6fm9P7ye7hThb2">
+                LIBE
+              </SocialButton>
+            </li>
+            <li>
+              <SocialButton href="https://coconala.com/users/1713962">
+                COCONALA
+              </SocialButton>
+            </li>
+          </LibeContent>
         </ol>
       </VerticalBar>
     </>

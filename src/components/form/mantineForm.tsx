@@ -16,7 +16,7 @@ import { useMantineFormRequest } from '@hooks/useMantineFormRequest';
 import { FormSuccess } from './FormSuccess';
 import { FormLoading } from './FormLoading';
 import Link from 'next/link';
-import { useBiz } from '@comp/context';
+import { useViewLayerRootPath } from '@comp/context';
 
 const schema = z.object({
   name: z.string().min(2, { message: 'お名前は2文字以上入力してください。' }),
@@ -34,8 +34,7 @@ const schema = z.object({
 
 export const MantineForm: FC = () => {
   const { success, loading, notionRequest, reset } = useMantineFormRequest();
-  const [isBiz] = useBiz();
-  const pathPrefix = isBiz ? '/biz' : '';
+  const pathPrefix = useViewLayerRootPath();
   const form = useForm({
     initialValues: {
       name: '',

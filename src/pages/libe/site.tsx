@@ -3,15 +3,15 @@ import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
 import { fetchPortfolios, ResponseData } from '@lib/portfolioApi';
 import { SitePage } from '@comp/page/site';
-import { BizPageContainer } from '@comp/context';
+import { LibePageContainer } from '@comp/context';
 
-const BizSite: NextPage = (props: any) => {
+const LibeSite: NextPage = (props: any) => {
   const { portfolios } = props;
 
   return (
-    <BizPageContainer>
+    <LibePageContainer>
       <SitePage portfolios={portfolios} />
-    </BizPageContainer>
+    </LibePageContainer>
   );
 };
 
@@ -36,4 +36,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default BizSite;
+export default LibeSite;

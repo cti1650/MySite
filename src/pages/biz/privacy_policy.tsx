@@ -1,12 +1,14 @@
 import React from 'react';
 import { NextPage } from 'next';
 import { PrivacyPolicyPage } from '@comp/page/privacyPolicy';
-import { useBizPage } from '@comp/context';
+import { BizPageContainer } from '@comp/context';
 
 const BizPrivacyPolicy: NextPage = () => {
-  useBizPage();
-
-  return <PrivacyPolicyPage />;
+  return (
+    <BizPageContainer>
+      <PrivacyPolicyPage />
+    </BizPageContainer>
+  );
 };
 
 export default BizPrivacyPolicy;
