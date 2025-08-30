@@ -47,7 +47,7 @@ const socialButtonContents = [
     href: 'https://coconala.com/users/1713962',
     label: 'COCONALA',
     containers: [PrivateContent, LibeContent],
-    targetLayers: ['private', 'libe'],
+    targetLayers: ['private'],
   },
   {
     href: 'https://libecity.com/user_profile/o22hM5ejXIPQcm6fm9P7ye7hThb2',
@@ -64,13 +64,11 @@ const SocialNavItems = () => {
         const targetLayers = item.targetLayers || ['default'];
         return (
           <React.Fragment key={index}>
-            {targetLayers.map((targetLayer: string, i: React.Key) => (
-              <ContentFilter targetLayer={targetLayer} key={i}>
-                <li>
-                  <SocialButton href={item.href}>{item.label}</SocialButton>
-                </li>
-              </ContentFilter>
-            ))}
+            <ContentFilter targetLayers={targetLayers}>
+              <li>
+                <SocialButton href={item.href}>{item.label}</SocialButton>
+              </li>
+            </ContentFilter>
           </React.Fragment>
         );
       })}

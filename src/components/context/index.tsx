@@ -9,7 +9,43 @@ type ViewLayerContextType = [
   React.Dispatch<React.SetStateAction<string>>
 ];
 
-export const viewLayerList = ['private', 'biz', 'libe'];
+export const viewLayerSettings = [
+  {
+    layer: 'private',
+  },
+  {
+    layer: 'biz',
+    path: '/biz',
+  },
+  {
+    layer: 'libe',
+    path: '/from/libe',
+    parentLayer: 'private',
+  },
+  {
+    layer: 'test',
+    path: '/from/test',
+    parentLayer: 'libe',
+  },
+];
+
+export const getViewLayerSetting = (layer: string) => {
+  return viewLayerSettings.find((setting) => setting.layer === layer);
+};
+
+export const getViewLayerParentSetting = (layer: string) => {
+  const parent = viewLayerSettings.find(
+    (setting) => setting.layer === layer
+  )?.parentLayer;
+  return getViewLayerSetting(parent);
+};
+
+export const viewLayerList = viewLayerSettings
+  .filter((setting) => setting.layer && !setting.parentLayer)
+  .map((setting) => setting.layer as string);
+export const viewSocialLayerList = viewLayerSettings
+  .filter((setting) => setting.layer && setting.parentLayer)
+  .map((setting) => setting.layer as string);
 
 export const ViewLayerContext = createContext([
   DEFAULT_VIEW_LAYER,
@@ -47,14 +83,9 @@ export const useLibePage = () => {
 
 export const useViewLayerRootPath = () => {
   const [layer] = useViewLayer();
-  switch (layer) {
-    case 'biz':
-      return '/biz';
-    case 'libe':
-      return '/libe';
-    default:
-      return '';
-  }
+  const path = getViewLayerSetting(layer)?.path || '';
+
+  return path;
 };
 
 export const useViewLayerPath = () => {
@@ -94,11 +125,41 @@ export const LibePageContainer = ({ children }) => {
   );
 };
 
-export const ContentFilter = ({ children, targetLayer }) => {
-  const [layer] = useViewLayer();
-  if (targetLayer === 'default') return <>{children}</>;
+type ContentFilterProps = {
+  children: React.ReactNode;
+  targetLayer?: string;
+  targetLayers?: string[];
+  key?: React.Key | null;
+};
 
-  return <>{layer === targetLayer && children}</>;
+export const ContentFilter = ({
+  children,
+  targetLayer,
+  targetLayers = [],
+  key = null,
+}: ContentFilterProps) => {
+  const [layer] = useViewLayer();
+  const parentLayer = getViewLayerParentSetting(layer)?.layer;
+  const checkLayers = [parentLayer, layer];
+  const isDefaultLayer =
+    targetLayer === 'default' ||
+    (targetLayers.length === 1 && targetLayers[0] === 'default');
+  if (isDefaultLayer) {
+    return <>{children}</>;
+  }
+  const isValid = checkLayers.some((checkLayer) => {
+    if (targetLayers.length > 0 && !targetLayers.includes(checkLayer))
+      return null;
+    const hasTargetLayers =
+      targetLayers.length > 0 && targetLayers.includes(checkLayer);
+    const isTargetLayer = checkLayer === targetLayer;
+    if (![hasTargetLayers, isTargetLayer].some(Boolean)) return null;
+
+    return checkLayer;
+  });
+  if (!isValid) return null;
+
+  return <>{children}</>;
 };
 
 export const BizContent = ({ children }) => {
