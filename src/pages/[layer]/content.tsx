@@ -3,7 +3,8 @@ import { GetStaticProps, NextPage } from 'next';
 import { ContentPage } from '@comp/page/content';
 import { Post } from 'src/types/posts';
 import { fetchContent } from '@lib/contentApi';
-import { BizPageContainer } from '@comp/context';
+import { viewLayerList, ViewLayerPageContainer } from '@comp/context';
+import { useRouter } from 'next/router';
 
 interface ContentPageProps {
   qiitaPosts: Post[];
@@ -11,11 +12,12 @@ interface ContentPageProps {
   error?: string;
 }
 
-const BizContent: NextPage<ContentPageProps> = (props) => {
+const ViewLayerContent: NextPage<ContentPageProps> = (props) => {
+  const router = useRouter();
   return (
-    <BizPageContainer>
+    <ViewLayerPageContainer targetLayer={router.query.layer as string}>
       <ContentPage {...props} />
-    </BizPageContainer>
+    </ViewLayerPageContainer>
   );
 };
 
@@ -45,4 +47,11 @@ export const getStaticProps: GetStaticProps<ContentPageProps> = async () => {
   }
 };
 
-export default BizContent;
+export async function getStaticPaths() {
+  return {
+    paths: viewLayerList.map((layer) => ({ params: { layer } })),
+    fallback: false, // 指定パス以外なら404を返す
+  };
+}
+
+export default ViewLayerContent;

@@ -3,15 +3,16 @@ import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
 import { fetchPortfolios, ResponseData } from '@lib/portfolioApi';
 import { SitePage } from '@comp/page/site';
-import { LibePageContainer } from '@comp/context';
+import { viewLayerList, ViewLayerPageContainer } from '@comp/context';
+import { useRouter } from 'next/router';
 
-const LibeSite: NextPage = (props: any) => {
+const ViewLayerSite: NextPage = (props: any) => {
   const { portfolios } = props;
-
+  const router = useRouter();
   return (
-    <LibePageContainer>
+    <ViewLayerPageContainer targetLayer={router.query.layer as string}>
       <SitePage portfolios={portfolios} />
-    </LibePageContainer>
+    </ViewLayerPageContainer>
   );
 };
 
@@ -36,4 +37,11 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default LibeSite;
+export async function getStaticPaths() {
+  return {
+    paths: viewLayerList.map((layer) => ({ params: { layer } })),
+    fallback: false, // 指定パス以外なら404を返す
+  };
+}
+
+export default ViewLayerSite;
