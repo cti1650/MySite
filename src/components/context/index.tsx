@@ -52,6 +52,16 @@ export const viewLayerSettings = [
     path: '/from/x',
     parentLayer: 'private',
   },
+  {
+    layer: 'qiita',
+    path: '/from/qiita',
+    parentLayer: 'private',
+  },
+  {
+    layer: 'zenn',
+    path: '/from/zenn',
+    parentLayer: 'private',
+  },
 ];
 
 export const getViewLayerSetting = (layer: string) => {
