@@ -129,14 +129,12 @@ type ContentFilterProps = {
   children: React.ReactNode;
   targetLayer?: string;
   targetLayers?: string[];
-  key?: React.Key | null;
 };
 
 export const ContentFilter = ({
   children,
   targetLayer,
   targetLayers = [],
-  key = null,
 }: ContentFilterProps) => {
   const [layer] = useViewLayer();
   const parentLayer = getViewLayerParentSetting(layer)?.layer;
