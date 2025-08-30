@@ -137,8 +137,13 @@ export const ContentFilter = ({
   targetLayers = [],
 }: ContentFilterProps) => {
   const [layer] = useViewLayer();
-  const parentLayer = getViewLayerParentSetting(layer)?.layer;
-  const checkLayers = [parentLayer, layer];
+  const parentLayers = [];
+  let parentLayer = getViewLayerParentSetting(layer)?.layer;
+  do {
+    if (parentLayer) parentLayers.push(parentLayer);
+    parentLayer = getViewLayerParentSetting(parentLayer)?.layer;
+  } while (parentLayer);
+  const checkLayers = [...parentLayers, layer];
   const isDefaultLayer =
     targetLayer === 'default' ||
     (targetLayers.length === 1 && targetLayers[0] === 'default');
