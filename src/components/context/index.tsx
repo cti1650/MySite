@@ -37,6 +37,11 @@ export const viewLayerSettings = [
     path: '/from/linkedin',
     parentLayer: 'biz',
   },
+  {
+    layer: 'findy',
+    path: '/from/findy',
+    parentLayer: 'biz',
+  },
 ];
 
 export const getViewLayerSetting = (layer: string) => {
