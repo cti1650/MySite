@@ -4,7 +4,6 @@ import { VerticalBar } from '../box/verticalBar';
 import {
   BizContent,
   ContentFilter,
-  DEFAULT_VIEW_LAYER,
   LibeContent,
   PrivateContent,
 } from '@comp/context';
