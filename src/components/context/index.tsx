@@ -62,6 +62,11 @@ export const viewLayerSettings = [
     path: '/from/zenn',
     parentLayer: 'private',
   },
+  {
+    layer: 'extension',
+    path: '/from/extension',
+    parentLayer: 'private',
+  },
 ];
 
 export const getViewLayerSetting = (layer: string) => {
