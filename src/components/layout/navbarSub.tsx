@@ -29,7 +29,7 @@ export const Navbar: FC = () => {
               </span>
             </Link>
           </div>
-          <div className="pl-2 flex-grow overflow-x-auto">
+          <div className="pl-2 flex-grow overflow-x-auto overflow-y-hidden">
             <nav className="flex justify-start sm:justify-center">
               <ul className="flex space-x-4 sm:space-x-6 px-4 sm:px-0">
                 <li>
