@@ -34,7 +34,7 @@ export async function fetchPortfolios(): Promise<ResponseData> {
     }
     return portfolios;
   } catch (e) {
-    console.error(e);
+    console.error('Failed to fetch portfolios:', e);
     return [];
   }
 }

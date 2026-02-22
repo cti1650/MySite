@@ -6,7 +6,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import type { FC } from 'react';
 
-const getTagColorStyle = {
+const getTagColorStyle: Record<string, string> = {
   'light gray': 'bg-gray-50',
   gray: 'bg-gray-700 bg-opacity-25',
   brown: 'bg-yellow-900 bg-opacity-25',

@@ -69,7 +69,7 @@ export const ContentPage: React.FC<ContentPageProps> = ({
         <Title order={1} mb="md">
           My Content
         </Title>
-        <Text color="red">{error}</Text>
+        <Text c="red">{error}</Text>
       </Container>
     );
   }
@@ -77,13 +77,13 @@ export const ContentPage: React.FC<ContentPageProps> = ({
   const renderDateInfo = (post: Post) => {
     if (post.created_at === post.updated_at) {
       return (
-        <Text size="xs" color="dimmed">
+        <Text size="xs" c="dimmed">
           公開日: {post.created_at}
         </Text>
       );
     }
     return (
-      <Text size="xs" color="dimmed">
+      <Text size="xs" c="dimmed">
         公開日: {post.created_at} / 更新日: {post.updated_at}
       </Text>
     );
@@ -98,9 +98,9 @@ export const ContentPage: React.FC<ContentPageProps> = ({
         posts.map((post) => (
           <Card key={post.id} shadow="xs" p="md" radius="md" withBorder mb="sm">
             <Anchor href={post.url} target="_blank" rel="noopener noreferrer">
-              <Text weight={500}>{post.title}</Text>
+              <Text fw={500}>{post.title}</Text>
             </Anchor>
-            <Group position="apart" mt="xs">
+            <Group justify="space-between" mt="xs">
               <Badge color="blue" variant="light">
                 Likes: {post.likes_count}
               </Badge>
@@ -128,10 +128,10 @@ export const ContentPage: React.FC<ContentPageProps> = ({
         My Content
       </Title>
       <Grid>
-        <Grid.Col span={12} md={6}>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           {renderPostList(formattedQiitaPosts, 'Qiita Posts')}
         </Grid.Col>
-        <Grid.Col span={12} md={6}>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           {renderPostList(formattedZennPosts, 'Zenn Posts')}
         </Grid.Col>
       </Grid>

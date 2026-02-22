@@ -1,13 +1,17 @@
+import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
 import 'styles/mantineBase.css';
 import 'tailwindcss/tailwind.css';
 
 import { ViewLayerProvider } from '@comp/context';
 import { Layout } from '@comp/layout/layoutSub';
 import { usePageView } from '@hooks/usePageView';
-import { MantineProvider } from '@mantine/core';
-import { NotificationsProvider } from '@mantine/notifications';
+import { createTheme, MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+
+const theme = createTheme({});
 
 const TailwindApp = ({ Component, pageProps }: AppProps) => {
   usePageView();
@@ -39,19 +43,18 @@ const TailwindApp = ({ Component, pageProps }: AppProps) => {
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content="https://cti1650-portfolio-site.vercel.app/img/ogp.png"
+          content={`${process.env.NEXT_PUBLIC_SITE_URL}/img/ogp.png`}
         />
         <meta property="og:site_name" content="cti1650 Portfolio" />
         <meta property="og:locale" content="ja_JP" />
       </Head>
-      <MantineProvider>
-        <NotificationsProvider>
-          <ViewLayerProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </ViewLayerProvider>
-        </NotificationsProvider>
+      <MantineProvider theme={theme}>
+        <Notifications />
+        <ViewLayerProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ViewLayerProvider>
       </MantineProvider>
     </>
   );

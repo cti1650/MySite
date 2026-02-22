@@ -35,12 +35,14 @@ export const SocialButton: FC<ButtonProps> = ({
 export const NavButton: FC<ButtonProps> = ({ children, href, ariaLabel }) => {
   return (
     <div className="group">
-      <Link legacyBehavior href={href} aria-label={ariaLabel}>
-        <a className="px-0 py-1 box-border text-gray-900 font-light tracking-wider">
-          {children}
-        </a>
+      <Link
+        href={href}
+        aria-label={ariaLabel}
+        className="px-0 py-1 box-border text-gray-900 font-light tracking-wider"
+      >
+        {children}
       </Link>
-      <div className="w-full h-0.5 border-b border-black transition delay-100 duration-100 ease-in-out transform scale-x-0 group-hover:scale-x-100"></div>
+      <div className="w-full h-0.5 border-b border-black transition delay-100 duration-100 ease-in-out transform scale-x-0 group-hover:scale-x-100" />
     </div>
   );
 };

@@ -22,9 +22,17 @@ const cors = Cors({
 
 // 後続の処理を行う前にミドルウェアの実行を待ち、
 // また、ミドルウェアでエラーが発生したときエラーを投げるためのヘルパーメソッド
-function runMiddleware(req, res, fn) {
+function runMiddleware(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  fn: (
+    req: NextApiRequest,
+    res: NextApiResponse,
+    cb: (result: unknown) => void,
+  ) => void,
+) {
   return new Promise((resolve, reject) => {
-    fn(req, res, (result) => {
+    fn(req, res, (result: unknown) => {
       if (result instanceof Error) {
         return reject(result);
       }
@@ -45,57 +53,64 @@ export default async function handler(
   if (req.method === 'POST') {
     // console.log('req', req);
     const form = formidable({});
-    form.parse(req, async (err, fields) => {
-      console.log('fields', fields);
+    form.parse(req, async (err: Error | null, fields: formidable.Fields) => {
       if (err) {
-        res.status(500).json({
-          error: err,
-        });
+        res.status(500).json({ error: 'Form parsing failed' });
         res.end();
         return;
       }
-      const { name, email, body, summary } = fields;
-      if (!name[0] || !email[0] || !body[0] || !summary[0]) {
-        res.status(400).json({
-          error: 'validate error',
-        });
+      const nameVal = fields.name?.[0];
+      const emailVal = fields.email?.[0];
+      const bodyVal = fields.body?.[0];
+      const summaryVal = fields.summary?.[0];
+      if (!nameVal || !emailVal || !bodyVal || !summaryVal) {
+        res.status(400).json({ error: 'Validation error' });
         return;
       }
-      const request = await axios.post(
-        `${endpoint}databases/${databaseId}/form`,
-        {
-          name: name[0] ?? '',
-          email: email[0] ?? '',
-          summary: summary[0] ?? '',
-          body: body[0] ?? '',
-          tags: ['MySite'],
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            notionApiKey: apiKey,
+      try {
+        const request = await axios.post(
+          `${endpoint}databases/${databaseId}/form`,
+          {
+            name: nameVal,
+            email: emailVal,
+            summary: summaryVal,
+            body: bodyVal,
+            tags: ['MySite'],
           },
-        },
-      );
-      const json = await request.data;
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              notionApiKey: apiKey,
+            },
+          },
+        );
+        const json = await request.data;
 
-      // Gmail通知
-      const notionUrl = json?.url ?? '';
-      await sendGmail({
-        subject: `[MySite] お問い合わせ: ${summary[0]}`,
-        replyTo: email[0],
-        text: [
-          `名前: ${name[0]}`,
-          `メール: ${email[0]}`,
-          `件名: ${summary[0]}`,
-          '',
-          body[0],
-          '',
-          ...(notionUrl ? [`Notion: ${notionUrl}`] : []),
-        ].join('\n'),
-      });
+        // Gmail通知（失敗してもレスポンスには影響させない）
+        try {
+          const notionUrl = json?.url ?? '';
+          await sendGmail({
+            subject: `[MySite] お問い合わせ: ${summaryVal}`,
+            replyTo: emailVal,
+            text: [
+              `名前: ${nameVal}`,
+              `メール: ${emailVal}`,
+              `件名: ${summaryVal}`,
+              '',
+              bodyVal,
+              '',
+              ...(notionUrl ? [`Notion: ${notionUrl}`] : []),
+            ].join('\n'),
+          });
+        } catch (mailErr) {
+          console.error('Gmail notification failed:', mailErr);
+        }
 
-      res.status(200).json(json);
+        res.status(200).json(json);
+      } catch (apiErr) {
+        console.error('Notion API request failed:', apiErr);
+        res.status(500).json({ error: 'Failed to submit form' });
+      }
     });
   }
 }

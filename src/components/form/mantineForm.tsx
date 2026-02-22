@@ -11,7 +11,8 @@ import {
   Textarea,
   TextInput,
 } from '@mantine/core';
-import { useForm, zodResolver } from '@mantine/form';
+import { useForm } from '@mantine/form';
+import { zodResolver } from 'mantine-form-zod-resolver';
 import Link from 'next/link';
 import { type FC, useCallback } from 'react';
 import { z } from 'zod';
@@ -35,7 +36,7 @@ const schema = z.object({
 export const MantineForm: FC = () => {
   const { success, loading, notionRequest, reset } = useMantineFormRequest();
   const pathPrefix = useViewLayerRootPath();
-  const form = useForm({
+  const form = useForm<z.infer<typeof schema>>({
     initialValues: {
       name: '',
       email: '',
@@ -43,11 +44,11 @@ export const MantineForm: FC = () => {
       body: '',
       termsOfService: false,
     },
-    schema: zodResolver(schema),
+    validate: zodResolver(schema),
   });
 
   const handleSubmit = useCallback(
-    (values) => {
+    (values: z.infer<typeof schema>) => {
       notionRequest({
         name: values.name,
         email: values.email,
@@ -83,8 +84,8 @@ export const MantineForm: FC = () => {
     <div className="h-auto min-h-full w-full max-w-lg mx-auto flex justify-center items-center">
       <div className="w-full">
         <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
-          <Box sx={(t) => ({ paddingBottom: t.spacing.xl })}>
-            <Text mx="auto" align="center">
+          <Box pb="xl">
+            <Text mx="auto" ta="center">
               ご質問、ご依頼、その他お問い合わせは
               <Space />
               下のフォームからお願いいたします。
@@ -158,7 +159,7 @@ export const MantineForm: FC = () => {
             {...form.getInputProps('termsOfService', { type: 'checkbox' })}
           />
 
-          <Group position="right" mt="md">
+          <Group justify="flex-end" mt="md">
             <Button type="submit">送信</Button>
           </Group>
         </form>

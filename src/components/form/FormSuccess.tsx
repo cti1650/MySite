@@ -17,8 +17,8 @@ export const FormSuccess: FC<FormSuccessProps> = ({
     () => (
       <div className="h-auto min-h-full w-full max-w-[400px] mx-auto flex justify-center items-center">
         <div className="space-y-4">
-          <Box sx={(t) => ({ paddingBottom: t.spacing.xl })}>
-            <Text mx="auto" align="center">
+          <Box pb="xl">
+            <Text mx="auto" ta="center">
               以下の内容でお受付いたしました。
               <Space />
               ご返信が必要な場合は、
@@ -27,52 +27,52 @@ export const FormSuccess: FC<FormSuccessProps> = ({
             </Text>
           </Box>
           <Box>
-            <Title order={4} align="justify">
+            <Title order={4} ta="justify">
               name
             </Title>
             <Text
               mx="auto"
               p={10}
-              align="justify"
+              ta="justify"
               className="whitespace-pre-wrap break-words"
             >
               {name ? name : 'sample'}
             </Text>
           </Box>
           <Box>
-            <Title order={4} align="justify">
+            <Title order={4} ta="justify">
               email
             </Title>
             <Text
               mx="auto"
               p={10}
-              align="justify"
+              ta="justify"
               className="whitespace-pre-wrap break-words"
             >
               {email ? email : 'sample@email.com'}
             </Text>
           </Box>
           <Box>
-            <Title order={4} align="justify">
+            <Title order={4} ta="justify">
               summary
             </Title>
             <Text
               mx="auto"
               p={10}
-              align="justify"
+              ta="justify"
               className="whitespace-pre-wrap break-words"
             >
               {summary ? summary : 'sample summary'}
             </Text>
           </Box>
           <Box>
-            <Title order={4} align="justify">
+            <Title order={4} ta="justify">
               message
             </Title>
             <Text
               mx="auto"
               p={10}
-              align="justify"
+              ta="justify"
               className="whitespace-pre-wrap break-words"
             >
               {message ? message : 'sample message'}

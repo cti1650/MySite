@@ -18,7 +18,7 @@ const DifyChatbot = () => {
     // Create the script tag
     const script = document.createElement('script');
     script.src = 'https://udify.app/embed.min.js';
-    script.id = token;
+    script.id = token ?? '';
     script.defer = true;
 
     // Create the style tag

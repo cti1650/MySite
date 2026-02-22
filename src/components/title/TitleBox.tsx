@@ -66,8 +66,8 @@ export const TitleBox: FC<TitleBoxPropsType> = ({
   size,
   color,
 }) => {
-  const sizeOption = getOptionSize(size);
-  const colorOption = getOptionColor(color);
+  const sizeOption = getOptionSize(size ?? 'middle');
+  const colorOption = getOptionColor(color ?? 'blue');
   return (
     <div
       className={cc([

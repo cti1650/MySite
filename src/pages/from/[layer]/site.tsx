@@ -22,9 +22,8 @@ export const getStaticProps: GetStaticProps = async () => {
   let portfolios: ResponseData = [];
   try {
     portfolios = await fetchPortfolios();
-    console.log('portfolios', portfolios);
-  } catch (e) {
-    console.log(e);
+  } catch {
+    // fetchPortfolios handles its own error logging
   }
 
   return {
