@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
-
 import { ViewLayerPageContainer, viewSocialLayerList } from '@comp/context';
 import { SitePage } from '@comp/page/site';
 import { fetchPortfolios, type ResponseData } from '@lib/portfolioApi';

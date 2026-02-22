@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import 'styles/mantineBase.css';
 import 'tailwindcss/tailwind.css';
 

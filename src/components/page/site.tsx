@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
-
 import { GithubButton, PageLinkButton } from '@comp/button/Buttons';
 import { useViewLayerPath } from '@comp/context';
 import type { ResponseData } from '@lib/portfolioApi';
