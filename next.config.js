@@ -1,7 +1,9 @@
 const filteredHeaders = [
   {
     key: 'Access-Control-Allow-Origin',
-    value: process.env.NEXT_PUBLIC_SITE_URL || 'https://cti1650-portfolio-site.vercel.app',
+    value:
+      process.env.NEXT_PUBLIC_SITE_URL ||
+      'https://cti1650-portfolio-site.vercel.app',
   },
   {
     key: 'Access-Control-Allow-Methods',
