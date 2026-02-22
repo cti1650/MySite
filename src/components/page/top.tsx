@@ -22,11 +22,7 @@ export const TopPage: FC = () => {
 
       <div className="w-full max-h-full text-gray-900 grid grid-cols-1 lg:grid-cols-2 gap-8 justify-center items-start lg:items-start">
         <div className="w-full min-w-full h-auto">
-          <Image
-            src={HeroImageUrl}
-            alt="image"
-            className="w-full h-auto"
-          />
+          <Image src={HeroImageUrl} alt="image" className="w-full h-auto" />
         </div>
         <div className="w-full flex flex-col pb-8 tracking-wider">
           <TitleBox
