@@ -39,9 +39,9 @@ export default async function handler(
   res: NextApiResponse<Partial<ResponseData>>
 ) {
   await runMiddleware(req, res, cors);
-  const endpoint = process.env.NEXT_PUBLIC_NOTION_BACKEND_ENDPOINT;
-  const apiKey = process.env.NEXT_PUBLIC_NOTION_KEY;
-  const databaseId = process.env.NEXT_PUBLIC_NOTION_CONTACT_DATABASE_ID;
+  const endpoint = process.env.NOTION_BACKEND_ENDPOINT;
+  const apiKey = process.env.NOTION_KEY;
+  const databaseId = process.env.NOTION_CONTACT_DATABASE_ID;
   if (req.method === 'POST') {
     // console.log('req', req);
     const form = formidable({});

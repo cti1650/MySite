@@ -13,9 +13,9 @@ export type ResponseData = {
 }[];
 
 export async function fetchPortfolios(): Promise<ResponseData> {
-  const endpoint = process.env.NEXT_PUBLIC_NOTION_BACKEND_ENDPOINT;
-  const apiKey = process.env.NEXT_PUBLIC_NOTION_KEY;
-  const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
+  const endpoint = process.env.NOTION_BACKEND_ENDPOINT;
+  const apiKey = process.env.NOTION_KEY;
+  const databaseId = process.env.NOTION_DATABASE_ID;
   try {
     if (!endpoint || !apiKey || !databaseId) {
       return [];

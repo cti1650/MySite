@@ -57,7 +57,7 @@ export const NotionDatabaseClient = async ({
   start_cursor,
   page_size,
 }: TypeNotionBodyParamsOption) => {
-  const notion = new Client({ auth: process.env.NEXT_PUBLIC_NOTION_KEY });
+  const notion = new Client({ auth: process.env.NOTION_KEY });
 
   // developers.notion - Database object
   // https://developers.notion.com/reference/database

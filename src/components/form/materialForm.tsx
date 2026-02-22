@@ -130,8 +130,7 @@ export const MaterialForm: FC = () => {
       //     body,
       //   }),
       // });
-      const database_id =
-        process.env.NEXT_PUBLIC_NOTION_CONTACT_DATABASE_ID ?? '';
+      const database_id = process.env.NOTION_CONTACT_DATABASE_ID ?? '';
       console.log(
         'https://notion-flask-api-test.vercel.app/db/' + database_id + '/add'
       );

@@ -1,7 +1,7 @@
 import { Client } from '@notionhq/client';
 
 export const useNotion = (accessKey: string = '') => {
-  const key = accessKey === '' ? process.env.NEXT_PUBLIC_NOTION_KEY : accessKey;
+  const key = accessKey === '' ? process.env.NOTION_KEY : accessKey;
   return new Client({ auth: key });
 };
 
