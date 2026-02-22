@@ -1,6 +1,5 @@
 module.exports = {
-  mode: 'jit',
-  purge: ['./src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       fontFamily: {
@@ -16,10 +15,6 @@ module.exports = {
         ],
       },
     },
-  },
-  variants: {
-    extend: {},
-    width: ['responsive', 'hover', 'focus'],
   },
   corePlugins: {
     preflight: false,
