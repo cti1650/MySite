@@ -22,7 +22,11 @@ export async function fetchQiita(): Promise<PostResponse> {
     );
     const data = await response.data;
     return { items: data };
-  } catch (e: any) {
-    return { code: 500, error: e.message, items: [] };
+  } catch (e: unknown) {
+    return {
+      code: 500,
+      error: e instanceof Error ? e.message : 'Unknown error',
+      items: [],
+    };
   }
 }

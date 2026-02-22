@@ -13,15 +13,21 @@ export async function fetchZenn(): Promise<PostResponse> {
     );
     const data = await response.data;
 
-    const articles: Post[] = data.articles.map((item: any) => ({
-      ...item,
-      likes_count: item.liked_count || 0,
-      created_at: item.published_at || item.created_at,
-      updated_at: item.body_updated_at || item.updated_at,
-      url: `https://zenn.dev/${username}/articles/${item.slug}`,
-    }));
+    const articles: Post[] = data.articles.map(
+      (item: Record<string, unknown>) => ({
+        ...item,
+        likes_count: item.liked_count || 0,
+        created_at: item.published_at || item.created_at,
+        updated_at: item.body_updated_at || item.updated_at,
+        url: `https://zenn.dev/${username}/articles/${item.slug}`,
+      }),
+    );
     return { items: articles };
-  } catch (e: any) {
-    return { code: 500, error: e.message, items: [] };
+  } catch (e: unknown) {
+    return {
+      code: 500,
+      error: e instanceof Error ? e.message : 'Unknown error',
+      items: [],
+    };
   }
 }

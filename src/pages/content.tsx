@@ -27,12 +27,15 @@ export const getStaticProps: GetStaticProps<ContentPageProps> = async () => {
       },
       revalidate: 3600,
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       props: {
         qiitaPosts: [],
         zennPosts: [],
-        error: error.message || '記事の取得中にエラーが発生しました。',
+        error:
+          error instanceof Error
+            ? error.message
+            : '記事の取得中にエラーが発生しました。',
       },
       revalidate: 3600,
     };

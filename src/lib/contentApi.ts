@@ -22,7 +22,11 @@ export async function fetchContent(): Promise<ContentResponse> {
       };
     }
     return { qiitaPosts: qiitaRes.items || [], zennPosts: zennRes.items || [] };
-  } catch (e: any) {
-    return { error: e.message, qiitaPosts: [], zennPosts: [] };
+  } catch (e: unknown) {
+    return {
+      error: e instanceof Error ? e.message : 'Unknown error',
+      qiitaPosts: [],
+      zennPosts: [],
+    };
   }
 }

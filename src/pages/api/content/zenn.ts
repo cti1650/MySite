@@ -17,7 +17,7 @@ export default async function handler(
     }
 
     res.status(200).json(data.items || []);
-  } catch (e: any) {
-    res.status(500).json({ error: e.message });
+  } catch (_e: unknown) {
+    res.status(500).json({ error: 'Zennのデータ取得中にエラーが発生しました' });
   }
 }

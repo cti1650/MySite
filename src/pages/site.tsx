@@ -2,9 +2,11 @@ import { SitePage } from '@comp/page/site';
 import { fetchPortfolios, type ResponseData } from '@lib/portfolioApi';
 import type { GetStaticProps, NextPage } from 'next';
 
-const Site: NextPage = (props: any) => {
-  const { portfolios } = props;
+interface SiteProps {
+  portfolios: ResponseData;
+}
 
+const Site: NextPage<SiteProps> = ({ portfolios }) => {
   return <SitePage portfolios={portfolios} />;
 };
 

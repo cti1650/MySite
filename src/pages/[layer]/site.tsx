@@ -4,8 +4,11 @@ import { fetchPortfolios, type ResponseData } from '@lib/portfolioApi';
 import type { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 
-const ViewLayerSite: NextPage = (props: any) => {
-  const { portfolios } = props;
+interface SiteProps {
+  portfolios: ResponseData;
+}
+
+const ViewLayerSite: NextPage<SiteProps> = ({ portfolios }) => {
   const router = useRouter();
   return (
     <ViewLayerPageContainer targetLayer={router.query.layer as string}>

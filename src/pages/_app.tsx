@@ -20,13 +20,12 @@ const TailwindApp = ({ Component, pageProps }: AppProps) => {
       <Head>
         <title>cti1650 Portfolio</title>
         <link rel="icon" href="img/logo_icon_white.png" />
-        <meta name="viewport" content="user-scalable=no" />
         {/* <meta name="robots" content="noindex" />
         <meta name="robots" content="nofollow" /> */}
         <meta
           name="viewport"
           content="width=device-width,initial-scale=1.0,minimum-scale=1.0"
-        ></meta>
+        />
         <meta
           name="description"
           content="cti1650のポートフォリオサイトです。"

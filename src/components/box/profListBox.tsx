@@ -10,7 +10,7 @@ type ProfListBoxPropsType = {
 };
 
 export const ProfListBox: FC<ProfListBoxPropsType> = ({
-  profList,
+  profList = [],
   className,
 }) => {
   return (
@@ -27,8 +27,4 @@ export const ProfListBox: FC<ProfListBoxPropsType> = ({
       })}
     </div>
   );
-};
-
-ProfListBox.defaultProps = {
-  profList: [],
 };

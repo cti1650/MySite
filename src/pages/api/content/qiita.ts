@@ -16,7 +16,9 @@ export default async function handler(
         .json({ error: data.error || 'Qiitaのデータ取得に失敗しました' });
     }
     res.status(200).json(data.items || []);
-  } catch (e: any) {
-    res.status(500).json({ error: e.message });
+  } catch (_e: unknown) {
+    res
+      .status(500)
+      .json({ error: 'Qiitaのデータ取得中にエラーが発生しました' });
   }
 }

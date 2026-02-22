@@ -61,13 +61,13 @@ const getOptionColor = (color: 'black' | 'white' | 'blue' | 'red') => {
 };
 
 export const TitleBox: FC<TitleBoxPropsType> = ({
-  title,
-  subTitle,
-  size,
-  color,
+  title = 'Title',
+  subTitle = '',
+  size = 'middle',
+  color = 'blue',
 }) => {
-  const sizeOption = getOptionSize(size ?? 'middle');
-  const colorOption = getOptionColor(color ?? 'blue');
+  const sizeOption = getOptionSize(size);
+  const colorOption = getOptionColor(color);
   return (
     <div
       className={cc([
@@ -113,11 +113,4 @@ export const TitleBox: FC<TitleBoxPropsType> = ({
       )}
     </div>
   );
-};
-
-TitleBox.defaultProps = {
-  title: 'Title',
-  subTitle: '',
-  size: 'middle',
-  color: 'blue',
 };

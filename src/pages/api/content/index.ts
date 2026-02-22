@@ -16,7 +16,11 @@ export default async function handler(
     }
 
     res.status(200).json(contentRes);
-  } catch (e: any) {
-    res.status(500).json({ error: e.message, qiitaPosts: [], zennPosts: [] });
+  } catch (_e: unknown) {
+    res.status(500).json({
+      error: 'コンテンツの取得中にエラーが発生しました',
+      qiitaPosts: [],
+      zennPosts: [],
+    });
   }
 }

@@ -11,8 +11,8 @@ type VerticalBarPropsType = {
 
 export const VerticalBar: FC<VerticalBarPropsType> = ({
   children,
-  position,
-  autoHidden,
+  position = 'left',
+  autoHidden = false,
   className,
 }) => {
   return (
@@ -34,9 +34,4 @@ export const VerticalBar: FC<VerticalBarPropsType> = ({
       </div>
     </div>
   );
-};
-
-VerticalBar.defaultProps = {
-  position: 'left',
-  autoHidden: false,
 };
