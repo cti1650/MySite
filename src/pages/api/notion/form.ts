@@ -2,6 +2,7 @@ import axios from 'axios';
 import Cors from 'cors';
 import { NextApiRequest, NextApiResponse } from 'next';
 import formidable from 'formidable';
+import { sendGmail } from 'src/lib/gmailApi';
 
 type ResponseData = {
   message: string;
@@ -77,6 +78,22 @@ export default async function handler(
         }
       );
       const json = await request.data;
+
+      // Gmail通知
+      const notionUrl = json?.url ?? '';
+      await sendGmail({
+        subject: `[MySite] お問い合わせ: ${summary[0]}`,
+        text: [
+          `名前: ${name[0]}`,
+          `メール: ${email[0]}`,
+          `件名: ${summary[0]}`,
+          '',
+          body[0],
+          '',
+          ...(notionUrl ? [`Notion: ${notionUrl}`] : []),
+        ].join('\n'),
+      });
+
       res.status(200).json(json);
     });
   }
