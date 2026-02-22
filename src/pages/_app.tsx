@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 import 'styles/mantineBase.css';
 import 'tailwindcss/tailwind.css';
-import './nextImage.css';
 
 import { ViewLayerProvider } from '@comp/context';
 import { Layout } from '@comp/layout/layoutSub';

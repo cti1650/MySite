@@ -57,15 +57,14 @@ export const SitePage: FC<Props> = ({ portfolios }) => {
                 </h2>
                 {item?.github && <GithubButton href={item?.github} />}
                 {item?.img && (
-                  <div className="w-full content-center">
-                    <span>
-                      <Image
-                        src={item?.img}
-                        alt={`${item?.name ?? 'Item'} Image`}
-                        className="image mx-auto max-h-80"
-                        fill
-                      />
-                    </span>
+                  <div className="relative w-full h-80">
+                    <Image
+                      src={item?.img}
+                      alt={`${item?.name ?? 'Item'} Image`}
+                      className="object-contain"
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
                   </div>
                 )}
                 <div className="w-full tracking-wider text-left whitespace-pre-wrap">

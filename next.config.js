@@ -17,17 +17,18 @@ const filteredHeaders = [
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-  /* config options here */
-  extends: ['plugin:@next/next/recommended', 'eslint:recommended', 'next'],
   images: {
-    domains: [
-      'images.wantedly.com',
-      'lh3.googleusercontent.com',
-      'd2v9k5u4v94ulw.cloudfront.net',
-      'huntr-assets.s3.amazonaws.com',
-      'prod-files-secure.s3.us-west-2.amazonaws.com',
-      'www.notion.so',
-      'i.gyazo.com',
+    remotePatterns: [
+      { protocol: 'https', hostname: 'images.wantedly.com' },
+      { protocol: 'https', hostname: 'lh3.googleusercontent.com' },
+      { protocol: 'https', hostname: 'd2v9k5u4v94ulw.cloudfront.net' },
+      { protocol: 'https', hostname: 'huntr-assets.s3.amazonaws.com' },
+      {
+        protocol: 'https',
+        hostname: 'prod-files-secure.s3.us-west-2.amazonaws.com',
+      },
+      { protocol: 'https', hostname: 'www.notion.so' },
+      { protocol: 'https', hostname: 'i.gyazo.com' },
     ],
   },
   async headers() {

@@ -24,11 +24,11 @@
     "cors": "^2.8.5",
     "cssnano": "5.1.9",
     "formidable": "^3.5.1",
-    "next": "13.5.9",
+    "next": "^15.5.12",
     "nodemailer": "^8.0.1",
     "postcss-easy-import": "4.0.0",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-icons": "^4.3.1",
     "sharp": "^0.34.2",
     "swr": "^1.0.1",
@@ -41,11 +41,11 @@
   "devDependencies": {
     "@biomejs/biome": "^2.4.4",
     "@types/nodemailer": "^7.0.11",
-    "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4",
+    "@types/react": "^18.3.28",
+    "@types/react-dom": "^18.3.7",
     "postcss": "^8.3.11",
     "simple-git-hooks": "^2.13.1",
-    "typescript": "^4.4.4"
+    "typescript": "^5.9.3"
   },
   "simple-git-hooks": {
     "pre-commit": "npx biome check --staged --no-errors-on-unmatched --write"
