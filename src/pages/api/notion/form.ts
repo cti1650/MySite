@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cors from 'cors';
-import { NextApiRequest, NextApiResponse } from 'next';
 import formidable from 'formidable';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { sendGmail } from 'src/lib/gmailApi';
 
 type ResponseData = {
@@ -36,7 +36,7 @@ function runMiddleware(req, res, fn) {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Partial<ResponseData>>
+  res: NextApiResponse<Partial<ResponseData>>,
 ) {
   await runMiddleware(req, res, cors);
   const endpoint = process.env.NOTION_BACKEND_ENDPOINT;
@@ -45,7 +45,7 @@ export default async function handler(
   if (req.method === 'POST') {
     // console.log('req', req);
     const form = formidable({});
-    form.parse(req, async function (err, fields) {
+    form.parse(req, async (err, fields) => {
       console.log('fields', fields);
       if (err) {
         res.status(500).json({
@@ -75,7 +75,7 @@ export default async function handler(
             'Content-Type': 'application/json',
             notionApiKey: apiKey,
           },
-        }
+        },
       );
       const json = await request.data;
 

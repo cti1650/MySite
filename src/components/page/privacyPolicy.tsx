@@ -1,7 +1,7 @@
 import { useViewLayerPath, useViewLayerRootPath } from '@comp/context';
 import Head from 'next/head';
 import Link from 'next/link';
-import React, { FC } from 'react';
+import type { FC } from 'react';
 
 export const PrivacyPolicyPage: FC = () => {
   const path = useViewLayerPath();
@@ -114,7 +114,7 @@ export const PrivacyPolicyPage: FC = () => {
         </p>
         <div className="w-full mt-8 flex justify-end">
           <Link
-            href={pathPrefix + '/contact'}
+            href={`${pathPrefix}/contact`}
             className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
           >
             お問い合わせページへ

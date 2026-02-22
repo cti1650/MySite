@@ -26,7 +26,7 @@ export async function fetchPortfolios(): Promise<ResponseData> {
         headers: {
           notionApiKey: apiKey,
         },
-      }
+      },
     );
     const portfolios = await request.data;
     if (portfolios?.status || portfolios?.message) {

@@ -1,8 +1,6 @@
-import React from 'react';
-import { NextPage } from 'next';
-import { GetStaticProps } from 'next';
-import { viewLayerList, ViewLayerPageContainer } from '@comp/context';
+import { ViewLayerPageContainer, viewLayerList } from '@comp/context';
 import { TopPage } from '@comp/page/top';
+import type { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 
 const ViewLayerHome: NextPage = () => {

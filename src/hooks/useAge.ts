@@ -11,7 +11,7 @@ export const useAge = (year: number, month: number, date: number) => {
     const thisYearsBirthday = new Date(
       today.getFullYear(),
       birthday.month - 1,
-      birthday.date
+      birthday.date,
     );
     let userAge = today.getFullYear() - birthday.year;
     if (today < thisYearsBirthday) {

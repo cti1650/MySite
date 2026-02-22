@@ -1,4 +1,4 @@
-export default function handler(req, res) {
+export default function handler(_req, res) {
   const Portfolios = [
     {
       name: 'simple-memo-extension',

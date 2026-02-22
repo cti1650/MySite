@@ -1,9 +1,9 @@
 import { NavButton } from '@comp/button/Buttons';
-import Link from 'next/link';
-import React, { FC } from 'react';
+import { useViewLayerRootPath } from '@comp/context';
 import LogoImageUrl from '@img/logo_icon_white.png';
 import Image from 'next/image';
-import { useViewLayerRootPath } from '@comp/context';
+import Link from 'next/link';
+import type { FC } from 'react';
 
 export const Navbar: FC = () => {
   const pagePrefix = useViewLayerRootPath();
@@ -13,7 +13,7 @@ export const Navbar: FC = () => {
         <div className="w-full flex items-center justify-between">
           <div className="flex-shrink-0 flex items-center">
             <Link
-              href={pagePrefix + '/'}
+              href={`${pagePrefix}/`}
               aria-label="cti1650 Portfolio"
               className="flex items-center space-x-1"
             >
@@ -34,7 +34,7 @@ export const Navbar: FC = () => {
               <ul className="flex space-x-4 sm:space-x-6 px-4 sm:px-0">
                 <li>
                   <NavButton
-                    href={pagePrefix + '/'}
+                    href={`${pagePrefix}/`}
                     aria-label="cti1650 Portfolio"
                   >
                     Home
@@ -42,7 +42,7 @@ export const Navbar: FC = () => {
                 </li>
                 <li>
                   <NavButton
-                    href={pagePrefix + '/site'}
+                    href={`${pagePrefix}/site`}
                     aria-label="cti1650 Portfolios"
                   >
                     Portfolios
@@ -50,7 +50,7 @@ export const Navbar: FC = () => {
                 </li>
                 <li>
                   <NavButton
-                    href={pagePrefix + '/content'}
+                    href={`${pagePrefix}/content`}
                     aria-label="cti1650 Contents"
                   >
                     Contents
@@ -58,7 +58,7 @@ export const Navbar: FC = () => {
                 </li>
                 <li>
                   <NavButton
-                    href={pagePrefix + '/contact'}
+                    href={`${pagePrefix}/contact`}
                     aria-label="cti1650 Contact"
                   >
                     Contact

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Post, PostResponse } from 'src/types/posts';
+import type { Post, PostResponse } from 'src/types/posts';
 
 export async function fetchZenn(): Promise<PostResponse> {
   const username = process.env.YOUR_ZENN_USERNAME;
@@ -9,7 +9,7 @@ export async function fetchZenn(): Promise<PostResponse> {
 
   try {
     const response = await axios.get(
-      `https://zenn.dev/api/articles?username=${username}`
+      `https://zenn.dev/api/articles?username=${username}`,
     );
     const data = await response.data;
 

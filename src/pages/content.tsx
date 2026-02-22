@@ -1,8 +1,7 @@
-import React from 'react';
-import { GetStaticProps, NextPage } from 'next';
 import { ContentPage } from '@comp/page/content';
-import { Post } from 'src/types/posts';
 import { fetchContent } from '@lib/contentApi';
+import type { GetStaticProps, NextPage } from 'next';
+import type { Post } from 'src/types/posts';
 
 interface ContentPageProps {
   qiitaPosts: Post[];

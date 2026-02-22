@@ -1,12 +1,12 @@
 import { SocialButton } from '@comp/button/Buttons';
-import React, { FC } from 'react';
-import { VerticalBar } from '../box/verticalBar';
 import {
   BizContent,
   ContentFilter,
   LibeContent,
   PrivateContent,
 } from '@comp/context';
+import React, { type FC } from 'react';
+import { VerticalBar } from '../box/verticalBar';
 
 const socialButtonContents = [
   {
@@ -78,12 +78,10 @@ const SocialNavItems = () => {
 
 export const SocialNav: FC = () => {
   return (
-    <>
-      <VerticalBar position="right">
-        <ol className="h-full w-full py-2 lg:py-4 flex justify-center items-center content-center space-x-6 text-gray-800">
-          <SocialNavItems />
-        </ol>
-      </VerticalBar>
-    </>
+    <VerticalBar position="right">
+      <ol className="h-full w-full py-2 lg:py-4 flex justify-center items-center content-center space-x-6 text-gray-800">
+        <SocialNavItems />
+      </ol>
+    </VerticalBar>
   );
 };

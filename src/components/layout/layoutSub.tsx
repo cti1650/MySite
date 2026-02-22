@@ -1,6 +1,7 @@
-import { Navbar } from './navbarSub';
+import type React from 'react';
+import type { FC } from 'react';
 import { Footer } from './footerSub';
-import React, { FC } from 'react';
+import { Navbar } from './navbarSub';
 import { SocialNav } from './socialNavbarSub';
 
 type Props = {

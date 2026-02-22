@@ -1,6 +1,6 @@
-import { NotionRequestData } from '@hooks/useMantineFormRequest';
+import type { NotionRequestData } from '@hooks/useMantineFormRequest';
 import { Box, Button, Space, Text, Title } from '@mantine/core';
-import React, { useMemo, FC } from 'react';
+import { type FC, useMemo } from 'react';
 
 type FormSuccessProps = {
   onReset: () => void;
@@ -94,6 +94,6 @@ export const FormSuccess: FC<FormSuccessProps> = ({
         </div>
       </div>
     ),
-    [name, email, summary, message, onReset]
+    [name, email, summary, message, onReset],
   );
 };

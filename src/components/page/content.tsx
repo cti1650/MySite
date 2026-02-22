@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import Head from 'next/head';
-import {
-  Container,
-  Title,
-  Grid,
-  Card,
-  Text,
-  Anchor,
-  Group,
-  Badge,
-} from '@mantine/core';
 import { useViewLayerPath } from '@comp/context';
+import {
+  Anchor,
+  Badge,
+  Card,
+  Container,
+  Grid,
+  Group,
+  Text,
+  Title,
+} from '@mantine/core';
+import Head from 'next/head';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 
 interface Post {
   id: string;

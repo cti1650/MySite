@@ -1,12 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { Post } from 'src/types/posts';
+import type { Post } from 'src/types/posts';
 
-let cachedContents: { qiitaPosts: Post[]; zennPosts: Post[] } | null = null;
+type CachedContents = { qiitaPosts: Post[]; zennPosts: Post[] };
+let cachedContents: CachedContents | null = null;
 let lastFetched = 0;
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const now = Date.now();
   if (!cachedContents || now - lastFetched > 3600 * 1000) {
@@ -34,7 +35,7 @@ export default async function handler(
     }
   }
 
-  const { qiitaPosts, zennPosts } = cachedContents!;
+  const { qiitaPosts, zennPosts } = cachedContents as CachedContents;
   let content = '<Contents>\n';
 
   const formatPosts = (posts: Post[], source: string) => {
@@ -62,7 +63,7 @@ export default async function handler(
   res.setHeader('Content-Length', Buffer.byteLength(content, 'utf8'));
   res.setHeader(
     'Cache-Control',
-    'public, max-age=3600, stale-while-revalidate=60'
+    'public, max-age=3600, stale-while-revalidate=60',
   );
   res.status(200).send(content);
 }

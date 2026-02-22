@@ -1,6 +1,5 @@
-import React from 'react';
-import { NextPage } from 'next';
 import { TermsOfServicePage } from '@comp/page/termsOfServicePage';
+import type { NextPage } from 'next';
 
 const TermsOfService: NextPage = () => {
   return <TermsOfServicePage />;

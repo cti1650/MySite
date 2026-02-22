@@ -1,12 +1,11 @@
 import Head from 'next/head';
-import React, { useEffect } from 'react';
-import { createContext, useContext } from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
 
 export const DEFAULT_VIEW_LAYER = 'private';
 
 type ViewLayerContextType = [
   string,
-  React.Dispatch<React.SetStateAction<string>>
+  React.Dispatch<React.SetStateAction<string>>,
 ];
 
 export const viewLayerSettings = [
@@ -75,7 +74,7 @@ export const getViewLayerSetting = (layer: string) => {
 
 export const getViewLayerParentSetting = (layer: string) => {
   const parent = viewLayerSettings.find(
-    (setting) => setting.layer === layer
+    (setting) => setting.layer === layer,
   )?.parentLayer;
   return getViewLayerSetting(parent);
 };
@@ -129,12 +128,12 @@ export const useViewLayerRootPath = () => {
 };
 
 export const useViewLayerPath = () => {
-  return 'https://cti1650-portfolio-site.vercel.app' + useViewLayerRootPath();
+  return `https://cti1650-portfolio-site.vercel.app${useViewLayerRootPath()}`;
 };
 
 export const useBizPath = () => {
   const [isBiz] = useViewLayer();
-  return 'https://cti1650-portfolio-site.vercel.app/' + (isBiz ? 'biz/' : '');
+  return `https://cti1650-portfolio-site.vercel.app/${isBiz ? 'biz/' : ''}`;
 };
 
 export const ViewLayerPageContainer = ({ children, targetLayer }) => {

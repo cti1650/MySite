@@ -73,19 +73,18 @@ export const NotionDatabaseClient = async ({
       page_size: page_size,
     } as TypeNotionBodyParamsOption);
 
-    responseData = databaseData['results'].map((item) => {
-      const propList: any = item['properties'];
+    responseData = databaseData.results.map((item) => {
+      const propList: any = item.properties;
       let response = {};
-      Object.keys(propList).map((value) => {
+      for (const value of Object.keys(propList)) {
         response = {
           ...response,
           [value]: findValue(propList[value]),
         };
-      });
+      }
       return response;
     });
-    const data =
-      databaseData?.['results'].map((item) => item['properties']) || [];
+    const data = databaseData?.results.map((item) => item.properties) || [];
     return { propertyValues: responseData, properties: data };
   } catch (error) {
     console.error(error.body);

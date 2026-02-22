@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
-import Head from 'next/head';
 import { useViewLayerPath } from '@comp/context';
+import Head from 'next/head';
+import type { FC } from 'react';
 
 export const TermsOfServicePage: FC = () => {
   const path = useViewLayerPath();

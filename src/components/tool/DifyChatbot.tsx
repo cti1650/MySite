@@ -1,4 +1,4 @@
-import { OS, useOs } from '@mantine/hooks';
+import { type OS, useOs } from '@mantine/hooks';
 import { useEffect } from 'react';
 
 type Global = (Window & typeof globalThis) & {

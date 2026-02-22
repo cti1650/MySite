@@ -1,4 +1,4 @@
-import { ContentResponse } from 'src/types/posts';
+import type { ContentResponse } from 'src/types/posts';
 import { fetchQiita } from './qiitaApi';
 import { fetchZenn } from './zennApi';
 

@@ -1,10 +1,9 @@
-import React from 'react';
-import { GetStaticProps, NextPage } from 'next';
-import { ContentPage } from '@comp/page/content';
-import { Post } from 'src/types/posts';
-import { fetchContent } from '@lib/contentApi';
 import { ViewLayerPageContainer, viewSocialLayerList } from '@comp/context';
+import { ContentPage } from '@comp/page/content';
+import { fetchContent } from '@lib/contentApi';
+import type { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
+import type { Post } from 'src/types/posts';
 
 interface ContentPageProps {
   qiitaPosts: Post[];

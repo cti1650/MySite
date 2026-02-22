@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React from 'react';
-import { GetStaticProps, NextPage } from 'next';
-import { fetchPortfolios, ResponseData } from '@lib/portfolioApi';
+
+import { ViewLayerPageContainer, viewLayerList } from '@comp/context';
 import { SitePage } from '@comp/page/site';
-import { viewLayerList, ViewLayerPageContainer } from '@comp/context';
+import { fetchPortfolios, type ResponseData } from '@lib/portfolioApi';
+import type { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 
 const ViewLayerSite: NextPage = (props: any) => {

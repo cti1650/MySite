@@ -1,5 +1,5 @@
 .image {
   object-fit: contain;
-  position: relative !important;
-  width: auto !important;
+  position: relative;
+  width: auto;
 }

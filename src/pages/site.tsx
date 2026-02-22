@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React from 'react';
-import { GetStaticProps, NextPage } from 'next';
-import { fetchPortfolios, ResponseData } from '@lib/portfolioApi';
+
 import { SitePage } from '@comp/page/site';
+import { fetchPortfolios, type ResponseData } from '@lib/portfolioApi';
+import type { GetStaticProps, NextPage } from 'next';
 
 const Site: NextPage = (props: any) => {
   const { portfolios } = props;

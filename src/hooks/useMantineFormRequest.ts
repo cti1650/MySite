@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { useNotifications } from '@mantine/notifications';
+import axios from 'axios';
 import { useCallback, useMemo, useState } from 'react';
 
 export type NotionRequestData = {
@@ -61,10 +61,10 @@ export const useMantineFormRequest = () => {
           setLoading(false);
         });
     },
-    [notifications]
+    [notifications],
   );
   return useMemo(
     () => ({ loading, success, error, notionRequest, reset }),
-    [notionRequest, reset, loading, success, error]
+    [notionRequest, reset, loading, success, error],
   );
 };

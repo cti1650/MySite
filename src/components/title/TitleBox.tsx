@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
 import cc from 'classcat';
+import type { FC } from 'react';
 
 type TitleBoxPropsType = {
   title?: string;
@@ -69,51 +69,49 @@ export const TitleBox: FC<TitleBoxPropsType> = ({
   const sizeOption = getOptionSize(size);
   const colorOption = getOptionColor(color);
   return (
-    <>
+    <div
+      className={cc([
+        'flex flex-col h-auto',
+        colorOption.panelColor,
+        sizeOption.panelSize,
+      ])}
+    >
       <div
         className={cc([
-          'flex flex-col h-auto',
-          colorOption.panelColor,
-          sizeOption.panelSize,
+          'h-full w-full flex flex-row tracking-wider',
+          colorOption.textColor,
+          sizeOption.title,
         ])}
       >
+        <p
+          className={cc([
+            'flex-none my-auto mr-3',
+            colorOption.barColor,
+            sizeOption.barwidth,
+            sizeOption.barheight,
+          ])}
+        ></p>
+        <p className="flex-grow mx-0 my-auto whitespace-pre-wrap break-all">
+          {title}
+        </p>
+      </div>
+      {subTitle && (
         <div
           className={cc([
             'h-full w-full flex flex-row tracking-wider',
             colorOption.textColor,
-            sizeOption.title,
+            sizeOption.subtitle,
           ])}
         >
           <p
-            className={cc([
-              'flex-none my-auto mr-3',
-              colorOption.barColor,
-              sizeOption.barwidth,
-              sizeOption.barheight,
-            ])}
+            className={cc(['flex-none my-auto mr-3', sizeOption.barwidth])}
           ></p>
           <p className="flex-grow mx-0 my-auto whitespace-pre-wrap break-all">
-            {title}
+            {subTitle}
           </p>
         </div>
-        {subTitle && (
-          <div
-            className={cc([
-              'h-full w-full flex flex-row tracking-wider',
-              colorOption.textColor,
-              sizeOption.subtitle,
-            ])}
-          >
-            <p
-              className={cc(['flex-none my-auto mr-3', sizeOption.barwidth])}
-            ></p>
-            <p className="flex-grow mx-0 my-auto whitespace-pre-wrap break-all">
-              {subTitle}
-            </p>
-          </div>
-        )}
-      </div>
-    </>
+      )}
+    </div>
   );
 };
 

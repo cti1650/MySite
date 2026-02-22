@@ -1,5 +1,5 @@
-import { Layout } from './layoutSub';
 import { Footer } from './footerSub';
+import { Layout } from './layoutSub';
 import { Navbar } from './navbarSub';
 import { SocialNav } from './socialNavbarSub';
 

@@ -1,7 +1,5 @@
-import React from 'react';
-import { NextPage } from 'next';
-import { GetStaticProps } from 'next';
 import { TopPage } from '@comp/page/top';
+import type { GetStaticProps, NextPage } from 'next';
 
 const Home: NextPage = () => {
   return <TopPage />;

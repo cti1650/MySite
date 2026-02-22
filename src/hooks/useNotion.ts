@@ -10,7 +10,7 @@ export const NotionClient = (accessKey: string = '', databaseId: string) => {
   const getTable = async () => {
     try {
       const db = await notion.databases.query({ database_id: databaseId });
-      return db['results'].map((item) => {
+      return db.results.map((item) => {
         return item;
       });
     } catch (error) {

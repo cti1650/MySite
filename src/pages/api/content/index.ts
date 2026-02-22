@@ -1,10 +1,10 @@
 import { fetchContent } from '@lib/contentApi';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { ContentResponse } from 'src/types/posts';
+import type { ContentResponse } from 'src/types/posts';
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ContentResponse>
+  res: NextApiResponse<ContentResponse>,
 ) {
   if (req.method !== 'GET') return res.status(405).end();
 

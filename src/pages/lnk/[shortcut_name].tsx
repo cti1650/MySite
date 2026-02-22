@@ -1,6 +1,6 @@
-import { GetServerSideProps, NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
 
-type Props = {};
+type Props = Record<string, never>;
 
 const ShortcutRedirect: NextPage<Props> = () => {
   return null;

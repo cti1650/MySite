@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { PostResponse } from 'src/types/posts';
+import type { PostResponse } from 'src/types/posts';
 
 export async function fetchQiita(): Promise<PostResponse> {
   const token = process.env.QIITA_ACCESS_TOKEN;
@@ -18,7 +18,7 @@ export async function fetchQiita(): Promise<PostResponse> {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     );
     const data = await response.data;
     return { items: data };

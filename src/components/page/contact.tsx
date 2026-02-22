@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import Head from 'next/head';
-import { MantineForm } from '@comp/form/mantineForm';
 import { useViewLayerPath } from '@comp/context';
+import { MantineForm } from '@comp/form/mantineForm';
+import Head from 'next/head';
+import type { FC } from 'react';
 
 export const ContactPage: FC = () => {
   const path = useViewLayerPath();

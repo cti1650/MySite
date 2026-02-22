@@ -1,5 +1,5 @@
 import { fetchPortfolios } from '@lib/portfolioApi';
-import { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 type ResponseData = {
   description: string;
@@ -15,13 +15,13 @@ type ResponseData = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ResponseData>
+  res: NextApiResponse<ResponseData>,
 ) {
   if (req.method === 'GET') {
     try {
       const portfolios = await fetchPortfolios();
       res.status(200).json(portfolios);
-    } catch (e) {
+    } catch (_e) {
       res.status(400).json([]);
     }
     return;

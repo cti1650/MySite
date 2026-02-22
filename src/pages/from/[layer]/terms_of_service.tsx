@@ -1,7 +1,6 @@
-import React from 'react';
-import { GetStaticProps, NextPage } from 'next';
-import { TermsOfServicePage } from '@comp/page/termsOfServicePage';
 import { ViewLayerPageContainer, viewSocialLayerList } from '@comp/context';
+import { TermsOfServicePage } from '@comp/page/termsOfServicePage';
+import type { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 
 const ViewLayerTermsOfService: NextPage = () => {

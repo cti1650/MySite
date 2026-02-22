@@ -1,22 +1,22 @@
-import React, { FC, useCallback } from 'react';
+import { useViewLayerRootPath } from '@comp/context';
+import { useMantineFormRequest } from '@hooks/useMantineFormRequest';
 import {
-  TextInput,
-  Checkbox,
-  Button,
-  Group,
   Box,
-  Textarea,
-  Text,
-  Space,
+  Button,
+  Checkbox,
+  Group,
   Select,
+  Space,
+  Text,
+  Textarea,
+  TextInput,
 } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
-import { z } from 'zod';
-import { useMantineFormRequest } from '@hooks/useMantineFormRequest';
-import { FormSuccess } from './FormSuccess';
-import { FormLoading } from './FormLoading';
 import Link from 'next/link';
-import { useViewLayerRootPath } from '@comp/context';
+import { type FC, useCallback } from 'react';
+import { z } from 'zod';
+import { FormLoading } from './FormLoading';
+import { FormSuccess } from './FormSuccess';
 
 const schema = z.object({
   name: z.string().min(2, { message: 'お名前は2文字以上入力してください。' }),
@@ -55,7 +55,7 @@ export const MantineForm: FC = () => {
         message: values.body,
       });
     },
-    [notionRequest]
+    [notionRequest],
   );
 
   const handleReset = useCallback(() => {
@@ -146,7 +146,7 @@ export const MantineForm: FC = () => {
             label={
               <span>
                 <Link
-                  href={pathPrefix + '/privacy_policy'}
+                  href={`${pathPrefix}/privacy_policy`}
                   target="_blank"
                   className="text-blue-500 hover:text-blue-400 action:text-blue-300"
                 >

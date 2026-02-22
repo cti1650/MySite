@@ -1,7 +1,6 @@
-import React from 'react';
-import { GetStaticProps, NextPage } from 'next';
-import { PrivacyPolicyPage } from '@comp/page/privacyPolicy';
 import { ViewLayerPageContainer, viewLayerList } from '@comp/context';
+import { PrivacyPolicyPage } from '@comp/page/privacyPolicy';
+import type { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 
 const ViewLayerPrivacyPolicy: NextPage = () => {

@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
+import { ProfListBox } from '@comp/box/profListBox';
+import { useViewLayerPath } from '@comp/context';
+import { TitleBox } from '@comp/title/TitleBox';
+import DifyChatbot from '@comp/tool/DifyChatbot';
+import { useAge } from '@hooks/useAge';
+import HeroImageUrl from '@img/084AME0226.jpg.webp';
 import Head from 'next/head';
 import Image from 'next/image';
-import { useAge } from '@hooks/useAge';
-import { ProfListBox } from '@comp/box/profListBox';
-import { TitleBox } from '@comp/title/TitleBox';
-import HeroImageUrl from '@img/084AME0226.jpg.webp';
-import DifyChatbot from '@comp/tool/DifyChatbot';
-import { useViewLayerPath } from '@comp/context';
+import type { FC } from 'react';
 
 export const TopPage: FC = () => {
   const [age] = useAge(1992, 1, 25);

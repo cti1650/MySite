@@ -1,6 +1,5 @@
-import React from 'react';
-import { NextPage } from 'next';
 import { PrivacyPolicyPage } from '@comp/page/privacyPolicy';
+import type { NextPage } from 'next';
 
 const PrivacyPolicy: NextPage = () => {
   return <PrivacyPolicyPage />;

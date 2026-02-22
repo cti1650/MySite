@@ -1,7 +1,6 @@
-import React from 'react';
-import { GetStaticProps, NextPage } from 'next';
-import { ContactPage } from '@comp/page/contact';
 import { ViewLayerPageContainer, viewSocialLayerList } from '@comp/context';
+import { ContactPage } from '@comp/page/contact';
+import type { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 
 const ViewLayerContact: NextPage = () => {

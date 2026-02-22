@@ -1,11 +1,11 @@
 import {
-  SocialButton,
+  GithubButton,
   NavButton,
   NavButton2,
   PageLinkButton,
-  PageLinkButton3,
   PageLinkButton2,
-  GithubButton,
+  PageLinkButton3,
+  SocialButton,
 } from './Buttons';
 
 export {

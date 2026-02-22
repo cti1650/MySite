@@ -1,5 +1,5 @@
 import { Loader } from '@mantine/core';
-import React, { useMemo, FC } from 'react';
+import { type FC, useMemo } from 'react';
 
 export const FormLoading: FC = () => {
   return useMemo(
@@ -8,6 +8,6 @@ export const FormLoading: FC = () => {
         <Loader size="lg" color="gray" variant="dots" />
       </div>
     ),
-    []
+    [],
   );
 };

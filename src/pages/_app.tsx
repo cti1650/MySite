@@ -3,14 +3,13 @@ import 'styles/mantineBase.css';
 import 'tailwindcss/tailwind.css';
 import './nextImage.css';
 
-import React from 'react';
-import { AppProps } from 'next/app';
-import { Layout } from '@comp/layout/layoutSub';
-import Head from 'next/head';
-import { usePageView } from '@hooks/usePageView';
-import { NotificationsProvider } from '@mantine/notifications';
-import { MantineProvider } from '@mantine/core';
 import { ViewLayerProvider } from '@comp/context';
+import { Layout } from '@comp/layout/layoutSub';
+import { usePageView } from '@hooks/usePageView';
+import { MantineProvider } from '@mantine/core';
+import { NotificationsProvider } from '@mantine/notifications';
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
 
 const TailwindApp = ({ Component, pageProps }: AppProps) => {
   usePageView();

@@ -5,8 +5,8 @@ let cachedPortfolios: any[] | null = null;
 let lastFetched = 0;
 
 export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
+  _req: NextApiRequest,
+  res: NextApiResponse,
 ) {
   const now = Date.now();
   if (!cachedPortfolios || now - lastFetched > 3600 * 1000) {
@@ -35,7 +35,7 @@ export default async function handler(
   res.setHeader('Content-Length', Buffer.byteLength(content, 'utf8'));
   res.setHeader(
     'Cache-Control',
-    'public, max-age=3600, stale-while-revalidate=60'
+    'public, max-age=3600, stale-while-revalidate=60',
   );
   res.status(200).send(content);
 }
