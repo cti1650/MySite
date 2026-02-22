@@ -83,6 +83,7 @@ export default async function handler(
       const notionUrl = json?.url ?? '';
       await sendGmail({
         subject: `[MySite] お問い合わせ: ${summary[0]}`,
+        replyTo: email[0],
         text: [
           `名前: ${name[0]}`,
           `メール: ${email[0]}`,
