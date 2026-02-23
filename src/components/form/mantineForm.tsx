@@ -6,7 +6,6 @@ import {
   Checkbox,
   Group,
   Select,
-  Space,
   Text,
   Textarea,
   TextInput,
@@ -87,7 +86,7 @@ export const MantineForm: FC = () => {
           <Box pb="xl">
             <Text mx="auto" ta="center">
               ご質問、ご依頼、その他お問い合わせは
-              <Space />
+              <br />
               下のフォームからお願いいたします。
             </Text>
           </Box>
@@ -134,6 +133,7 @@ export const MantineForm: FC = () => {
             required
             label="お問い合わせ内容"
             placeholder="具体的な内容をご記入ください"
+            autosize
             minRows={8}
             classNames={{
               input: 'text-base',

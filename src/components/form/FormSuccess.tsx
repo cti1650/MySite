@@ -1,5 +1,5 @@
 import type { NotionRequestData } from '@hooks/useMantineFormRequest';
-import { Box, Button, Space, Text, Title } from '@mantine/core';
+import { Box, Button, Text, Title } from '@mantine/core';
 import { type FC, useMemo } from 'react';
 
 type FormSuccessProps = {
@@ -20,9 +20,9 @@ export const FormSuccess: FC<FormSuccessProps> = ({
           <Box pb="xl">
             <Text mx="auto" ta="center">
               以下の内容でお受付いたしました。
-              <Space />
+              <br />
               ご返信が必要な場合は、
-              <Space />
+              <br />
               あらためてご連絡いたします。
             </Text>
           </Box>
