@@ -1,5 +1,5 @@
 import { GithubButton, PageLinkButton } from '@comp/button/Buttons';
-import { useViewLayerPath } from '@comp/context';
+import { useViewLayerPath, useViewLayerRootPath } from '@comp/context';
 import type { ResponseData } from '@lib/portfolioApi';
 import cc from 'classcat';
 import Head from 'next/head';
@@ -25,6 +25,7 @@ type Props = {
 
 export const SitePage: FC<Props> = ({ portfolios }) => {
   const path = useViewLayerPath();
+  const rootPath = useViewLayerRootPath();
   return (
     <div className="w-full px-1 lg:px-10 font-n2i md:max-w-5xl mx-auto">
       <Head>
@@ -91,6 +92,15 @@ export const SitePage: FC<Props> = ({ portfolios }) => {
               </div>
             );
           })}
+        </div>
+        <div className="w-full py-8 text-center text-sm text-gray-500">
+          <a href={`${rootPath}/terms_of_service`} className="hover:underline">
+            利用規約
+          </a>
+          <span className="mx-2">|</span>
+          <a href={`${rootPath}/privacy_policy`} className="hover:underline">
+            プライバシーポリシー
+          </a>
         </div>
       </div>
     </div>
