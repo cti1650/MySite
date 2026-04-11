@@ -19,8 +19,7 @@ const LLMS_PATHS = [
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const protocol = req.headers['x-forwarded-proto'] || 'http';
   const host = req.headers.host;
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || `${protocol}://${host}`;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || `${protocol}://${host}`;
   const lastmod = new Date().toISOString();
 
   const urls = [...STATIC_PATHS, ...LLMS_PATHS]
