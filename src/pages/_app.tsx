@@ -20,6 +20,24 @@ const TailwindApp = ({ Component, pageProps }: AppProps) => {
       <Head>
         <title>cti1650 Portfolio</title>
         <link rel="icon" href="img/logo_icon_white.png" />
+        <link
+          rel="alternate"
+          type="text/plain"
+          title="llms.txt"
+          href="/llms.txt"
+        />
+        <link
+          rel="alternate"
+          type="text/plain"
+          title="llms-full.txt"
+          href="/llms-full.txt"
+        />
+        <link
+          rel="sitemap"
+          type="application/xml"
+          title="Sitemap"
+          href="/sitemap.xml"
+        />
         {/* <meta name="robots" content="noindex" />
         <meta name="robots" content="nofollow" /> */}
         <meta
