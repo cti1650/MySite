@@ -1,50 +1,78 @@
-# Hello World example
+# cti1650 Portfolio Site
 
-## Deploy your own
+[cti1650-portfolio-site.vercel.app](https://cti1650-portfolio-site.vercel.app/) のソースコードです。
+個人で開発したプロジェクトと、Qiita/Zennで公開している技術記事をまとめたポートフォリオサイトです。
 
-Deploy the example using [ZEIT Now](https://zeit.co/now):
+## 技術スタック
 
-[![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/new/project?template=https://github.com/zeit/next.js/tree/canary/examples/hello-world)
+- [Next.js](https://nextjs.org/) 15 (Pages Router)
+- React 18 / TypeScript 5
+- [Tailwind CSS](https://tailwindcss.com/) 3
+- [Mantine](https://mantine.dev/) 8
+- [Biome](https://biomejs.dev/) (lint / format)
+- データソース: Notion API / Qiita API / Zenn API
 
-## How to use
-
-### Using `create-next-app`
-
-Execute [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app) with [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) or [npx](https://github.com/zkat/npx#readme) to bootstrap the example:
-
-```bash
-npx create-next-app --example hello-world hello-world-app
-# or
-yarn create next-app --example hello-world hello-world-app
-```
-
-### Download manually
-
-Download the example:
+## セットアップ
 
 ```bash
-curl https://codeload.github.com/zeit/next.js/tar.gz/canary | tar -xz --strip=2 next.js-canary/examples/hello-world
-cd hello-world
-```
-
-Install it and run:
-
-```bash
-npm install
-npm run dev
-# or
-yarn
+yarn install
+cp .env.local.example .env.local  # 未配置の場合は下記を参考に作成
 yarn dev
 ```
 
-Deploy it to the cloud with [now](https://zeit.co/now) ([download](https://zeit.co/download)):
+### 環境変数
 
-```bash
-now
+| 変数名 | 用途 |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | 本番URL (sitemap.xml 等で使用) |
+| `NOTION_BACKEND_ENDPOINT` | Notion 取得用バックエンドのエンドポイント |
+| `NOTION_KEY` | Notion API トークン |
+| `NOTION_DATABASE_ID` | ポートフォリオDBのID |
+| `NOTION_CONTACT_DATABASE_ID` | お問い合わせ保存先DBのID |
+| `QIITA_ACCESS_TOKEN` | Qiita 記事取得用トークン |
+| `YOUR_ZENN_USERNAME` | Zenn ユーザー名 |
+| `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` | GA 測定ID (任意) |
+
+## スクリプト
+
+| コマンド | 内容 |
+| --- | --- |
+| `yarn dev` | 開発サーバー起動 |
+| `yarn build` | プロダクションビルド |
+| `yarn start` | プロダクションサーバー起動 |
+| `yarn lint` | Biome でのチェック |
+| `yarn fix` | Biome での自動修正 |
+| `yarn format` | Biome でのフォーマット |
+
+## ディレクトリ構成
+
+```
+src/
+├── pages/        # Next.js ページ / API Routes
+│   └── api/
+│       ├── llms/     # llms.txt 関連エンドポイント
+│       └── sitemap.xml.ts
+├── components/   # UIコンポーネント
+├── lib/          # 外部API連携 (Notion/Qiita/Zenn)
+├── hooks/        # カスタムフック
+└── types/        # 型定義
 ```
 
-## The idea behind the example
+## LLM 対応
 
-This example shows the most basic idea behind Next. We have 2 pages: `pages/index.js` and `pages/about.js`. The former responds to `/` requests and the latter to `/about`. Using `next/link` you can add hyperlinks between them with universal routing capabilities. The `day` directory shows that you can have subdirectories.
+LLMクローラー向けに以下のエンドポイントを提供しています:
 
-<!-- test -->
+- [`/llms.txt`](https://cti1650-portfolio-site.vercel.app/llms.txt) — サイト概要・プロフィール・参照先リスト
+- [`/llms-full.txt`](https://cti1650-portfolio-site.vercel.app/llms-full.txt) — 上記 + ポートフォリオ一覧 + 記事一覧を1ファイルに連結
+- [`/llms/portfolios.txt`](https://cti1650-portfolio-site.vercel.app/llms/portfolios.txt) — ポートフォリオ詳細
+- [`/llms/contents.txt`](https://cti1650-portfolio-site.vercel.app/llms/contents.txt) — Qiita/Zenn 記事一覧
+- [`/sitemap.xml`](https://cti1650-portfolio-site.vercel.app/sitemap.xml)
+- [`/robots.txt`](https://cti1650-portfolio-site.vercel.app/robots.txt) — 主要LLMクローラーを明示的に許可
+
+## デプロイ
+
+[Vercel](https://vercel.com/) で `main` ブランチから自動デプロイされます。
+
+## ライセンス
+
+ISC
