@@ -73,8 +73,16 @@ const nextConfig = {
         destination: '/api/llms/index.txt',
       },
       {
+        source: '/llms-full.txt',
+        destination: '/api/llms/full.txt',
+      },
+      {
         source: '/llms/:path*', // :path* で任意のパスをキャプチャ
         destination: '/api/llms/:path*', // キャプチャしたパスをdestinationで利用
+      },
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemap.xml',
       },
     ];
   },
