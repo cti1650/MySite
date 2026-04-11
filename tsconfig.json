@@ -10,17 +10,18 @@
     "incremental": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": ".",
     "paths": {
       "@comp/*": ["./src/components/*"],
       "@lib/*": ["./src/lib/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@img/*": ["./src/assets/images/*"],
-      "@style/*": ["./styles/*"]
+      "@style/*": ["./styles/*"],
+      "src/*": ["./src/*"],
+      "styles/*": ["./styles/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
