@@ -2,7 +2,7 @@ import type { GetServerSideProps } from 'next';
 import { buildCacheControl } from './cache';
 import { getContent } from './contentApi';
 import { getPortfolios } from './portfolioApi';
-import { CANONICAL_SITE_URL, resolveBaseUrl } from './siteUrl';
+import { resolveBaseUrl } from './siteUrl';
 
 /**
  * 全ページ共通のメタ情報。
@@ -10,12 +10,14 @@ import { CANONICAL_SITE_URL, resolveBaseUrl } from './siteUrl';
  * og:url はビルド時に焼き込むとアクセス先ドメインを反映できず、
  * OGPクローラーはJSを実行しないためクライアント側での書き換えも効かない。
  * そのためリクエストのHostとパスからサーバ側で組み立てる。
+ *
+ * 各ドメインを独立したサイトとして扱う方針のため、og:url と canonical は
+ * どちらもアクセス先ドメインを指す。許可外のHostの場合のみ
+ * resolveBaseUrl() がカノニカルURLへフォールバックする。
  */
 export type SiteMetaProps = {
-  /** アクセスされたドメインを基点とした現在ページの絶対URL（og:url用） */
+  /** アクセスされたドメインを基点とした現在ページの絶対URL（og:url / canonical用） */
   pageUrl: string;
-  /** カノニカルドメインを基点とした現在ページの絶対URL（rel=canonical用） */
-  canonicalUrl: string;
   /** アクセスされたドメインのorigin（画像等の絶対URL組み立て用） */
   origin: string;
 };
@@ -59,7 +61,6 @@ export const createPageProps =
     const meta: SiteMetaProps = {
       origin,
       pageUrl: `${origin}${path}`,
-      canonicalUrl: `${CANONICAL_SITE_URL}${path}`,
     };
 
     const extra = fetchProps ? await fetchProps() : undefined;

@@ -17,7 +17,7 @@ const theme = createTheme({});
 const TailwindApp = ({ Component, pageProps }: AppProps) => {
   usePageView();
   // getServerSideProps を持たないページ（404等）では undefined になる
-  const { origin, pageUrl, canonicalUrl } = pageProps as Partial<SiteMetaProps>;
+  const { origin, pageUrl } = pageProps as Partial<SiteMetaProps>;
   const ogImageOrigin = origin ?? process.env.NEXT_PUBLIC_SITE_URL ?? '';
   return (
     <>
@@ -62,11 +62,14 @@ const TailwindApp = ({ Component, pageProps }: AppProps) => {
           content="cti1650のポートフォリオサイトです。"
         />
         <meta property="og:type" content="website" />
-        {/* og:url はアクセス先ドメイン、canonical は正規ドメインを指す。
-            前者でSNSカードの表示を実際のドメインに合わせ、後者で
-            複数ドメイン公開時の重複コンテンツ評価を1ドメインに集約する。 */}
-        {pageUrl && <meta property="og:url" content={pageUrl} />}
-        {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+        {/* 各ドメインを独立したサイトとして扱うため、og:url も canonical も
+            アクセス先ドメインを指す。 */}
+        {pageUrl && (
+          <>
+            <meta property="og:url" content={pageUrl} />
+            <link rel="canonical" href={pageUrl} />
+          </>
+        )}
         <meta property="og:image" content={`${ogImageOrigin}/img/ogp.png`} />
         <meta property="og:site_name" content="cti1650 Portfolio" />
         <meta property="og:locale" content="ja_JP" />
