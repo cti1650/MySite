@@ -24,7 +24,8 @@ yarn dev
 
 | 変数名 | 用途 |
 | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | 本番URL (sitemap.xml 等で使用) |
+| `NEXT_PUBLIC_SITE_URL` | 本番URL (sitemap.xml 等で使用するカノニカルURL) |
+| `ALLOWED_HOSTS` | 追加で公開するドメイン (カンマ区切り、`*.example.com` のワイルドカード可) |
 | `NOTION_BACKEND_ENDPOINT` | Notion 取得用バックエンドのエンドポイント |
 | `NOTION_KEY` | Notion API トークン |
 | `NOTION_DATABASE_ID` | ポートフォリオDBのID |
@@ -43,6 +44,8 @@ yarn dev
 | `yarn lint` | Biome でのチェック |
 | `yarn fix` | Biome での自動修正 |
 | `yarn format` | Biome でのフォーマット |
+| `yarn typecheck` | TypeScript の型チェック |
+| `yarn audit` | 依存パッケージの脆弱性チェック |
 
 ## ディレクトリ構成
 
