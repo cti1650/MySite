@@ -1,27 +1,35 @@
+import { applyPublicCors } from '@lib/cors';
+import {
+  buildContentsText,
+  buildIndexText,
+  buildPortfoliosText,
+} from '@lib/llmsContent';
+import { resolveBaseUrl } from '@lib/siteUrl';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const protocol = req.headers['x-forwarded-proto'] || 'http';
-  const host = req.headers.host;
-  const baseUrl = `${protocol}://${host}`;
+  if (applyPublicCors(req, res)) return;
+  if (req.method !== 'GET') {
+    res.setHeader('Allow', 'GET, OPTIONS');
+    return res.status(405).end();
+  }
 
   try {
-    const [indexRes, portfoliosRes, contentsRes] = await Promise.all([
-      fetch(`${baseUrl}/api/llms/index.txt`).then((r) => r.text()),
-      fetch(`${baseUrl}/api/llms/portfolios.txt`).then((r) => r.text()),
-      fetch(`${baseUrl}/api/llms/contents.txt`).then((r) => r.text()),
+    const [portfoliosText, contentsText] = await Promise.all([
+      buildPortfoliosText(),
+      buildContentsText(),
     ]);
 
-    const content = `${indexRes}
+    const content = `${buildIndexText(resolveBaseUrl(req.headers))}
 
 # ポートフォリオ一覧
-${portfoliosRes}
+${portfoliosText}
 
 # 記事一覧
-${contentsRes}`;
+${contentsText}`;
 
     res.setHeader('Content-Type', 'text/plain; charset=utf-8');
     res.setHeader('Content-Length', Buffer.byteLength(content, 'utf8'));
