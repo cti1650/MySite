@@ -1,5 +1,5 @@
 import { GithubButton, PageLinkButton } from '@comp/button/Buttons';
-import { useViewLayerPath, useViewLayerRootPath } from '@comp/context';
+import { useViewLayerRootPath } from '@comp/context';
 import type { ResponseData } from '@lib/portfolioApi';
 import cc from 'classcat';
 import Head from 'next/head';
@@ -24,7 +24,6 @@ type Props = {
 };
 
 export const SitePage: FC<Props> = ({ portfolios }) => {
-  const path = useViewLayerPath();
   const rootPath = useViewLayerRootPath();
   return (
     <div className="w-full px-1 lg:px-10 font-n2i md:max-w-5xl mx-auto">
@@ -40,7 +39,6 @@ export const SitePage: FC<Props> = ({ portfolios }) => {
           property="og:description"
           content="cti1650が個人開発したポートフォリオです。"
         />
-        <meta property="og:url" content={path} />
       </Head>
 
       <div className="w-full text-gray-900 lg:py-8">

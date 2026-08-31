@@ -1,10 +1,9 @@
-import { useViewLayerPath, useViewLayerRootPath } from '@comp/context';
+import { useViewLayerRootPath } from '@comp/context';
 import Head from 'next/head';
 import Link from 'next/link';
 import type { FC } from 'react';
 
 export const PrivacyPolicyPage: FC = () => {
-  const path = useViewLayerPath();
   const pathPrefix = useViewLayerRootPath();
   return (
     <div className="container mx-auto max-w-2xl px-4 py-8">
@@ -20,7 +19,6 @@ export const PrivacyPolicyPage: FC = () => {
           property="og:description"
           content="cti1650が個人開発したポートフォリオに関するプライバシーポリシーです。"
         />
-        <meta property="og:url" content={path} />
       </Head>
 
       <h1 className="text-2xl sm:text-3xl font-bold mb-6">

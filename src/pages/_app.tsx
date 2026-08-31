@@ -6,6 +6,7 @@ import 'tailwindcss/tailwind.css';
 import { ViewLayerProvider } from '@comp/context';
 import { Layout } from '@comp/layout/layoutSub';
 import { usePageView } from '@hooks/usePageView';
+import type { SiteMetaProps } from '@lib/pageProps';
 import { createTheme, MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import type { AppProps } from 'next/app';
@@ -15,6 +16,9 @@ const theme = createTheme({});
 
 const TailwindApp = ({ Component, pageProps }: AppProps) => {
   usePageView();
+  // getServerSideProps を持たないページ（404等）では undefined になる
+  const { origin, pageUrl, canonicalUrl } = pageProps as Partial<SiteMetaProps>;
+  const ogImageOrigin = origin ?? process.env.NEXT_PUBLIC_SITE_URL ?? '';
   return (
     <>
       <Head>
@@ -58,10 +62,12 @@ const TailwindApp = ({ Component, pageProps }: AppProps) => {
           content="cti1650のポートフォリオサイトです。"
         />
         <meta property="og:type" content="website" />
-        <meta
-          property="og:image"
-          content={`${process.env.NEXT_PUBLIC_SITE_URL}/img/ogp.png`}
-        />
+        {/* og:url はアクセス先ドメイン、canonical は正規ドメインを指す。
+            前者でSNSカードの表示を実際のドメインに合わせ、後者で
+            複数ドメイン公開時の重複コンテンツ評価を1ドメインに集約する。 */}
+        {pageUrl && <meta property="og:url" content={pageUrl} />}
+        {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+        <meta property="og:image" content={`${ogImageOrigin}/img/ogp.png`} />
         <meta property="og:site_name" content="cti1650 Portfolio" />
         <meta property="og:locale" content="ja_JP" />
       </Head>

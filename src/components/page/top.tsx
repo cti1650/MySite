@@ -1,5 +1,4 @@
 import { ProfListBox } from '@comp/box/profListBox';
-import { useViewLayerPath } from '@comp/context';
 import { TitleBox } from '@comp/title/TitleBox';
 import DifyChatbot from '@comp/tool/DifyChatbot';
 import { useAge } from '@hooks/useAge';
@@ -10,14 +9,12 @@ import type { FC } from 'react';
 
 export const TopPage: FC = () => {
   const [age] = useAge(1992, 1, 25);
-  const path = useViewLayerPath();
 
   return (
     <div className="h-full w-full font-n2i flex justify-center items-center">
       <Head>
         <title>cti1650 Portfolio</title>
         <meta property="og:title" content="cti1650 Portfolio" />
-        <meta property="og:url" content={path} />
       </Head>
 
       <div className="w-full max-h-full text-gray-900 grid grid-cols-1 lg:grid-cols-2 gap-8 justify-center items-start lg:items-start">

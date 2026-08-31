@@ -1,9 +1,10 @@
 import { ViewLayerPageContainer, viewSocialLayerList } from '@comp/context';
 import { TermsOfServicePage } from '@comp/page/termsOfServicePage';
-import type { GetStaticProps, NextPage } from 'next';
+import { createPageProps } from '@lib/pageProps';
+import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 
-const ViewLayerTermsOfService: NextPage = () => {
+const ViewLayerFromTermsOfService: NextPage = () => {
   const router = useRouter();
   return (
     <ViewLayerPageContainer targetLayer={router.query.layer as string}>
@@ -12,17 +13,8 @@ const ViewLayerTermsOfService: NextPage = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {},
-  };
-};
+export const getServerSideProps = createPageProps({
+  layers: viewSocialLayerList,
+});
 
-export async function getStaticPaths() {
-  return {
-    paths: viewSocialLayerList.map((layer) => ({ params: { layer } })),
-    fallback: false, // 指定パス以外なら404を返す
-  };
-}
-
-export default ViewLayerTermsOfService;
+export default ViewLayerFromTermsOfService;

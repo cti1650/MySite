@@ -1,14 +1,15 @@
 import { ViewLayerPageContainer, viewSocialLayerList } from '@comp/context';
 import { SitePage } from '@comp/page/site';
-import { fetchPortfolios, type ResponseData } from '@lib/portfolioApi';
-import type { GetStaticProps, NextPage } from 'next';
+import { createPageProps, fetchSitePageProps } from '@lib/pageProps';
+import type { ResponseData } from '@lib/portfolioApi';
+import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 
 interface SiteProps {
   portfolios: ResponseData;
 }
 
-const ViewLayerSite: NextPage<SiteProps> = ({ portfolios }) => {
+const ViewLayerFromSite: NextPage<SiteProps> = ({ portfolios }) => {
   const router = useRouter();
   return (
     <ViewLayerPageContainer targetLayer={router.query.layer as string}>
@@ -17,31 +18,10 @@ const ViewLayerSite: NextPage<SiteProps> = ({ portfolios }) => {
   );
 };
 
-// SSRの場合
-// export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps = createPageProps({
+  layers: viewSocialLayerList,
+  fetchProps: fetchSitePageProps,
+  sMaxAge: 60 * 5,
+});
 
-// SSGの場合
-export const getStaticProps: GetStaticProps = async () => {
-  let portfolios: ResponseData = [];
-  try {
-    portfolios = await fetchPortfolios();
-  } catch {
-    // fetchPortfolios handles its own error logging
-  }
-
-  return {
-    props: {
-      portfolios: Array.isArray(portfolios) ? portfolios : [],
-    },
-    revalidate: 60 * 5,
-  };
-};
-
-export async function getStaticPaths() {
-  return {
-    paths: viewSocialLayerList.map((layer) => ({ params: { layer } })),
-    fallback: false, // 指定パス以外なら404を返す
-  };
-}
-
-export default ViewLayerSite;
+export default ViewLayerFromSite;

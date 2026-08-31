@@ -14,11 +14,9 @@ export {
 } from './config';
 export {
   useBizPage,
-  useBizPath,
   useLibePage,
   useViewLayer,
   useViewLayerPage,
-  useViewLayerPath,
   useViewLayerRootPath,
 } from './hooks';
 export {

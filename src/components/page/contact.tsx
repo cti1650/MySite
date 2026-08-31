@@ -1,10 +1,8 @@
-import { useViewLayerPath } from '@comp/context';
 import { MantineForm } from '@comp/form/mantineForm';
 import Head from 'next/head';
 import type { FC } from 'react';
 
 export const ContactPage: FC = () => {
-  const path = useViewLayerPath();
   return (
     <div className="w-full h-full font-n2i">
       <Head>
@@ -19,7 +17,6 @@ export const ContactPage: FC = () => {
           property="og:description"
           content="cti1650へのご質問、ご依頼、その他お問い合わせフォームです。"
         />
-        <meta property="og:url" content={path} />
       </Head>
       <div className="h-full w-full px-4 font-n2i">
         <MantineForm />

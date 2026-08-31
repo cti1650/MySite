@@ -1,9 +1,10 @@
 import { ViewLayerPageContainer, viewSocialLayerList } from '@comp/context';
 import { ContactPage } from '@comp/page/contact';
-import type { GetStaticProps, NextPage } from 'next';
+import { createPageProps } from '@lib/pageProps';
+import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 
-const ViewLayerContact: NextPage = () => {
+const ViewLayerFromContact: NextPage = () => {
   const router = useRouter();
   return (
     <ViewLayerPageContainer targetLayer={router.query.layer as string}>
@@ -12,17 +13,8 @@ const ViewLayerContact: NextPage = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {},
-  };
-};
+export const getServerSideProps = createPageProps({
+  layers: viewSocialLayerList,
+});
 
-export async function getStaticPaths() {
-  return {
-    paths: viewSocialLayerList.map((layer) => ({ params: { layer } })),
-    fallback: false, // 指定パス以外なら404を返す
-  };
-}
-
-export default ViewLayerContact;
+export default ViewLayerFromContact;
