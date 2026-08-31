@@ -1,6 +1,6 @@
 import type { GetServerSideProps } from 'next';
-import { fetchContent } from './contentApi';
-import { fetchPortfolios, type ResponseData } from './portfolioApi';
+import { getContent } from './contentApi';
+import { getPortfolios } from './portfolioApi';
 import { CANONICAL_SITE_URL, resolveBaseUrl } from './siteUrl';
 
 /**
@@ -71,7 +71,7 @@ export const createPageProps =
 
 /** 記事一覧ページのデータ取得（Qiita/Zenn） */
 export const fetchContentPageProps = async () => {
-  const result = await fetchContent();
+  const result = await getContent();
 
   if (result.error) {
     // 上流のエラー詳細は露出させず、固定メッセージを返す
@@ -87,11 +87,6 @@ export const fetchContentPageProps = async () => {
 
 /** ポートフォリオ一覧ページのデータ取得 */
 export const fetchSitePageProps = async () => {
-  let portfolios: ResponseData = [];
-  try {
-    portfolios = await fetchPortfolios();
-  } catch {
-    // fetchPortfolios handles its own error logging
-  }
+  const portfolios = await getPortfolios();
   return { portfolios: Array.isArray(portfolios) ? portfolios : [] };
 };

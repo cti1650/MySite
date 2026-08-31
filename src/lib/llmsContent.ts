@@ -1,6 +1,6 @@
 import type { Post } from 'src/types/posts';
-import { fetchContent } from './contentApi';
-import { fetchPortfolios, type ResponseData } from './portfolioApi';
+import { getContent } from './contentApi';
+import { getPortfolios } from './portfolioApi';
 
 /**
  * llms.txt 系エンドポイントの本文生成。
@@ -8,11 +8,8 @@ import { fetchPortfolios, type ResponseData } from './portfolioApi';
  * 以前は各ルートが `${protocol}://${req.headers.host}` に対して自分自身を
  * HTTP fetchしていたが、Hostヘッダ経由のSSRF・キャッシュ汚染の起点になるため
  * データ取得関数を直接呼ぶ形に統一している。
+ * 取得のキャッシュは src/lib/cache.ts の共通実装をページ側と共有する。
  */
-
-const CACHE_TTL_MS = 3600 * 1000;
-
-type Cache<T> = { value: T; fetchedAt: number } | null;
 
 /** 外部データ由来の文字列が行構造を壊さないよう改行を潰す */
 const flatten = (value: unknown): string =>
@@ -51,15 +48,8 @@ Last-Updated: ${lastUpdated}
 - [全文まとめ](${baseUrl}/llms-full.txt): 上記すべてを1ファイルに連結したもの`;
 };
 
-let portfoliosCache: Cache<ResponseData> = null;
-
 export const buildPortfoliosText = async (): Promise<string> => {
-  const now = Date.now();
-  if (!portfoliosCache || now - portfoliosCache.fetchedAt > CACHE_TTL_MS) {
-    portfoliosCache = { value: await fetchPortfolios(), fetchedAt: now };
-  }
-
-  const items = portfoliosCache.value
+  const items = (await getPortfolios())
     .map((portfolio) =>
       [
         '<PortfolioItem>',
@@ -79,10 +69,6 @@ export const buildPortfoliosText = async (): Promise<string> => {
   return `<PortfolioItems>\n${items}</PortfolioItems>`;
 };
 
-type CachedContents = { qiitaPosts: Post[]; zennPosts: Post[] };
-
-let contentsCache: Cache<CachedContents> = null;
-
 const formatPosts = (posts: Post[], source: string): string =>
   posts
     .map((post) =>
@@ -101,22 +87,11 @@ const formatPosts = (posts: Post[], source: string): string =>
     .join('');
 
 export const buildContentsText = async (): Promise<string> => {
-  const now = Date.now();
-  if (!contentsCache || now - contentsCache.fetchedAt > CACHE_TTL_MS) {
-    const contentRes = await fetchContent();
-    if (contentRes.error) {
-      throw new Error(contentRes.error);
-    }
-    contentsCache = {
-      value: {
-        qiitaPosts: contentRes.qiitaPosts,
-        zennPosts: contentRes.zennPosts,
-      },
-      fetchedAt: now,
-    };
+  const { qiitaPosts, zennPosts, error } = await getContent();
+  if (error) {
+    throw new Error(error);
   }
 
-  const { qiitaPosts, zennPosts } = contentsCache.value;
   return `<Contents>\n${formatPosts(qiitaPosts, 'Qiita')}${formatPosts(
     zennPosts,
     'Zenn',

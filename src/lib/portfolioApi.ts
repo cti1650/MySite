@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { createCachedFetcher } from './cache';
 
 export type ResponseData = {
   description: string;
@@ -38,3 +39,12 @@ export async function fetchPortfolios(): Promise<ResponseData> {
     return [];
   }
 }
+
+/**
+ * ページ・llms.txt から使うキャッシュ付き取得。
+ * 取得失敗時は空配列が返るため、最後に成功した一覧を返し続ける。
+ */
+export const getPortfolios = createCachedFetcher(fetchPortfolios, {
+  ttlMs: 300 * 1000,
+  isSuccess: (portfolios) => portfolios.length > 0,
+});
