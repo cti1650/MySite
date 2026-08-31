@@ -1,4 +1,5 @@
 import type { ContentResponse } from 'src/types/posts';
+import { createCachedFetcher } from './cache';
 import { fetchQiita } from './qiitaApi';
 import { fetchZenn } from './zennApi';
 
@@ -30,3 +31,12 @@ export async function fetchContent(): Promise<ContentResponse> {
     };
   }
 }
+
+/**
+ * ページ・llms.txt から使うキャッシュ付き取得。
+ * 上流が落ちている間は最後に成功した記事一覧を返し続ける。
+ */
+export const getContent = createCachedFetcher(fetchContent, {
+  ttlMs: 3600 * 1000,
+  isSuccess: (result) => !result.error,
+});

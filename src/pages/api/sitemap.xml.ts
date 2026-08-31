@@ -1,3 +1,5 @@
+import { buildCacheControl } from '@lib/cache';
+import { resolveBaseUrl } from '@lib/siteUrl';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const STATIC_PATHS = [
@@ -16,10 +18,27 @@ const LLMS_PATHS = [
   '/llms/contents.txt',
 ];
 
+const escapeXml = (value: string): string =>
+  value.replace(
+    /[<>&'"]/g,
+    (char) =>
+      ({
+        '<': '&lt;',
+        '>': '&gt;',
+        '&': '&amp;',
+        "'": '&apos;',
+        '"': '&quot;',
+      })[char] as string,
+  );
+
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const protocol = req.headers['x-forwarded-proto'] || 'http';
-  const host = req.headers.host;
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || `${protocol}://${host}`;
+  if (req.method !== 'GET') {
+    res.setHeader('Allow', 'GET');
+    return res.status(405).end();
+  }
+
+  // アクセスされたドメインが許可済みならそれを、未知のホストならカノニカルURLを使う
+  const baseUrl = escapeXml(resolveBaseUrl(req.headers));
   const lastmod = new Date().toISOString();
 
   const urls = [...STATIC_PATHS, ...LLMS_PATHS]
@@ -40,9 +59,6 @@ ${urls}
 </urlset>`;
 
   res.setHeader('Content-Type', 'application/xml; charset=utf-8');
-  res.setHeader(
-    'Cache-Control',
-    'public, max-age=3600, stale-while-revalidate=60',
-  );
+  res.setHeader('Cache-Control', buildCacheControl(3600));
   res.status(200).send(xml);
 }

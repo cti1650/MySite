@@ -1,7 +1,7 @@
 import { ViewLayerPageContainer, viewLayerList } from '@comp/context';
 import { ContentPage } from '@comp/page/content';
-import { fetchContent } from '@lib/contentApi';
-import type { GetStaticProps, NextPage } from 'next';
+import { createPageProps, fetchContentPageProps } from '@lib/pageProps';
+import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import type { Post } from 'src/types/posts';
 
@@ -20,40 +20,10 @@ const ViewLayerContent: NextPage<ContentPageProps> = (props) => {
   );
 };
 
-export const getStaticProps: GetStaticProps<ContentPageProps> = async () => {
-  try {
-    const result = await fetchContent();
-
-    if ('error' in result) {
-      throw new Error(result.error);
-    }
-
-    return {
-      props: {
-        ...result,
-      },
-      revalidate: 3600,
-    };
-  } catch (error: unknown) {
-    return {
-      props: {
-        qiitaPosts: [],
-        zennPosts: [],
-        error:
-          error instanceof Error
-            ? error.message
-            : '記事の取得中にエラーが発生しました。',
-      },
-      revalidate: 3600,
-    };
-  }
-};
-
-export async function getStaticPaths() {
-  return {
-    paths: viewLayerList.map((layer) => ({ params: { layer } })),
-    fallback: false, // 指定パス以外なら404を返す
-  };
-}
+export const getServerSideProps = createPageProps({
+  layers: viewLayerList,
+  fetchProps: fetchContentPageProps,
+  sMaxAge: 3600,
+});
 
 export default ViewLayerContent;

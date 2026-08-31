@@ -1,9 +1,7 @@
-import { useViewLayerPath } from '@comp/context';
 import Head from 'next/head';
 import type { FC } from 'react';
 
 export const TermsOfServicePage: FC = () => {
-  const path = useViewLayerPath();
   return (
     <div className="container mx-auto max-w-2xl px-4 py-8">
       <Head>
@@ -18,7 +16,6 @@ export const TermsOfServicePage: FC = () => {
           property="og:description"
           content="cti1650が個人開発したポートフォリオに関する利用規約を掲載しています。"
         />
-        <meta property="og:url" content={path} />
       </Head>
 
       <h1 className="text-2xl sm:text-3xl font-bold mb-6">利用規約</h1>

@@ -1,5 +1,6 @@
 import { useViewLayerRootPath } from '@comp/context';
 import { useMantineFormRequest } from '@hooks/useMantineFormRequest';
+import { type ContactFormInput, contactFormSchema } from '@lib/contactSchema';
 import {
   Box,
   Button,
@@ -14,28 +15,13 @@ import { useForm } from '@mantine/form';
 import { zodResolver } from 'mantine-form-zod-resolver';
 import Link from 'next/link';
 import { type FC, useCallback } from 'react';
-import { z } from 'zod';
 import { FormLoading } from './FormLoading';
 import { FormSuccess } from './FormSuccess';
-
-const schema = z.object({
-  name: z.string().min(2, { message: 'お名前は2文字以上入力してください。' }),
-  email: z
-    .string()
-    .email({ message: '有効なメールアドレスを入力してください。' }),
-  summary: z
-    .string()
-    .min(1, { message: 'お問い合わせの種類を選択してください。' }),
-  body: z.string().min(10, { message: '内容は10文字以上入力してください。' }),
-  termsOfService: z.boolean().refine((val) => val === true, {
-    message: 'プライバシーポリシーに同意する必要があります。',
-  }),
-});
 
 export const MantineForm: FC = () => {
   const { success, loading, notionRequest, reset } = useMantineFormRequest();
   const pathPrefix = useViewLayerRootPath();
-  const form = useForm<z.infer<typeof schema>>({
+  const form = useForm<ContactFormInput>({
     initialValues: {
       name: '',
       email: '',
@@ -43,11 +29,11 @@ export const MantineForm: FC = () => {
       body: '',
       termsOfService: false,
     },
-    validate: zodResolver(schema),
+    validate: zodResolver(contactFormSchema),
   });
 
   const handleSubmit = useCallback(
-    (values: z.infer<typeof schema>) => {
+    (values: ContactFormInput) => {
       notionRequest({
         name: values.name,
         email: values.email,
