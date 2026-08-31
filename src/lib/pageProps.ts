@@ -1,4 +1,5 @@
 import type { GetServerSideProps } from 'next';
+import { buildCacheControl } from './cache';
 import { getContent } from './contentApi';
 import { getPortfolios } from './portfolioApi';
 import { CANONICAL_SITE_URL, resolveBaseUrl } from './siteUrl';
@@ -50,10 +51,7 @@ export const createPageProps =
       }
     }
 
-    context.res.setHeader(
-      'Cache-Control',
-      `public, s-maxage=${sMaxAge}, stale-while-revalidate=60`,
-    );
+    context.res.setHeader('Cache-Control', buildCacheControl(sMaxAge));
 
     const origin = resolveBaseUrl(context.req.headers);
     const path = context.resolvedUrl.split('?')[0] || '/';

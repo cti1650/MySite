@@ -1,3 +1,4 @@
+import { buildCacheControl } from '@lib/cache';
 import { resolveBaseUrl } from '@lib/siteUrl';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -58,9 +59,6 @@ ${urls}
 </urlset>`;
 
   res.setHeader('Content-Type', 'application/xml; charset=utf-8');
-  res.setHeader(
-    'Cache-Control',
-    'public, max-age=3600, stale-while-revalidate=60',
-  );
+  res.setHeader('Cache-Control', buildCacheControl(3600));
   res.status(200).send(xml);
 }

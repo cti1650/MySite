@@ -1,3 +1,4 @@
+import { buildCacheControl } from '@lib/cache';
 import { applyPublicCors } from '@lib/cors';
 import {
   buildContentsText,
@@ -33,10 +34,7 @@ ${contentsText}`;
 
     res.setHeader('Content-Type', 'text/plain; charset=utf-8');
     res.setHeader('Content-Length', Buffer.byteLength(content, 'utf8'));
-    res.setHeader(
-      'Cache-Control',
-      'public, max-age=3600, stale-while-revalidate=60',
-    );
+    res.setHeader('Cache-Control', buildCacheControl(3600));
     res.status(200).send(content);
   } catch (e) {
     console.error('llms-full.txt の生成失敗:', e);

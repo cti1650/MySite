@@ -11,6 +11,23 @@
  * - single-flight:          同時アクセスが重なっても上流への呼び出しは1本
  */
 
+/**
+ * CDNが古いレスポンスを返し続けてよい期間（秒）。
+ *
+ * 下記のインメモリキャッシュはサーバーレスインスタンスの寿命で消えるため、
+ * 上流障害に対する本当の耐久層はCDNキャッシュになる。ISRが持っていた
+ * 「生成に失敗しても前回の成果物を返す」性質を再現するため、s-maxage 超過後も
+ * 長時間ステイルを許容し、更新は裏で行わせる。
+ */
+export const STALE_WHILE_REVALIDATE_SECONDS = 60 * 60 * 24;
+
+/**
+ * Cache-Control ヘッダを組み立てる。
+ * ブラウザには都度再検証させ（max-age=0）、CDNで s-maxage 分キャッシュする。
+ */
+export const buildCacheControl = (sMaxAgeSeconds: number): string =>
+  `public, max-age=0, s-maxage=${sMaxAgeSeconds}, stale-while-revalidate=${STALE_WHILE_REVALIDATE_SECONDS}`;
+
 type CacheEntry<T> = { value: T; fetchedAt: number };
 
 type CachedFetcherOptions<T> = {
