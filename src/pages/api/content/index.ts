@@ -1,4 +1,5 @@
 import { fetchContent } from '@lib/contentApi';
+import { applyCors } from '@lib/cors';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import type { ContentResponse } from 'src/types/posts';
 
@@ -6,7 +7,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ContentResponse>,
 ) {
-  if (req.method !== 'GET') return res.status(405).end();
+  if (applyCors(req, res, { methods: ['GET'] })) return;
+  if (req.method !== 'GET') {
+    res.setHeader('Allow', 'GET, OPTIONS');
+    return res.status(405).end();
+  }
 
   try {
     const contentRes = await fetchContent();

@@ -1,3 +1,4 @@
+import { applyCors } from '@lib/cors';
 import { fetchPortfolios } from '@lib/portfolioApi';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -17,14 +18,16 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>,
 ) {
-  if (req.method === 'GET') {
-    try {
-      const portfolios = await fetchPortfolios();
-      res.status(200).json(portfolios);
-    } catch (_e) {
-      res.status(400).json([]);
-    }
-    return;
+  if (applyCors(req, res, { methods: ['GET'] })) return;
+  if (req.method !== 'GET') {
+    res.setHeader('Allow', 'GET, OPTIONS');
+    return res.status(405).end();
   }
-  res.status(200).json([]);
+
+  try {
+    const portfolios = await fetchPortfolios();
+    res.status(200).json(portfolios);
+  } catch (_e) {
+    res.status(400).json([]);
+  }
 }
