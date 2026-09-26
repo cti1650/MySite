@@ -35,6 +35,9 @@ npm run dev
 | `npm run fix` | Biome での自動修正 |
 | `npm run format` | Biome でのフォーマット |
 | `npm run typecheck` | TypeScript の型チェック |
+| `npm test` | Vitest でのテスト実行 |
+| `npm run test:watch` | Vitest の監視実行 |
+| `npm run test:coverage` | カバレッジ付きテスト |
 | `npm run audit` | 依存パッケージの脆弱性チェック |
 | `npm run secretlint` | リポジトリ全体のシークレット混入チェック |
 | `npm run commitlint` | コミットメッセージの形式チェック |
@@ -47,9 +50,14 @@ npm run dev
 
 フック一覧・資格情報検査の詳細・スキップ方法は [docs/git-hooks.md](docs/git-hooks.md) を参照してください。
 
+## テスト
+
+Vitest + happy-dom で実行します。`npm test` で全件実行できます。
+対象の選定方針は [docs/testing.md](docs/testing.md) を参照してください。
+
 ## CI
 
-GitHub Actions で PR と `main` への push に対して lint / typecheck / secretlint / audit / build を実行します。
+GitHub Actions で PR と `main` への push に対して lint / typecheck / test / secretlint / audit / build を実行します。
 詳細は [docs/ci.md](docs/ci.md) を参照してください。
 
 ## 依存関係の更新
@@ -74,7 +82,8 @@ docs/
 ├── dependency-updates.md     # Dependabot / バージョン固定
 ├── environment-variables.md  # 環境変数一覧
 ├── git-hooks.md              # Git フック / 資格情報検査
-└── llms.md                   # LLM対応エンドポイント一覧
+├── llms.md                   # LLM対応エンドポイント一覧
+└── testing.md                # Vitest / テスト方針
 ```
 
 ## LLM 対応

@@ -20,6 +20,8 @@ pre-push:
       run: npm run typecheck
     lint:
       run: npm run lint
+    test:
+      run: npm test
     secretlint:
       run: git ls-files -z | xargs -0 npx secretlint --maskSecrets --secretlintignore .gitignore
     audit:
