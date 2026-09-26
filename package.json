@@ -13,7 +13,9 @@
     "fix": "biome check --write .",
     "format": "biome format --write .",
     "audit": "npm audit",
-    "prepare": "simple-git-hooks"
+    "secretlint": "secretlint --secretlintignore .gitignore \"**/*\"",
+    "commitlint": "commitlint",
+    "prepare": "lefthook install"
   },
   "dependencies": {
     "@mantine/core": "^8.3.15",
@@ -41,12 +43,16 @@
   "description": "Learn how to use Tailwind in a Next.js application,",
   "devDependencies": {
     "@biomejs/biome": "^2.4.4",
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
+    "@secretlint/secretlint-rule-preset-recommend": "^13.0.6",
     "@types/formidable": "^3.4.6",
     "@types/nodemailer": "^8.0.1",
     "@types/react": "^18.3.28",
     "@types/react-dom": "^18.3.7",
+    "lefthook": "^2.1.14",
     "postcss": "^8.5.23",
-    "simple-git-hooks": "^2.13.1",
+    "secretlint": "^13.0.6",
     "typescript": "^5.9.3"
   },
   "_overridesNote": "next が脆弱な postcss 8.4.31 を固定同梱するため、devDependencies の postcss ($postcss) に揃える。next 配下だけに絞り、他の依存の postcss 解決には干渉させない。旧 yarn resolutions の picomatch/nanoid/tailwindcss 系は上流が追従したため不要になった。",
@@ -54,8 +60,5 @@
     "next": {
       "postcss": "$postcss"
     }
-  },
-  "simple-git-hooks": {
-    "pre-commit": "npx biome check --staged --no-errors-on-unmatched --write"
   }
 }

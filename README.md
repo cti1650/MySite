@@ -11,6 +11,7 @@
 - [Tailwind CSS](https://tailwindcss.com/) 3
 - [Mantine](https://mantine.dev/) 8
 - [Biome](https://biomejs.dev/) (lint / format)
+- [Lefthook](https://lefthook.dev/) (Git フック管理) / [secretlint](https://github.com/secretlint/secretlint) / [commitlint](https://commitlint.js.org/)
 - データソース: Notion API / Qiita API / Zenn API
 
 ## セットアップ
@@ -47,6 +48,16 @@ npm run dev
 | `npm run format` | Biome でのフォーマット |
 | `npm run typecheck` | TypeScript の型チェック |
 | `npm run audit` | 依存パッケージの脆弱性チェック |
+| `npm run secretlint` | リポジトリ全体のシークレット混入チェック |
+| `npm run commitlint` | コミットメッセージの形式チェック |
+
+## Git フック
+
+[Lefthook](https://lefthook.dev/) で pre-commit / commit-msg / pre-push を管理しています。
+`npm ci` / `npm install` 時に自動インストールされます。
+コミットメッセージは [Conventional Commits](https://www.conventionalcommits.org/) 形式です。
+
+フック一覧・資格情報検査の詳細・スキップ方法は [docs/git-hooks.md](docs/git-hooks.md) を参照してください。
 
 ## ディレクトリ構成
 
@@ -60,6 +71,9 @@ src/
 ├── lib/          # 外部API連携 (Notion/Qiita/Zenn)
 ├── hooks/        # カスタムフック
 └── types/        # 型定義
+
+docs/
+└── git-hooks.md  # Git フック / 資格情報検査
 ```
 
 ## LLM 対応
