@@ -52,6 +52,10 @@ npm run dev
 GitHub Actions で PR と `main` への push に対して lint / typecheck / secretlint / audit / build を実行します。
 詳細は [docs/ci.md](docs/ci.md) を参照してください。
 
+## 依存関係の更新
+
+Dependabot で週次更新します。方針は [docs/dependency-updates.md](docs/dependency-updates.md) を参照してください。
+
 ## ディレクトリ構成
 
 ```
@@ -67,6 +71,7 @@ src/
 
 docs/
 ├── ci.md                     # GitHub Actions CI
+├── dependency-updates.md     # Dependabot / バージョン固定
 ├── environment-variables.md  # 環境変数一覧
 ├── git-hooks.md              # Git フック / 資格情報検査
 └── llms.md                   # LLM対応エンドポイント一覧
