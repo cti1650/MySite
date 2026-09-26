@@ -5,6 +5,7 @@
 
 ## 技術スタック
 
+- Node.js 24 以上 / npm (パッケージマネージャは npm に統一)
 - [Next.js](https://nextjs.org/) 15 (Pages Router)
 - React 18 / TypeScript 5
 - [Tailwind CSS](https://tailwindcss.com/) 3
@@ -15,9 +16,9 @@
 ## セットアップ
 
 ```bash
-yarn install
-cp .env.local.example .env.local  # 未配置の場合は下記を参考に作成
-yarn dev
+npm ci
+cp .env.example .env.local  # 値は下記を参考に設定
+npm run dev
 ```
 
 ### 環境変数
@@ -38,14 +39,14 @@ yarn dev
 
 | コマンド | 内容 |
 | --- | --- |
-| `yarn dev` | 開発サーバー起動 |
-| `yarn build` | プロダクションビルド |
-| `yarn start` | プロダクションサーバー起動 |
-| `yarn lint` | Biome でのチェック |
-| `yarn fix` | Biome での自動修正 |
-| `yarn format` | Biome でのフォーマット |
-| `yarn typecheck` | TypeScript の型チェック |
-| `yarn audit` | 依存パッケージの脆弱性チェック |
+| `npm run dev` | 開発サーバー起動 |
+| `npm run build` | プロダクションビルド |
+| `npm start` | プロダクションサーバー起動 |
+| `npm run lint` | Biome でのチェック |
+| `npm run fix` | Biome での自動修正 |
+| `npm run format` | Biome でのフォーマット |
+| `npm run typecheck` | TypeScript の型チェック |
+| `npm run audit` | 依存パッケージの脆弱性チェック |
 
 ## ディレクトリ構成
 

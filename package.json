@@ -1,6 +1,9 @@
 {
   "name": "nextjs-tailwindcss",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -9,7 +12,7 @@
     "lint": "biome check .",
     "fix": "biome check --write .",
     "format": "biome format --write .",
-    "audit": "yarn audit",
+    "audit": "npm audit",
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
@@ -46,13 +49,11 @@
     "simple-git-hooks": "^2.13.1",
     "typescript": "^5.9.3"
   },
-  "_resolutionsNote": "ビルド時のみ使う推移的依存の脆弱性解消。picomatchはv2系の利用元だけを指定する（tinyglobbyが必要とするv4系は当該CVEの影響外のため巻き込まない）",
-  "resolutions": {
-    "picomatch": "^2.3.2",
-    "**/tinyglobby/picomatch": "^4.0.3",
-    "**/next/postcss": "^8.5.23",
-    "**/tailwindcss/postcss": "^8.5.23",
-    "**/postcss/nanoid": "^3.3.18"
+  "_overridesNote": "next が脆弱な postcss 8.4.31 を固定同梱するため、devDependencies の postcss ($postcss) に揃える。next 配下だけに絞り、他の依存の postcss 解決には干渉させない。旧 yarn resolutions の picomatch/nanoid/tailwindcss 系は上流が追従したため不要になった。",
+  "overrides": {
+    "next": {
+      "postcss": "$postcss"
+    }
   },
   "simple-git-hooks": {
     "pre-commit": "npx biome check --staged --no-errors-on-unmatched --write"
