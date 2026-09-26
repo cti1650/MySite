@@ -18,23 +18,11 @@
 
 ```bash
 npm ci
-cp .env.example .env.local  # 値は下記を参考に設定
+cp .env.example .env.local  # 値は docs/environment-variables.md を参考に設定
 npm run dev
 ```
 
-### 環境変数
-
-| 変数名 | 用途 |
-| --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | 本番URL (sitemap.xml 等で使用するカノニカルURL) |
-| `ALLOWED_HOSTS` | 追加で公開するドメイン (カンマ区切り、`*.example.com` のワイルドカード可) |
-| `NOTION_BACKEND_ENDPOINT` | Notion 取得用バックエンドのエンドポイント |
-| `NOTION_KEY` | Notion API トークン |
-| `NOTION_DATABASE_ID` | ポートフォリオDBのID |
-| `NOTION_CONTACT_DATABASE_ID` | お問い合わせ保存先DBのID |
-| `QIITA_ACCESS_TOKEN` | Qiita 記事取得用トークン |
-| `YOUR_ZENN_USERNAME` | Zenn ユーザー名 |
-| `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` | GA 測定ID (任意) |
+環境変数の一覧は [docs/environment-variables.md](docs/environment-variables.md) を参照してください。
 
 ## スクリプト
 
@@ -73,19 +61,14 @@ src/
 └── types/        # 型定義
 
 docs/
-└── git-hooks.md  # Git フック / 資格情報検査
+├── environment-variables.md  # 環境変数一覧
+├── git-hooks.md              # Git フック / 資格情報検査
+└── llms.md                   # LLM対応エンドポイント一覧
 ```
 
 ## LLM 対応
 
-LLMクローラー向けに以下のエンドポイントを提供しています:
-
-- [`/llms.txt`](https://cti1650-portfolio-site.vercel.app/llms.txt) — サイト概要・プロフィール・参照先リスト
-- [`/llms-full.txt`](https://cti1650-portfolio-site.vercel.app/llms-full.txt) — 上記 + ポートフォリオ一覧 + 記事一覧を1ファイルに連結
-- [`/llms/portfolios.txt`](https://cti1650-portfolio-site.vercel.app/llms/portfolios.txt) — ポートフォリオ詳細
-- [`/llms/contents.txt`](https://cti1650-portfolio-site.vercel.app/llms/contents.txt) — Qiita/Zenn 記事一覧
-- [`/sitemap.xml`](https://cti1650-portfolio-site.vercel.app/sitemap.xml)
-- [`/robots.txt`](https://cti1650-portfolio-site.vercel.app/robots.txt) — 主要LLMクローラーを明示的に許可
+LLMクローラー向けに `/llms.txt` 等のエンドポイントを提供しています。詳細は [docs/llms.md](docs/llms.md) を参照してください。
 
 ## デプロイ
 
