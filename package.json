@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-tailwindcss",
+  "name": "cti1650-portfolio-site",
   "version": "1.0.0",
   "engines": {
     "node": ">=24"
@@ -42,8 +42,19 @@
     "zod": "^4.4.3"
   },
   "license": "ISC",
-  "keywords": [],
-  "description": "Learn how to use Tailwind in a Next.js application,",
+  "keywords": [
+    "portfolio",
+    "nextjs",
+    "react",
+    "typescript",
+    "tailwindcss",
+    "mantine",
+    "notion-api",
+    "qiita",
+    "zenn",
+    "vercel"
+  ],
+  "description": "cti1650 のポートフォリオサイト。個人開発プロジェクトと Qiita / Zenn の技術記事をまとめています。",
   "devDependencies": {
     "@biomejs/biome": "^2.4.4",
     "@commitlint/cli": "^21.2.3",
