@@ -1,7 +1,7 @@
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import 'styles/mantineBase.css';
-import 'tailwindcss/tailwind.css';
+import 'styles/globals.css';
 
 import { ViewLayerProvider } from '@comp/context';
 import { Layout } from '@comp/layout/layoutSub';
