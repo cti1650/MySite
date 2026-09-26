@@ -2,7 +2,7 @@
   "name": "nextjs-tailwindcss",
   "version": "1.0.0",
   "engines": {
-    "node": "24.x"
+    "node": ">=24"
   },
   "scripts": {
     "dev": "next",

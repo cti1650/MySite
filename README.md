@@ -5,7 +5,7 @@
 
 ## 技術スタック
 
-- Node.js 24.x / npm (パッケージマネージャは npm に統一)
+- Node.js 24 以上 / npm (パッケージマネージャは npm に統一)
 - [Next.js](https://nextjs.org/) 15 (Pages Router)
 - React 18 / TypeScript 5
 - [Tailwind CSS](https://tailwindcss.com/) 3
