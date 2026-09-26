@@ -9,10 +9,11 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    # github-actions は semver 前提のエコシステムではないため semver-*-days は使えない
+    # (指定すると設定ファイル全体が解析エラーになる)。段階を分けられないので、
+    # レビューなしで自動マージされる点を踏まえ一律 7 日待つ
     cooldown:
-      semver-major-days: 30
-      semver-minor-days: 7
-      semver-patch-days: 3
+      default-days: 7
     commit-message:
       prefix: chore
     groups:
