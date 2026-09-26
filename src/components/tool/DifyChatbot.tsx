@@ -1,4 +1,4 @@
-import { type OS, useOs } from '@mantine/hooks';
+import { type UseOSReturnValue, useOs } from '@mantine/hooks';
 import { useEffect } from 'react';
 
 type Global = (Window & typeof globalThis) & {
@@ -9,7 +9,8 @@ type Global = (Window & typeof globalThis) & {
 
 const DifyChatbot = () => {
   const token = process.env.NEXT_PUBLIC_DIFY_TOKEN;
-  const os: OS = useOs();
+  // Mantine 9 で OS 型が UseOSReturnValue に改名された
+  const os: UseOSReturnValue = useOs();
 
   useEffect(() => {
     if (!os || ['ios'].includes(os)) return;
