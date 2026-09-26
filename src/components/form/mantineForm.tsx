@@ -12,7 +12,7 @@ import {
   TextInput,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { zodResolver } from 'mantine-form-zod-resolver';
+import { zod4Resolver } from 'mantine-form-zod-resolver';
 import Link from 'next/link';
 import { type FC, useCallback } from 'react';
 import { FormLoading } from './FormLoading';
@@ -29,7 +29,9 @@ export const MantineForm: FC = () => {
       body: '',
       termsOfService: false,
     },
-    validate: zodResolver(contactFormSchema),
+    // zod 4 で ZodError.errors が削除されたため、.issues を読む zod4Resolver を使う。
+    // zodResolver(v3向け) は zod 4 のスキーマを渡しても型が通るが、検証失敗時に実行時例外になる
+    validate: zod4Resolver(contactFormSchema),
   });
 
   const handleSubmit = useCallback(
