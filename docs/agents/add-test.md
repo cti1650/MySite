@@ -91,12 +91,24 @@ vi.mock('./contentApi', () => ({ getContent }));
 `vi.waitFor` を使います。フェイクタイマーと併用する場合、`vi.advanceTimersByTime` で
 TTL を超えさせてから検証します。実例は [src/lib/cache.test.ts](../../src/lib/cache.test.ts)。
 
+### 7. happy-dom に無い DOM API を無防備に呼ぶ依存
+
+Mantine 9 の Textarea は autosize を自前実装に差し替えており、描画時に
+`document.fonts.addEventListener('loadingdone', ...)` を呼びます。happy-dom は
+FontFaceSet API (`document.fonts`) を実装していないため、autosize 付き
+Textarea を含む画面を描画すると
+`Cannot read properties of undefined (reading 'addEventListener')` で落ちます。
+
+環境側の不足なので、[vitest.setup.ts](../../vitest.setup.ts) でスタブしています。
+新しく落ちる DOM API が出た場合も、プロダクションコードではなくここに足してください。
+
 ## Mantine を使うコンポーネント
 
-`src/components/form/` と `src/components/page/content.tsx`、
+`src/components/form/`、`src/components/page/content.tsx`、
 `src/components/tool/DifyChatbot.tsx` は Mantine に依存します。描画には
-`MantineProvider` でのラップが必要です。現状これらのテストは未整備なので、
-追加する場合はラッパーを用意してください。
+`MantineProvider` でのラップが必要です。`src/components/form/` は
+[mantineForm.test.tsx](../../src/components/form/mantineForm.test.tsx) で
+整備済みです。他はまだ未整備なので、追加する場合はラッパーを用意してください。
 
 ## パスエイリアスを増やした場合
 

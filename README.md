@@ -6,10 +6,10 @@
 ## 技術スタック
 
 - Node.js 24 以上 / npm (パッケージマネージャは npm に統一)
-- [Next.js](https://nextjs.org/) 15 (Pages Router)
-- React 18 / TypeScript 5
-- [Tailwind CSS](https://tailwindcss.com/) 3
-- [Mantine](https://mantine.dev/) 8
+- [Next.js](https://nextjs.org/) 16 (Pages Router)
+- React 19 / TypeScript 5
+- [Tailwind CSS](https://tailwindcss.com/) 4
+- [Mantine](https://mantine.dev/) 9
 - [Biome](https://biomejs.dev/) (lint / format)
 - [Lefthook](https://lefthook.dev/) (Git フック管理) / [secretlint](https://github.com/secretlint/secretlint) / [commitlint](https://commitlint.js.org/)
 - データソース: Notion API / Qiita API / Zenn API
