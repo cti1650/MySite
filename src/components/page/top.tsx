@@ -3,12 +3,14 @@ import { TitleBox } from '@comp/title/TitleBox';
 import DifyChatbot from '@comp/tool/DifyChatbot';
 import { useAge } from '@hooks/useAge';
 import HeroImageUrl from '@img/084AME0226.jpg.webp';
+import { profile, qualifications, skillset, toDisplayList } from '@lib/profile';
 import Head from 'next/head';
 import Image from 'next/image';
 import type { FC } from 'react';
 
 export const TopPage: FC = () => {
-  const [age] = useAge(1992, 1, 25);
+  const { year, month, date } = profile.birthday;
+  const [age] = useAge(year, month, date);
 
   return (
     <div className="h-full w-full font-n2i flex justify-center items-center">
@@ -30,17 +32,15 @@ export const TopPage: FC = () => {
           />
           <ProfListBox
             profList={[
-              { title: 'Name', description: 'Yuichi Sakagami' },
-              { title: 'Birthday', description: `1992年1月25日 ( ${age}歳 )` },
+              { title: 'Name', description: profile.name },
               {
-                title: 'Skillset',
-                description:
-                  'HTML, JavaScript, CSS, React.js, Next.js, Tailwind.css, React Native, Expo, Python, PHP, VBA, GAS, Chrome拡張機能開発',
+                title: 'Birthday',
+                description: `${year}年${month}月${date}日 ( ${age}歳 )`,
               },
+              { title: 'Skillset', description: toDisplayList(skillset) },
               {
                 title: 'Qualification & Tools',
-                description:
-                  'ITパスポート, VBA Expert Standard(Excel), GitHub, VSCode',
+                description: toDisplayList(qualifications),
               },
             ]}
             className="pl-4 sm:pl-12"

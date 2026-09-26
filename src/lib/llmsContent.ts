@@ -1,6 +1,13 @@
 import type { Post } from 'src/types/posts';
 import { getContent } from './contentApi';
 import { getPortfolios } from './portfolioApi';
+import {
+  birthdayIso,
+  profile,
+  qualifications,
+  skillset,
+  toDisplayList,
+} from './profile';
 
 /**
  * llms.txt 系エンドポイントの本文生成。
@@ -24,16 +31,16 @@ export const buildIndexText = (baseUrl: string): string => {
 
   return `# cti1650 Portfolio
 
-> Yuichi Sakagami (cti1650) のポートフォリオサイト。個人開発したChrome拡張機能・Webアプリ・ツール類と、Qiita/Zennで公開している技術記事をまとめています。
+> ${profile.name} (${profile.handle}) のポートフォリオサイト。個人開発したChrome拡張機能・Webアプリ・ツール類と、Qiita/Zennで公開している技術記事をまとめています。
 
 Last-Updated: ${lastUpdated}
 
 ## プロフィール
-- Name: Yuichi Sakagami
-- Handle: cti1650
-- Birthday: 1992-01-25
-- Skillset: HTML, JavaScript, TypeScript, CSS, React.js, Next.js, Tailwind CSS, React Native, Expo, Python, PHP, VBA, GAS, Chrome拡張機能開発
-- Qualifications & Tools: ITパスポート, VBA Expert Standard(Excel), GitHub, VSCode
+- Name: ${profile.name}
+- Handle: ${profile.handle}
+- Birthday: ${birthdayIso()}
+- Skillset: ${toDisplayList(skillset)}
+- Qualifications & Tools: ${toDisplayList(qualifications)}
 
 ## リンク
 - [Site](${baseUrl}/): ポートフォリオサイト本体
