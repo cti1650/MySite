@@ -61,10 +61,11 @@ npm ci
 | zod | `contactSchema.test.ts`（境界値とエラー文言を固定済み） |
 | Tailwind | `TitleBox.test.tsx`（付与されるクラスを固定済み） |
 | Next | 直接のテストは無い。`npm run build` と Vercel のプレビューで見る |
-| Mantine | 直接のテストは無い（Mantine 依存コンポーネントは未整備）。プレビューで目視 |
+| Mantine | `mantineForm.test.tsx`（resolver との組み合わせ）。他の Mantine 依存コンポーネントは未整備 |
 
-**テストが通っても安心できない対象**があります。Next と Mantine はテストが薄いので、
-Vercel のプレビューデプロイで実際の画面を確認してください。
+**テストが通っても安心できない対象**があります。Next とほとんどの Mantine 依存
+コンポーネントはテストが薄いので、Vercel のプレビューデプロイで実際の画面を
+確認してください。
 
 ### 4. 破壊的変更を調べる
 
@@ -91,17 +92,26 @@ major の場合は changelog / migration guide を読みます。とくに次を
 影響範囲が独立しているものから当てます。同時に複数を当てると、失敗したときに
 どちらが原因か分からなくなります。
 
-現在の目安（2026-09 時点で待機中のもの）:
-
-1. **React 19** — 検証済み。テスト187件・typecheck・build がすべて通ることを確認済み
-   （Next 15 + Mantine 8 の組み合わせで）
-2. **Mantine** — React に追従する必要があるため React の後
-3. **zod 4** — `contactSchema.test.ts` が守っている。`.email()` が非推奨化される点に注意
-4. **Tailwind 4** — 設定形式が CSS ベースに変わる大きめの移行。`TitleBox.test.tsx` が
-   クラス付与を守っている
-5. **Next 16** — 影響が最も広い。他が落ち着いてから
-
 この順序は絶対ではありません。上流の状況を見て判断してください。
+
+### 実例（2026-09、React 19 / Next 16 / zod 4 / Mantine 9 / Tailwind 4 を適用した際）
+
+- **peer dependency の順序に依存関係がある。** Mantine 9 は peer で
+  `react ^19.2.0` を要求するため、React を先に上げないと `npm ci` が
+  ERESOLVE で失敗した
+- **4つのコマンドが揃って通っても壊れることがある。** zod 4 で
+  `ZodError.errors` が削除され、`mantine-form-zod-resolver` の `zodResolver`
+  (v3向け) は型は通るが実行時に例外を投げた。フォームにテストが無かったため
+  検知できず、テストを追加して初めて判明した（動作確認のログは
+  [PR #16](https://github.com/cti1650/MySite/pull/16) を参照）
+- **ブランチを作り直すときは、その時点の最新のマージ先を基点にする。**
+  検証済みの状態から別の major を先にマージすると、その後に作る PR が
+  古い基点のままだと新しい組み合わせが一度も CI に乗らない
+  （Mantine 9 の PR を React 19 マージ前の基点で作り直した結果、
+  Mantine 9 が変更した Textarea の autosize 実装と、後から入った zod 4 対応の
+  フォームテストの組み合わせが未検証のまま両方マージされ、happy-dom の
+  `document.fonts` 未実装が原因で `main` の test が一時的に落ちた。
+  [PR #23](https://github.com/cti1650/MySite/pull/23) で復旧）
 
 ## PRにコメントを残す
 

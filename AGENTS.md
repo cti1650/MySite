@@ -8,7 +8,7 @@ Claude Code は [CLAUDE.md](CLAUDE.md) 経由でこのファイルを読み込�
 
 ## プロジェクト概要
 
-Next.js 15（Pages Router）の個人ポートフォリオサイト。Notion / Qiita / Zenn から
+Next.js 16（Pages Router）の個人ポートフォリオサイト。Notion / Qiita / Zenn から
 データを取得し、Vercel で `main` から自動デプロイされます。
 
 全ページが `getServerSideProps` のみを使い、`getStaticProps` / `getStaticPaths` は

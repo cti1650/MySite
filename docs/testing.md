@@ -38,6 +38,7 @@
 | [ContentFilter.tsx](../src/components/context/ContentFilter.tsx) | 祖先レイヤーの継承による表示/非表示の判定 |
 | [ViewLayerProvider.tsx](../src/components/context/ViewLayerProvider.tsx) | context の伝播、`useViewLayerPage` の effect、StrictMode での二重実行 |
 | [TitleBox.tsx](../src/components/title/TitleBox.tsx) | props の既定値と size / color バリアントで付与されるクラス |
+| [mantineForm.tsx](../src/components/form/mantineForm.tsx) | zod スキーマと resolver の組み合わせが検証失敗時に例外を投げないこと |
 | [useAge.ts](../src/hooks/useAge.ts) | 誕生日前後・うるう年の年齢計算 |
 | [usePageView.ts](../src/hooks/usePageView.ts) | ルーターイベントの購読と**アンマウント時の解除** |
 
