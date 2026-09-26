@@ -10,7 +10,8 @@ module.exports = {
         'mantine-breakpoint-xl': '88em',
       },
     },
-    tailwindcss: {},
-    autoprefixer: {},
+    // Tailwind 4 では PostCSS プラグインが本体から分離された。
+    // ベンダープレフィックスは Tailwind 側が面倒を見るため autoprefixer は不要
+    '@tailwindcss/postcss': {},
   },
 };

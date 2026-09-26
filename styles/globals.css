@@ -1,4 +1,18 @@
 /* ./styles/globals.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+/*
+ * Tailwind 4 のエントリ。`@import 'tailwindcss'` は theme / preflight / utilities を
+ * まとめて取り込むが、**preflight は意図的に外している**。
+ *
+ * Tailwind 3 では corePlugins.preflight = false で無効化し、Mantine のスタイルを
+ * 壊さない範囲だけを styles/mantineBase.css に写して @layer mantineBase に入れていた。
+ * Tailwind 4 で corePlugins が廃止されたため、レイヤーを個別に import することで
+ * 同じ状態を保つ。preflight.css を足すと Mantine の見た目が崩れる。
+ *
+ * @config は Tailwind 4 が JS 設定を自動検出しなくなったため必須。
+ * 外すと tailwind.config.js の fontFamily(font-n2i) が生成されない。
+ */
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@config '../tailwind.config.js';
