@@ -20,11 +20,42 @@ npx lefthook install
 | `commit-msg` | `commitlint` | コミットメッセージの形式チェック |
 | `pre-push` | `typecheck` | `tsc --noEmit` |
 | `pre-push` | `lint` | `biome check .` |
+| `pre-push` | `test` | `vitest run` |
 | `pre-push` | `secretlint` | Git 追跡下の全ファイルを対象に資格情報混入を再チェック |
 | `pre-push` | `audit` | `npm audit --audit-level=high` で dependencies の脆弱性・悪性パッケージ勧告をチェック |
 
 各フック内のコマンドは `parallel: true` で並列実行されます
 (`commit-msg` はコマンドが1つのため指定なし)。
+
+## pre-push が丸ごとスキップされる条件
+
+lefthook は pre-push の対象を **「現在の HEAD と、その追跡ブランチの差分」**から決めます。
+push するブランチを refspec で指定しても、判定に使われるのは *現在チェックアウト中の
+ブランチ* です。そのため、**別ブランチに居ながら refspec で push すると
+pre-push の全コマンドが `(skip) no matching push files` で飛びます。**
+
+```bash
+# main に居る状態で別ブランチを push → 5コマンド全部スキップされる
+git switch main
+git push origin some-branch:refs/heads/some-branch   # ← 検査されない
+
+# 対象ブランチに checkout してから push → 正常に全部走る
+git switch some-branch
+git push origin some-branch
+```
+
+lefthook 2.1.14 時点で、この判定を設定で無効化するオプションはありません
+(`files:` を足しても push files が空なら先にスキップされる)。通常の
+「checkout → commit → push」では期待どおり全コマンドが走るため、設定は変更せず
+**運用上の注意として残します**。
+
+同じ検査は [CI](ci.md) でも走るので、この経路で push したものが未検査のまま
+`main` に入ることはありません。意図的に refspec で push する場合は、
+手元で明示的に実行してください。
+
+```bash
+npx lefthook run pre-push --force
+```
 
 ## コミットメッセージ
 

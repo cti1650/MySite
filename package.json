@@ -62,11 +62,5 @@
     "secretlint": "^13.0.6",
     "typescript": "^5.9.3",
     "vitest": "^5.0.2"
-  },
-  "_overridesNote": "next が脆弱な postcss 8.4.31 を固定同梱するため、devDependencies の postcss ($postcss) に揃える。next 配下だけに絞り、他の依存の postcss 解決には干渉させない。旧 yarn resolutions の picomatch/nanoid/tailwindcss 系は上流が追従したため不要になった。",
-  "overrides": {
-    "next": {
-      "postcss": "$postcss"
-    }
   }
 }
