@@ -1,14 +1,81 @@
 version: 2
+
+# cooldown: リリース直後の巻き戻しを避けるため、公開から一定日数が経った版のみ提案させる
+# groups: 関連パッケージは1PRにまとめ、同時に上げないと壊れる組み合わせを分断しない
 updates:
   # ワークフローの uses は commit SHA で固定しているため、手動追従せず
   # Dependabot に SHA と末尾のバージョンコメントをまとめて更新させる
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: monthly
+      interval: weekly
+    cooldown:
+      semver-major-days: 30
+      semver-minor-days: 7
+      semver-patch-days: 3
     commit-message:
       prefix: chore
     groups:
       github-actions:
         patterns:
           - "*"
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      semver-major-days: 30
+      semver-minor-days: 7
+      semver-patch-days: 3
+    commit-message:
+      prefix: chore
+    # package.json の ^ range は広いままにし、範囲を外れる時だけ書き換える
+    # (範囲内の更新は package-lock.json のみの変更になる)
+    versioning-strategy: increase-if-necessary
+    # CI で互換性を保証しにくいものは手動更新とする
+    # NOTE: ignore 対象は security update も提案されない。脆弱性は CI の
+    #       npm audit --audit-level=high で検知する
+    ignore:
+      - dependency-name: typescript
+      - dependency-name: "@biomejs/*"
+    # 上から順に評価され、最初に一致したグループに割り当てられる
+    groups:
+      react:
+        patterns:
+          - react
+          - react-dom
+          - "@types/react"
+          - "@types/react-dom"
+      # resolver 側は zod のメジャーに追従して版が分かれるため、zod と同じPRで上げる
+      zod:
+        patterns:
+          - zod
+          - mantine-form-zod-resolver
+      mantine:
+        patterns:
+          - "@mantine/*"
+          - postcss-preset-mantine
+      tailwind-postcss:
+        patterns:
+          - tailwindcss
+          - postcss
+          - postcss-simple-vars
+          - autoprefixer
+        update-types:
+          - minor
+          - patch
+      lint-hooks:
+        patterns:
+          - lefthook
+          - secretlint
+          - "@secretlint/*"
+          - "@commitlint/*"
+        update-types:
+          - patch
+      types:
+        patterns:
+          - "@types/*"
+        update-types:
+          - minor
+          - patch
