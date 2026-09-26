@@ -6,3 +6,8 @@
 
 .DS_Store
 *.tsbuildinfo
+
+# next build と next dev で参照先が変わる自動生成ファイル。
+# 追跡するとコマンドを実行するたびに差分が出るため追跡しない。
+# typecheck の前に next typegen で生成する (package.json)
+next-env.d.ts
