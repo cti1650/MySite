@@ -1,6 +1,7 @@
 {
   "name": "cti1650-portfolio-site",
   "version": "1.0.0",
+  "private": true,
   "engines": {
     "node": ">=24"
   },
