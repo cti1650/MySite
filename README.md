@@ -78,6 +78,7 @@ src/
 └── types/        # 型定義
 
 docs/
+├── agents/                   # エージェント向け playbook
 ├── ci.md                     # GitHub Actions CI
 ├── dependency-updates.md     # Dependabot / バージョン固定
 ├── environment-variables.md  # 環境変数一覧
@@ -89,6 +90,13 @@ docs/
 ## LLM 対応
 
 LLMクローラー向けに `/llms.txt` 等のエンドポイントを提供しています。詳細は [docs/llms.md](docs/llms.md) を参照してください。
+
+## コーディングエージェント
+
+Claude Code と Codex CLI の両方で使える設定をリポジトリに含めています。
+指示の実体は [AGENTS.md](AGENTS.md) の1ファイルで、[CLAUDE.md](CLAUDE.md) が
+それを取り込みます。作業手順は [docs/agents/](docs/agents/) にあり、
+`.claude/skills/` と `.codex/skills/` の両方から参照されます。
 
 ## デプロイ
 
