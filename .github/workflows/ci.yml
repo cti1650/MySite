@@ -39,6 +39,9 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+      - name: Test
+        run: npm test
+
       # --maskSecrets で検出値が CI ログに残らないようにする
       - name: Secretlint
         run: git ls-files -z | xargs -0 npx secretlint --maskSecrets --secretlintignore .gitignore

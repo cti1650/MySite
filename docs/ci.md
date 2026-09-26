@@ -18,6 +18,7 @@ GitHub Actions で実行しています。設定は [.github/workflows/ci.yml](.
 | --- | --- |
 | Lint | `npm run lint` |
 | Typecheck | `npm run typecheck` |
+| Test | `npm test`（Vitest / 詳細は [testing.md](testing.md)） |
 | Secretlint | `git ls-files` で列挙した全ファイルを `--maskSecrets` 付きで検査 |
 | Audit | `npm audit --audit-level=high` |
 | Build | `npm run build` |
