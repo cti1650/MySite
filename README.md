@@ -47,6 +47,11 @@ npm run dev
 
 フック一覧・資格情報検査の詳細・スキップ方法は [docs/git-hooks.md](docs/git-hooks.md) を参照してください。
 
+## CI
+
+GitHub Actions で PR と `main` への push に対して lint / typecheck / secretlint / audit / build を実行します。
+詳細は [docs/ci.md](docs/ci.md) を参照してください。
+
 ## ディレクトリ構成
 
 ```
@@ -61,6 +66,7 @@ src/
 └── types/        # 型定義
 
 docs/
+├── ci.md                     # GitHub Actions CI
 ├── environment-variables.md  # 環境変数一覧
 ├── git-hooks.md              # Git フック / 資格情報検査
 └── llms.md                   # LLM対応エンドポイント一覧

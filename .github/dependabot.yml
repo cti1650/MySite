@@ -1,0 +1,14 @@
+version: 2
+updates:
+  # ワークフローの uses は commit SHA で固定しているため、手動追従せず
+  # Dependabot に SHA と末尾のバージョンコメントをまとめて更新させる
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: chore
+    groups:
+      github-actions:
+        patterns:
+          - "*"

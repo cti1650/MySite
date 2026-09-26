@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# 既定の GITHUB_TOKEN は読み取りのみに絞る
+permissions:
+  contents: read
+
+# 同一ブランチへの連続 push では古い実行を打ち切る (main は打ち切らない)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      # uses は全て commit SHA で固定する (タグは付け替え可能なため)
+      # バージョン更新は .github/dependabot.yml の github-actions で追従する
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # 以降は lefthook の pre-push と同じ検査を CI 側でも再実行する
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      # --maskSecrets で検出値が CI ログに残らないようにする
+      - name: Secretlint
+        run: git ls-files -z | xargs -0 npx secretlint --maskSecrets --secretlintignore .gitignore
+
+      - name: Audit
+        run: npm audit --audit-level=high
+
+      - name: Build
+        run: npm run build
