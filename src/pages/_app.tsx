@@ -7,13 +7,16 @@ import { ViewLayerProvider } from '@comp/context';
 import { Layout } from '@comp/layout/layoutSub';
 import { usePageView } from '@hooks/usePageView';
 import type { SiteMetaProps } from '@lib/pageProps';
-import { skillset, toMetaKeywords } from '@lib/profile';
+import { profile, skillset, toMetaKeywords } from '@lib/profile';
 import { createTheme, MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 
 const theme = createTheme({});
+
+/** description / og:description で共用する紹介文 */
+const siteDescription = `${profile.headline} ${profile.description}`;
 
 const TailwindApp = ({ Component, pageProps }: AppProps) => {
   usePageView();
@@ -49,16 +52,10 @@ const TailwindApp = ({ Component, pageProps }: AppProps) => {
           name="viewport"
           content="width=device-width,initial-scale=1.0,minimum-scale=1.0"
         />
-        <meta
-          name="description"
-          content="cti1650のポートフォリオサイトです。"
-        />
+        <meta name="description" content={siteDescription} />
         <meta name="keywords" content={toMetaKeywords(skillset)}></meta>
         <meta property="og:title" content="cti1650 Portfolio" />
-        <meta
-          property="og:description"
-          content="cti1650のポートフォリオサイトです。"
-        />
+        <meta property="og:description" content={siteDescription} />
         <meta property="og:type" content="website" />
         {/* 各ドメインを独立したサイトとして扱うため、og:url も canonical も
             アクセス先ドメインを指す。 */}

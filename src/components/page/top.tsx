@@ -30,6 +30,15 @@ export const TopPage: FC = () => {
             subTitle="私について"
             size="big"
           />
+          <div className="pl-4 sm:pl-12 pb-2">
+            {/* 日本語が語中で折れないよう文節単位で改行する(非対応ブラウザは既定動作) */}
+            <p className="text-lg text-gray-800 leading-relaxed [word-break:auto-phrase]">
+              {profile.headline}
+            </p>
+            <p className="pt-2 text-sm text-gray-600 leading-relaxed [word-break:auto-phrase]">
+              {profile.description}
+            </p>
+          </div>
           <ProfListBox
             profList={[
               { title: 'Name', description: profile.name },

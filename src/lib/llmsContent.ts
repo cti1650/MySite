@@ -38,6 +38,7 @@ Last-Updated: ${lastUpdated}
 ## プロフィール
 - Name: ${profile.name}
 - Handle: ${profile.handle}
+- Headline: ${profile.headline} ${profile.description}
 - Birthday: ${birthdayIso()}
 - Skillset: ${toDisplayList(skillset)}
 - Qualifications & Tools: ${toDisplayList(qualifications)}

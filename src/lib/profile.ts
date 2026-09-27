@@ -10,13 +10,15 @@ export const profile = {
   name: 'Yuichi Sakagami',
   handle: 'cti1650',
   birthday: { year: 1992, month: 1, date: 25 },
+  /** ABOUT の冒頭に置く一言。meta description / OGP にも使う */
+  headline: '業務の「面倒」を、仕組みごと無くす。',
+  description:
+    'AI・Web・クラウドから GAS・VBA まで、環境の制約に合わせて手段を選び、業務自動化と社内ツール開発をしています。',
 } as const;
 
 /**
- * 市場評価の高い順に並べる(AI → Web → バックエンド/インフラ/データ → モバイル)。
- * 先頭ほど強みとして読まれるため並び順は意味を持つ。
- * 末尾の業務効率化は単価では上位に来ないが、環境の制約を問わず改善を通せる
- * 差別化要素なので独立したまとまりとして残す。
+ * 並び順は AI → Web → バックエンド/インフラ/データ → モバイル → 業務効率化。
+ * 先頭から読まれるため順序自体が意味を持つ。
  * HTML/CSS/JavaScript は React・Next.js・TypeScript から自明なため載せない。
  */
 export const skillset = [
