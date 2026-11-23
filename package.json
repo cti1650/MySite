@@ -68,7 +68,7 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.5",
     "@vitejs/plugin-react": "^6.1.1",
-    "happy-dom": "^20.14.5",
+    "happy-dom": "^21.0.4",
     "lefthook": "^2.1.14",
     "postcss": "^8.5.23",
     "secretlint": "^13.0.6",
