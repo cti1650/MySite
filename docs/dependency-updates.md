@@ -65,12 +65,15 @@ Dependabot alerts と CI の `audit` ジョブで検知します。
 | `mantine` | `@mantine/*` / `postcss-preset-mantine` | major / minor / patch |
 | `tailwind-postcss` | `tailwindcss` / `postcss` / `postcss-simple-vars` / `autoprefixer` | minor / patch |
 | `lint-hooks` | `lefthook` / `secretlint` / `@secretlint/*` / `@commitlint/*` | minor / patch |
-| `test-tools` | `vitest` / `@vitest/*` / `@vitejs/*` / `happy-dom` / `@testing-library/*` | minor / patch |
+| `test-tools` | `vitest` / `@vitest/*` / `@vitejs/*` / `happy-dom` / `@testing-library/*` | major / minor / patch |
+| `nodemailer` | `nodemailer` / `@types/nodemailer` | major / minor / patch |
+| `formidable` | `formidable` / `@types/formidable` | major / minor / patch |
 | `types` | 上記以外の `@types/*` | minor / patch |
 
 `zod` と `mantine-form-zod-resolver` を同じグループにしているのは、resolver 側が
 zod のメジャーに追従して版が分かれるためです。`test-tools` は `vitest` と
-`@vitejs/plugin-react` が同じ vite を前提にするためまとめています。
+`@vitejs/plugin-react` が同じ vite を前提にするためまとめています。`nodemailer` /
+`formidable` は型定義を本体の major に揃えるため、`types` より前に置いて本体と組にしています。
 
 `update-types` で外れた更新 (例: `lint-hooks` の major) はグループに入らず個別PRになります。
 
@@ -87,11 +90,25 @@ Dependabot の PR に auto-merge を設定し、CI が通った時点で squash 
 | エコシステム | 自動マージする | レビューを通す |
 | --- | --- | --- |
 | github-actions | すべて | — |
-| npm | patch すべて / devDependencies の minor | major / dependencies の minor |
+| npm | patch すべて / devDependencies の minor / テストツールの major | 上記以外の major / dependencies の minor |
 
 判定は `dependabot/fetch-metadata` の `updated-dependencies-json` を依存ごとに見て、
 **PR 内の全依存が条件を満たす場合のみ**対象にします。グループPRは本番依存の minor と
 dev 依存の patch が混在することがあり、`update-type` などの集約出力では判定できないためです。
+
+### major を自動マージするかの基準
+
+「壊れたときに CI が必ず落ちるか」と「本番に影響しないか」の両方を満たすものだけを
+自動マージにしています。
+
+| 区分 | パッケージ | 理由 |
+| --- | --- | --- |
+| 自動マージ | `vitest` / `@vitest/*` / `@vitejs/*` / `happy-dom` / `@testing-library/*` | 壊れればテストが落ち、本番のバンドルにも入らない |
+| レビュー | `lefthook` / `@commitlint/*` | CI では実行されず、ローカルのフックが壊れても気づけない |
+| レビュー | `secretlint` / `@secretlint/*` | 検出ルールが減っても CI は通り、検査が静かに弱まりうる |
+| レビュー | `@types/nodemailer` / `@types/formidable` | 本体の major と揃える必要がある |
+| レビュー | dependencies すべて | 実行時の挙動が変わる |
+| 手動 (`ignore`) | `typescript` / `@biomejs/*` | 前述 |
 
 本番依存の minor をレビュー対象に残しているのは、Next や Mantine はテストが薄く、
 CI を通っても画面の崩れを検知できないためです

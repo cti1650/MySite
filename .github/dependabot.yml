@@ -78,7 +78,8 @@ updates:
         update-types:
           - minor
           - patch
-      # vitest と @vitejs/plugin-react は同じ vite の版を前提にするため同時に上げる
+      # vitest と @vitejs/plugin-react は同じ vite の版を前提にするため同時に上げる。
+      # 壊れればテストが落ちるため major も自動マージ対象とし、update-types で絞らない
       test-tools:
         patterns:
           - vitest
@@ -86,9 +87,15 @@ updates:
           - "@vitejs/*"
           - happy-dom
           - "@testing-library/*"
-        update-types:
-          - minor
-          - patch
+      # 型定義は本体の major に合わせる必要があるため、types より先に本体と組にする
+      nodemailer:
+        patterns:
+          - nodemailer
+          - "@types/nodemailer"
+      formidable:
+        patterns:
+          - formidable
+          - "@types/formidable"
       types:
         patterns:
           - "@types/*"

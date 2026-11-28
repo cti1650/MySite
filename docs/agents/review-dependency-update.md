@@ -5,8 +5,9 @@ Dependabot の設定と方針は [../dependency-updates.md](../dependency-update
 
 ## 前提として知っておくこと
 
-- 自動マージされるのは `github-actions` のすべてと、npm の patch / devDependencies の minor です。
-  ここに来るのは npm の major と dependencies の minor（およびそれを含むグループ）です
+- 自動マージされるのは `github-actions` のすべてと、npm の patch / devDependencies の minor /
+  テストツール（vitest・happy-dom・@testing-library など）の major です。
+  ここに来るのはそれ以外の major と dependencies の minor（およびそれを含むグループ）です
 - `cooldown` が効いているため、提案されている版は公開から一定日数が経っています
   （npm: major 30日 / minor 7日 / patch 3日）
 - **グループの `update-types` は更新を止めません。** 対象外の更新はグループから外れて
