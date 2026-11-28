@@ -13,7 +13,9 @@ import { Notifications } from '@mantine/notifications';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 
-const theme = createTheme({});
+// Mantine 9.8.1 で cursorType が Button / Anchor / Select の選択肢にも効くようになり、
+// 既定値 'default' のままだとリンクやボタンが矢印カーソルになるため pointer に揃える
+const theme = createTheme({ cursorType: 'pointer' });
 
 const TailwindApp = ({ Component, pageProps }: AppProps) => {
   usePageView();
