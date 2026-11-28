@@ -43,6 +43,15 @@ CI では Notion / Qiita のトークンを必要としません。
 uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 ```
 
+リポジトリ設定の **Require actions to be pinned to a full-length commit SHA**
+（API では `sha_pinning_required`）を有効にしているため、タグやブランチで参照した
+`uses` を含むワークフローは起動時に失敗します。新しいアクションを追加するときは
+タグが指す SHA を調べて固定してください。
+
+```bash
+gh api repos/<owner>/<repo>/commits/<tag> --jq .sha
+```
+
 SHA の追従と Dependabot PR の自動マージについては
 [dependency-updates.md](dependency-updates.md) を参照してください。
 

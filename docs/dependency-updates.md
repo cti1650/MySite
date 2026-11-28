@@ -126,6 +126,7 @@ Dependabot の PR は fork 扱いとなり `pull_request` では読み取り専�
 | `main` のブランチ保護 | `ci` を必須チェックに指定 | 必須チェックがないと CI 完了を待たず即マージされる |
 | `enforce_admins` | 無効 | 管理者は `main` へ直接 push できる状態を維持するため |
 | `strict` (最新化の強制) | 無効 | `main` に対して古いだけで PR がブロックされ、rebase が繰り返されるのを避けるため |
+| Actions の SHA 固定必須 (`sha_pinning_required`) | 有効 | タグ参照の `uses` が紛れ込んだ時点でワークフローを失敗させるため |
 | Dependabot security updates | 有効 | 脆弱性の修正PRを cooldown を待たずに作らせるため |
 
 `audit` は必須チェック (`ci`) に含めていません。audit の結果は PR の内容ではなく勧告の
