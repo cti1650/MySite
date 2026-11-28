@@ -59,9 +59,11 @@ updates:
         patterns:
           - "@mantine/*"
           - postcss-preset-mantine
+      # @tailwindcss/postcss は同じ版の tailwindcss を内部依存に持つため、組で上げないと2重に入る
       tailwind-postcss:
         patterns:
           - tailwindcss
+          - "@tailwindcss/*"
           - postcss
           - postcss-simple-vars
           - autoprefixer

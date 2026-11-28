@@ -63,7 +63,7 @@ Dependabot alerts と CI の `audit` ジョブで検知します。
 | `react` | `react` / `react-dom` / `@types/react` / `@types/react-dom` | major / minor / patch |
 | `zod` | `zod` / `mantine-form-zod-resolver` | major / minor / patch |
 | `mantine` | `@mantine/*` / `postcss-preset-mantine` | major / minor / patch |
-| `tailwind-postcss` | `tailwindcss` / `postcss` / `postcss-simple-vars` / `autoprefixer` | minor / patch |
+| `tailwind-postcss` | `tailwindcss` / `@tailwindcss/*` / `postcss` / `postcss-simple-vars` / `autoprefixer` | minor / patch |
 | `lint-hooks` | `lefthook` / `secretlint` / `@secretlint/*` / `@commitlint/*` | minor / patch |
 | `test-tools` | `vitest` / `@vitest/*` / `@vitejs/*` / `happy-dom` / `@testing-library/*` | major / minor / patch |
 | `nodemailer` | `nodemailer` / `@types/nodemailer` | major / minor / patch |
