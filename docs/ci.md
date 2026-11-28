@@ -20,8 +20,14 @@ GitHub Actions で実行しています。設定は [.github/workflows/ci.yml](.
 | Typecheck | `npm run typecheck` |
 | Test | `npm test`（Vitest / 詳細は [testing.md](testing.md)） |
 | Secretlint | `git ls-files` で列挙した全ファイルを `--maskSecrets` 付きで検査 |
-| Audit | `npm audit --audit-level=high` |
 | Build | `npm run build` |
+
+これらは `ci` ジョブで実行し、`ci` が `main` のブランチ保護の必須チェックです。
+
+`npm audit --audit-level=high` は別の `audit` ジョブで実行し、必須チェックにはしていません。
+audit の結果は PR の内容ではなく勧告の公開時期で変わるため、必須にすると無関係な PR
+（自動マージ対象を含む）まで止まるためです。経緯は
+[dependency-updates.md](dependency-updates.md#前提となるリポジトリ設定) を参照してください。
 
 Node.js は 24 系、依存のインストールは `npm ci` です。
 

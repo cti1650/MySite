@@ -57,7 +57,7 @@ Vitest + happy-dom で実行します。`npm test` で全件実行できます�
 
 ## CI
 
-GitHub Actions で PR と `main` への push に対して lint / typecheck / test / secretlint / audit / build を実行します。
+GitHub Actions で PR と `main` への push に対して lint / typecheck / test / secretlint / build（必須）と audit（参考）を実行します。
 詳細は [docs/ci.md](docs/ci.md) を参照してください。
 
 ## 依存関係の更新
