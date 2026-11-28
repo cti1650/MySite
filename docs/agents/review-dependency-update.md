@@ -5,7 +5,9 @@ Dependabot の設定と方針は [../dependency-updates.md](../dependency-update
 
 ## 前提として知っておくこと
 
-- 自動マージされるのは `github-actions` の更新のみです。npm の更新は必ず人の判断を通ります
+- 自動マージされるのは `github-actions` のすべてと、npm の patch / devDependencies の minor /
+  テストツール（vitest・happy-dom・@testing-library など）の major です。
+  ここに来るのはそれ以外の major と dependencies の minor（およびそれを含むグループ）です
 - `cooldown` が効いているため、提案されている版は公開から一定日数が経っています
   （npm: major 30日 / minor 7日 / patch 3日）
 - **グループの `update-types` は更新を止めません。** 対象外の更新はグループから外れて
@@ -13,8 +15,10 @@ Dependabot の設定と方針は [../dependency-updates.md](../dependency-update
   Tailwind の major は個別PRとして提案されました。major を本当に抑止したい場合は
   `ignore` に `update-types` を指定する必要があります
 - `typescript` と `@biomejs/*` は `ignore` にあるため提案されません（手動更新）。
-  これらは security update も提案されないので、脆弱性は CI の
-  `npm audit --audit-level=high` で検知します
+  これらは security update も提案されないので、脆弱性は Dependabot alerts と
+  CI の `audit` ジョブで検知します
+- CI の `audit` ジョブは必須チェックではありません。PR で落ちていても、その PR が
+  原因とは限りません（main に既にある依存の勧告で落ちることがあります）
 
 ## 手順
 

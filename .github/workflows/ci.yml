@@ -46,8 +46,25 @@ jobs:
       - name: Secretlint
         run: git ls-files -z | xargs -0 npx secretlint --maskSecrets --secretlintignore .gitignore
 
-      - name: Audit
-        run: npm audit --audit-level=high
-
       - name: Build
         run: npm run build
+
+  # 必須チェック (ci) から分離している。audit の結果は PR の内容ではなく
+  # 勧告の公開時期で変わるため、ci に含めると無関係な PR (自動マージ対象を含む)
+  # まで止まり、脆弱性を直す PR 自体もマージできなくなる (#34 / #36 で発生)。
+  # 脆弱性の検知と修正 PR は Dependabot alerts / security updates が担う
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+
+      # npm audit は package-lock.json だけを見るため npm ci は不要
+      # (インストールスクリプトも走らない)
+      - name: Audit
+        run: npm audit --audit-level=high

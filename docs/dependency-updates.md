@@ -17,8 +17,11 @@
 
 `github-actions` は semver 前提のエコシステムとして扱われないため、`semver-major-days`
 等では段階を分けられません (指定すると設定ファイル全体が解析エラーになります)。
-`default-days` で一律指定しています。レビューなしで自動マージされるため、この待機期間が
-不正なリリースに対する主な防御になります。
+`default-days` で一律指定しています。
+
+自動マージの対象 (github-actions すべて、npm の patch と dev 依存の minor) は
+レビューを経ないため、この待機期間が不正なリリースに対する主な防御になります。
+security update には cooldown は適用されません。
 
 ## GitHub Actions
 
@@ -48,8 +51,8 @@ CI で互換性を保証しにくいものは `ignore` に入れ、更新時期�
 | `typescript` | 型エラーの出方が変わり、広範囲の修正を伴うことがある |
 | `@biomejs/*` | lint / format ルールの既定値が変わり、差分が大きくなることがある |
 
-`ignore` 対象は security update も提案されません。脆弱性は CI の
-`npm audit --audit-level=high` で検知します。
+`ignore` 対象は security update も提案されません。これらの脆弱性は
+Dependabot alerts と CI の `audit` ジョブで検知します。
 
 ### グループ
 
@@ -61,11 +64,20 @@ CI で互換性を保証しにくいものは `ignore` に入れ、更新時期�
 | `zod` | `zod` / `mantine-form-zod-resolver` | major / minor / patch |
 | `mantine` | `@mantine/*` / `postcss-preset-mantine` | major / minor / patch |
 | `tailwind-postcss` | `tailwindcss` / `postcss` / `postcss-simple-vars` / `autoprefixer` | minor / patch |
-| `lint-hooks` | `lefthook` / `secretlint` / `@secretlint/*` / `@commitlint/*` | patch |
+| `lint-hooks` | `lefthook` / `secretlint` / `@secretlint/*` / `@commitlint/*` | minor / patch |
+| `test-tools` | `vitest` / `@vitest/*` / `@vitejs/*` / `happy-dom` / `@testing-library/*` | major / minor / patch |
+| `nodemailer` | `nodemailer` / `@types/nodemailer` | major / minor / patch |
+| `formidable` | `formidable` / `@types/formidable` | major / minor / patch |
 | `types` | 上記以外の `@types/*` | minor / patch |
 
 `zod` と `mantine-form-zod-resolver` を同じグループにしているのは、resolver 側が
-zod のメジャーに追従して版が分かれるためです。
+zod のメジャーに追従して版が分かれるためです。`test-tools` は `vitest` と
+`@vitejs/plugin-react` が同じ vite を前提にするためまとめています。`nodemailer` /
+`formidable` は型定義を本体の major に揃えるため、`types` より前に置いて本体と組にしています。
+
+`update-types` で外れた更新 (例: `lint-hooks` の major) はグループに入らず個別PRになります。
+
+open PR の上限は 10 です (既定の 5 では、レビュー待ちの major が溜まると新しい提案が止まるため)。
 
 いずれのグループにも属さないもの (`next` / `axios` / `sharp` / `react-icons` /
 `nodemailer` / `formidable` / `classcat`) は個別のPRになります。
@@ -75,9 +87,32 @@ zod のメジャーに追従して版が分かれるためです。
 [.github/workflows/dependabot-auto-merge.yml](../.github/workflows/dependabot-auto-merge.yml) で
 Dependabot の PR に auto-merge を設定し、CI が通った時点で squash merge します。
 
-自動マージの対象は `github-actions` の更新のみです
-(`dependabot/fetch-metadata` の `package-ecosystem` 出力で判定)。npm の更新は
-自動マージされず、通常のレビューを経ます。
+| エコシステム | 自動マージする | レビューを通す |
+| --- | --- | --- |
+| github-actions | すべて | — |
+| npm | patch すべて / devDependencies の minor / テストツールの major | 上記以外の major / dependencies の minor |
+
+判定は `dependabot/fetch-metadata` の `updated-dependencies-json` を依存ごとに見て、
+**PR 内の全依存が条件を満たす場合のみ**対象にします。グループPRは本番依存の minor と
+dev 依存の patch が混在することがあり、`update-type` などの集約出力では判定できないためです。
+
+### major を自動マージするかの基準
+
+「壊れたときに CI が必ず落ちるか」と「本番に影響しないか」の両方を満たすものだけを
+自動マージにしています。
+
+| 区分 | パッケージ | 理由 |
+| --- | --- | --- |
+| 自動マージ | `vitest` / `@vitest/*` / `@vitejs/*` / `happy-dom` / `@testing-library/*` | 壊れればテストが落ち、本番のバンドルにも入らない |
+| レビュー | `lefthook` / `@commitlint/*` | CI では実行されず、ローカルのフックが壊れても気づけない |
+| レビュー | `secretlint` / `@secretlint/*` | 検出ルールが減っても CI は通り、検査が静かに弱まりうる |
+| レビュー | `@types/nodemailer` / `@types/formidable` | 本体の major と揃える必要がある |
+| レビュー | dependencies すべて | 実行時の挙動が変わる |
+| 手動 (`ignore`) | `typescript` / `@biomejs/*` | 前述 |
+
+本番依存の minor をレビュー対象に残しているのは、Next や Mantine はテストが薄く、
+CI を通っても画面の崩れを検知できないためです
+([playbook](agents/review-dependency-update.md) の「テストがカバーしている範囲」参照)。
 
 Dependabot の PR は fork 扱いとなり `pull_request` では読み取り専用トークンしか
 得られないため、`pull_request_target` を使っています。PR のコードは checkout せず
@@ -91,3 +126,10 @@ Dependabot の PR は fork 扱いとなり `pull_request` では読み取り専�
 | `main` のブランチ保護 | `ci` を必須チェックに指定 | 必須チェックがないと CI 完了を待たず即マージされる |
 | `enforce_admins` | 無効 | 管理者は `main` へ直接 push できる状態を維持するため |
 | `strict` (最新化の強制) | 無効 | `main` に対して古いだけで PR がブロックされ、rebase が繰り返されるのを避けるため |
+| Actions の SHA 固定必須 (`sha_pinning_required`) | 有効 | タグ参照の `uses` が紛れ込んだ時点でワークフローを失敗させるため |
+| Dependabot security updates | 有効 | 脆弱性の修正PRを cooldown を待たずに作らせるため |
+
+`audit` は必須チェック (`ci`) に含めていません。audit の結果は PR の内容ではなく勧告の
+公開時期で変わるため、必須にすると無関係な PR まで止まります。実際に、sharp の勧告が
+出た際に github-actions の自動マージPRが6週間止まり、sharp を直す PR 自体も別の勧告
+(next) で落ちてマージできませんでした。

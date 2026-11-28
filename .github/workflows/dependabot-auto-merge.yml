@@ -20,10 +20,36 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      # 対象は github-actions の SHA 更新のみに限定する。
-      # 将来 npm 等のエコシステムを dependabot.yml に追加しても自動マージはされない。
+      # 自動マージの対象:
+      #   - github-actions: すべて (SHA 固定の追従)
+      #   - npm: patch はすべて、minor は devDependencies のみ
+      #   - npm のテストツール: major も含めすべて (壊れればテストが落ち、本番に入らないため)
+      #     lefthook / commitlint は CI で動かず、secretlint は検出が減っても CI が通るため含めない
+      # グループ PR は本番依存の minor と dev 依存の patch が混在するため、
+      # update-type 等の集約出力ではなく依存ごとに判定し、全件が条件を満たす場合のみ対象にする。
+      # それ以外の major と本番依存の minor は CI で検知しにくい挙動変更を含みうるためレビューを通す。
+      - name: Decide eligibility
+        id: decide
+        env:
+          ECOSYSTEM: ${{ steps.metadata.outputs.package-ecosystem }}
+          DEPS: ${{ steps.metadata.outputs.updated-dependencies-json }}
+        run: |
+          if [ "$ECOSYSTEM" = "github_actions" ]; then
+            eligible=true
+          elif [ "$ECOSYSTEM" = "npm_and_yarn" ]; then
+            eligible=$(echo "$DEPS" | jq 'length > 0 and all(
+              .updateType == "version-update:semver-patch"
+              or (.updateType == "version-update:semver-minor" and .dependencyType == "direct:development")
+              or (.dependencyType == "direct:development"
+                  and (.dependencyName | test("^(vitest|@vitest/.+|@vitejs/.+|happy-dom|@testing-library/.+)$")))
+            )')
+          else
+            eligible=false
+          fi
+          echo "eligible=$eligible" >> "$GITHUB_OUTPUT"
+
       - name: Enable auto-merge
-        if: steps.metadata.outputs.package-ecosystem == 'github_actions'
+        if: steps.decide.outputs.eligible == 'true'
         run: gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}

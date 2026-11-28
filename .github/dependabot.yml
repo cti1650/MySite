@@ -34,6 +34,8 @@ updates:
     # package.json の ^ range は広いままにし、範囲を外れる時だけ書き換える
     # (範囲内の更新は package-lock.json のみの変更になる)
     versioning-strategy: increase-if-necessary
+    # 既定の 5 では、レビュー待ちの major が溜まると新しい提案が止まる
+    open-pull-requests-limit: 10
     # CI で互換性を保証しにくいものは手動更新とする
     # NOTE: ignore 対象は security update も提案されない。脆弱性は CI の
     #       npm audit --audit-level=high で検知する
@@ -66,6 +68,7 @@ updates:
         update-types:
           - minor
           - patch
+      # minor は自動マージ対象 (dev 依存) のため、個別PRに散らさずまとめる
       lint-hooks:
         patterns:
           - lefthook
@@ -73,7 +76,26 @@ updates:
           - "@secretlint/*"
           - "@commitlint/*"
         update-types:
+          - minor
           - patch
+      # vitest と @vitejs/plugin-react は同じ vite の版を前提にするため同時に上げる。
+      # 壊れればテストが落ちるため major も自動マージ対象とし、update-types で絞らない
+      test-tools:
+        patterns:
+          - vitest
+          - "@vitest/*"
+          - "@vitejs/*"
+          - happy-dom
+          - "@testing-library/*"
+      # 型定義は本体の major に合わせる必要があるため、types より先に本体と組にする
+      nodemailer:
+        patterns:
+          - nodemailer
+          - "@types/nodemailer"
+      formidable:
+        patterns:
+          - formidable
+          - "@types/formidable"
       types:
         patterns:
           - "@types/*"
